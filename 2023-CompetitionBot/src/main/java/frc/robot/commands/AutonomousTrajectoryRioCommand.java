@@ -45,10 +45,9 @@ public class AutonomousTrajectoryRioCommand extends PPRamseteCommand {
       // RamseteCommand passes volts to the callback
       RobotContainer.driveSubsystem::tankDriveVolts,
       true,
-      RobotContainer.driveSubsystem
+      RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem
     );
     this.trajectoryPath = trajectoryPath;
-    addRequirements(RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem);
   }
 
   public AutonomousTrajectoryRioCommand(String trajectoryName, double maxVelocity, double maxAcceleration){
