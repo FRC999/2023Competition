@@ -67,7 +67,10 @@ public class AutonomousTrajectoryRioCommand extends PPRamseteCommand {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    // Update robot odometry
+    RobotContainer.driveSubsystem.updateOdometry();
+  }
 
   // Called once the command ends or is interrupted.
   @Override

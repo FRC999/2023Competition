@@ -256,6 +256,15 @@ public class DriveSubsystem extends SubsystemBase {
         pose);
   }
 
+  // Should be used in periodic when the trajectory navigation is running
+  public void updateOdometry() {
+    odometry.update(
+      RobotContainer.pigeonIMUSubsystem.getRotation2d(),
+      TranslateDistanceIntoMeters(getLeftEncoder()),
+      TranslateDistanceIntoMeters(-getRightEncoder())
+    );
+  }
+
   /**
    * Controls the left and right sides of the drive directly with voltages.
    *
