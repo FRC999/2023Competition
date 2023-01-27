@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -140,6 +143,18 @@ public final class Constants {
 
     //rotational ticks per degree
     public static int[] ticksPerDegree = new int[] {};
+
+    // **** Software trajectory values; get from characterization
+    public static final double ksVolts = 0.15219;
+    public static final double kvVoltSecondsPerMeter = 2.1748;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.49391;
+    public static final DifferentialDriveKinematics kDriveKinematics = 
+      new DifferentialDriveKinematics(
+        Units.inchesToMeters(RobotDriveChassisConstants.distanceBetweenWheels)
+      );
+    public static final double trajectoryRioPidP_Value = 0.054151 ;
+    public static final double trajectoryRioPidD_Value = 0;
+    public static final double trajectoryRioPidI_Value = 0;
 
   }
 
