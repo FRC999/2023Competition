@@ -155,6 +155,10 @@ public final class Constants {
     public static final double trajectoryRioPidP_Value = 0.054151 ;
     public static final double trajectoryRioPidD_Value = 0;
     public static final double trajectoryRioPidI_Value = 0;
+    
+    // Default max values for trajectories - m/s and m/s^2
+    public static final double maxVelocityDefault = 2;
+    public static final double maxAccelerationDefault = 1;
 
   }
 

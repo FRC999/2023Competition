@@ -13,7 +13,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
@@ -52,7 +51,12 @@ public class AutonomousTrajectoryRioCommand extends PPRamseteCommand {
 
   public AutonomousTrajectoryRioCommand(String trajectoryName, double maxVelocity, double maxAcceleration){
     this(PathPlanner.loadPath(trajectoryName, new PathConstraints(maxVelocity, maxAcceleration)));
-    System.out.println("initalized trajectory: "+ trajectoryName);
+    System.out.println("initalized trajectory: "+ trajectoryName + "V:"+maxVelocity+" A:"+maxAcceleration);
+  }
+
+  public AutonomousTrajectoryRioCommand(String trajectoryName){
+    this(PathPlanner.loadPath(trajectoryName, 
+      new PathConstraints(DriveConstants.maxVelocityDefault, DriveConstants.maxAccelerationDefault)));
   }
 
 
