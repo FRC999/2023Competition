@@ -143,4 +143,9 @@ public final class Constants {
 
   }
 
+  public static final class PigeonIMUConstants {
+    // CAN ID of Pigeon2
+    public static int pigeonIMUId = 11;
+}
+
 }

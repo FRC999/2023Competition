@@ -7,12 +7,18 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotDriveChassisConstants;
 
@@ -22,6 +28,9 @@ public class DriveSubsystem extends SubsystemBase {
   public WPI_TalonFX[] rightDriveTalonFX = new WPI_TalonFX[DriveConstants.rightMotorPortID.length];
   public WPI_TalonFX[] leftDriveTalonFX = new WPI_TalonFX[DriveConstants.leftMotorPortID.length];
   public DifferentialDrive drive;
+
+  // Software Trajectory navigation
+  private DifferentialDriveOdometry odometry;
   
   public DriveSubsystem() {
 
@@ -66,14 +75,36 @@ public class DriveSubsystem extends SubsystemBase {
       rightDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
+    // Engage brake mode
+    driveTrainBrakeMode();
+
+    configureEncoders();
+
+    configureSimpleMagic();
+
+    zeroDriveEncoders();
+
+    drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
+    drive.setSafetyEnabled(false); // safety must be disabled siince we plan to use Motion Magic
+
+    // Set initial odometry for trajectories - where robot is right now from the encoder and IMU point of view
+    odometry =
+        new DifferentialDriveOdometry(
+          RobotContainer.pigeonIMUSubsystem.getRotation2d(),
+          TranslateDistanceIntoMeters(getLeftEncoder()),
+          TranslateDistanceIntoMeters(-getRightEncoder())
+        );
+
   }
     
-      /**
-   * Telemetry on the Shuffleboard for the DriveSubsystem
-   */
-
   public void feed() {
     drive.feed();
+  }
+
+  /**
+   * Talon-based PID configuration goes here
+   */
+  public void configureSimpleMagic() {
   }
 
   /**
@@ -147,31 +178,97 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(move, turn);
   }
 
-  /** Get the number of tics moved by the left encoder */
-  public int getLeftEncoder() {
-    return (int) leftDriveTalonFX[0].getSelectedSensorPosition();
+  public void stopRobot() {
+    leftDriveTalonFX[0].set(TalonFXControlMode.PercentOutput, 0);
+    rightDriveTalonFX[0].set(TalonFXControlMode.PercentOutput, 0);
   }
 
   /** Get the number of tics moved by the left encoder */
-  public int getRightEncoder() {
-    return (int) rightDriveTalonFX[0].getSelectedSensorPosition();
+  public double getLeftEncoder() {
+    return leftDriveTalonFX[0].getSelectedSensorPosition();
+  }
+
+  /** Get the number of tics moved by the left encoder */
+  public double getRightEncoder() {
+    return rightDriveTalonFX[0].getSelectedSensorPosition();
   }
 
   // Make sure to adjust Units-of-measure if needed
   // The RAW output is "number of ticks per 100ms", so you may need to convert it
   // into m/s
-  public int getLeftEncoderSpeed() {
-    return (int) leftDriveTalonFX[0].getSelectedSensorVelocity();
+  public double getLeftEncoderSpeed() {
+    return leftDriveTalonFX[0].getSelectedSensorVelocity();
   }
 
-  public int getRightEncoderSpeed() {
-    return (int) rightDriveTalonFX[0].getSelectedSensorVelocity();
+  public double getRightEncoderSpeed() {
+    return rightDriveTalonFX[0].getSelectedSensorVelocity();
   }
 
   public void zeroDriveEncoders() {  // zero encoders on master mmotor controllers of the drivetrain
 
     rightDriveTalonFX[0].setSelectedSensorPosition(0);
     leftDriveTalonFX[0].setSelectedSensorPosition(0);
+  }
+
+  // Configure encoders on primary motors
+  public void configureEncoders(){
+    leftDriveTalonFX[0].configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
+    rightDriveTalonFX[0].configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
+  }
+
+  //  **** TRAJECTORY DRIVING METHODS *****
+
+  /**
+   * Returns the currently-estimated pose of the robot.
+   *
+   * @return The pose.
+   */
+  public Pose2d getPose() {
+    return odometry.getPoseMeters();
+  }
+
+    /**
+   * Returns the current wheel speeds of the robot.
+   *
+   * @return The current wheel speeds.
+   */
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() { // needs to be meters per second
+    return new DifferentialDriveWheelSpeeds(
+        TranslateVelocityIntoMetersPerSecond(getLeftEncoderSpeed()),
+        TranslateVelocityIntoMetersPerSecond(-getRightEncoderSpeed())
+    );
+  }
+
+    /**
+   * Resets the odometry to the specified pose.
+   *
+   * @param pose The pose to which to set the odometry.
+   */
+  public void resetOdometry(Pose2d pose) {
+
+    zeroDriveEncoders();   // Reset Encoders
+    RobotContainer.pigeonIMUSubsystem.zeroHeading();  // Reset Yaw
+
+    odometry.resetPosition(  // distances need to be in meters
+        RobotContainer.pigeonIMUSubsystem.getRotation2d(),
+        TranslateDistanceIntoMeters(getLeftEncoder()),
+        TranslateDistanceIntoMeters(-getRightEncoder()),
+        pose);
+  }
+
+  /**
+   * Controls the left and right sides of the drive directly with voltages.
+   *
+   * @param leftVolts  the commanded left output
+   * @param rightVolts the commanded right output
+   */
+  public void tankDriveVolts(double leftVolts, double rightVolts) {
+
+    //System.out.println("TV L:" + leftVolts + " R:" + rightVolts);
+
+    leftDriveTalonFX[0].setVoltage(leftVolts);
+    rightDriveTalonFX[0].setVoltage(-rightVolts);
+    drive.feed();
   }
 
   public double TranslateDistanceIntoMeters(double distanceRawUnits) {
