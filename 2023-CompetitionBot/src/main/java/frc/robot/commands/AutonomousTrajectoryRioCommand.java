@@ -25,6 +25,7 @@ public class AutonomousTrajectoryRioCommand extends PPRamseteCommand {
   
   public AutonomousTrajectoryRioCommand(PathPlannerTrajectory trajectoryPath) {
     // Use addRequirements() here to declare subsystem dependencies.
+    
     super(
       trajectoryPath,
       RobotContainer.driveSubsystem::getPose,
@@ -47,6 +48,7 @@ public class AutonomousTrajectoryRioCommand extends PPRamseteCommand {
       RobotContainer.driveSubsystem
     );
     this.trajectoryPath = trajectoryPath;
+    addRequirements(RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem);
   }
 
   public AutonomousTrajectoryRioCommand(String trajectoryName, double maxVelocity, double maxAcceleration){
