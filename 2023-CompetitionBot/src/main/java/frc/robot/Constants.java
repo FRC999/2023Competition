@@ -172,6 +172,7 @@ public final class Constants {
       // PID
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
+      public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms
       public static final double turret_NeutralDeadband = 0.001;
       
       public static final int turret_SLOT_0 = 0;
@@ -179,11 +180,12 @@ public final class Constants {
       public static final double turret_kI = 0.0002;
       public static final double turret_kD = 15;
       public static final double turret_kF = 0;
-      public static final double turret_Acceleration = 50;
-      public static final double turret_CruiseVelocity = 50;
-      public static final double turret_Smoothing = 3;
-      public static final double turret_DefaultAcceptableError = 1;
+      public static final double turret_Acceleration = 50; // raw sensor units per 100 ms per second
+      public static final double turret_CruiseVelocity = 50; // raw sensor units per 100 ms
+      public static final int turret_Smoothing = 3; // CurveStrength. 0 to use Trapezoidal Motion Profile. [1,8] for S-Curve (greater value yields greater smoothing).
+      public static final double turret_DefaultAcceptableError = 1; // Sensor units
       public static final double turret_Izone = 500;
+      public static final double turret_PeakOutput = 1; // Closed Loop peak output
 
     }
     public static final class Elevator {

@@ -59,11 +59,32 @@ public class GamepieceManipulatorSubsystem extends SubsystemBase {
     turretMotorController.configNominalOutputReverse(0, Turret.turret_configureTimeoutMs);
 
     /* FPID Gains */
-    turretMotorController.selectProfileSlot(0, 0);
-    turretMotorController.config_kP(0, 0.75, 30);
-    turretMotorController.config_kI(0, 0.005, 30);
-    turretMotorController.config_kD(0, 0.01, 30);
-    turretMotorController.config_kF(0, 0, 30);
+    turretMotorController.selectProfileSlot(Turret.turret_SLOT_0, Turret.PID_Turret_Idx);
+    turretMotorController.config_kP(Turret.turret_SLOT_0, Turret.turret_kP,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.config_kI(Turret.turret_SLOT_0, Turret.turret_kI,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.config_kD(Turret.turret_SLOT_0, Turret.turret_kD,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.config_kF(Turret.turret_SLOT_0, Turret.turret_kF,
+      Turret.turret_configureTimeoutMs);
+
+    turretMotorController.config_IntegralZone(Turret.turret_SLOT_0, Turret.turret_Izone,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.configClosedLoopPeakOutput(Turret.turret_SLOT_0, Turret.turret_PeakOutput,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.configAllowableClosedloopError(Turret.turret_SLOT_0,
+      Turret.turret_DefaultAcceptableError,
+      Turret.turret_configureTimeoutMs);
+
+    turretMotorController.configClosedLoopPeriod(Turret.turret_SLOT_0, Turret.turret_closedLoopPeriodMs,
+      Turret.turret_configureTimeoutMs);
+
+    turretMotorController.configMotionAcceleration(Turret.turret_Acceleration,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.configMotionCruiseVelocity(Turret.turret_CruiseVelocity,
+      Turret.turret_configureTimeoutMs);
+    turretMotorController.configMotionSCurveStrength(Turret.turret_Smoothing);
 
   }
 
