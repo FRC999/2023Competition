@@ -9,6 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PigeonIMUSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,6 +28,8 @@ public class RobotContainer {
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
+
+  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
 
   public static Joystick driveStick;
   public static Joystick turnStick;

@@ -163,13 +163,15 @@ public final class Constants {
   }
 
   public static final class GamepieceManipulator {
+
     public static final class Turret {
       public static final int turretMotorID = 20;
       public static final int turretEncoderPort = 20;
       public static final boolean turretMotorInverted = false;
       public static final boolean turretSensorPhase = false;
-
       // PID
+
+      public static final double turretAbsoluteZero = 0.0;
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
       public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms
@@ -186,6 +188,9 @@ public final class Constants {
       public static final double turret_DefaultAcceptableError = 1; // Sensor units
       public static final double turret_Izone = 500;
       public static final double turret_PeakOutput = 1; // Closed Loop peak output
+      
+      //manual drive constant
+      public static final double TdefaultPowerManual = 0.3;
 
     }
     public static final class Elevator {
@@ -197,6 +202,37 @@ public final class Constants {
       // PID
       public static int PID_Elevator_Idx = 0; // 0 - closed loop; 1 - open loop
       public static int elevator_configureTimeoutMs = 30;
+      //coppied from turret constants
+      public static final double elevator_NeutralDeadband = 0.001;
+      public static final int elevator_closedLoopPeriodMs = 30;
+      
+      public static final double elevatorAbsoluteZero = 0.0;
+      //TO CHANGE - PID values copied from turret constants
+      public static final int elevator_SLOT_0 = 0;
+      public static final double elevator_kP = 1.5;
+      public static final double elevator_kI = 0.0002;
+      public static final double elevator_kD = 15;
+      public static final double elevator_kF = 0;
+      public static final double elevator_Acceleration = 50; // raw sensor units per 100 ms per second
+      public static final double elevator_CruiseVelocity = 50; // raw sensor units per 100 ms
+      public static final int elevator_Smoothing = 3; // CurveStrength. 0 to use Trapezoidal Motion Profile. [1,8] for S-Curve (greater value yields greater smoothing).
+      public static final double elevator_DefaultAcceptableError = 1; // Sensor units
+      public static final double elevator_Izone = 500;
+      public static final double elevator_PeakOutput = 1; // Closed Loop peak output
+      public static final double elevator_PIDTolerance = 100;
+
+      //manual drive constant
+      public static final double EdefaultPowerManual = 0.3;
+
+      //elevator constants
+      
+
+      //will set them in encoder ticks later on
+      public static enum coneHeights{
+        LowCone,
+        MidCone,
+        HighCone
+      }
     }
     public static final class Arm {
       public static final int armMotorID = 22;
@@ -207,6 +243,29 @@ public final class Constants {
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int arm_configureTimeoutMs = 30;
+      //coppied from turret constants
+      public static final double arm_NeutralDeadband = 0.001;
+      public static final int arm_closedLoopPeriodMs = 30;
+
+      public static final double armAbsoluteZero = 0.0;
+      //TO CHANGE - PID values copied from turret constants
+      public static final int arm_SLOT_0 = 0;
+      public static final double arm_kP = 1.5;
+      public static final double arm_kI = 0.0002;
+      public static final double arm_kD = 15;
+      public static final double arm_kF = 0;
+      public static final double arm_Acceleration = 50; // raw sensor units per 100 ms per second
+      public static final double arm_CruiseVelocity = 50; // raw sensor units per 100 ms
+      public static final int arm_Smoothing = 3; // CurveStrength. 0 to use Trapezoidal Motion Profile. [1,8] for S-Curve (greater value yields greater smoothing).
+      public static final double arm_DefaultAcceptableError = 1; // Sensor units
+      public static final double arm_Izone = 500;
+      public static final double arm_PeakOutput = 1; // Closed Loop peak output
+
+      //manual drive constant
+      public static final double AdefaultPowerManual = 0.3;
+      
+
+
     }
     public static final class Claw {
       
