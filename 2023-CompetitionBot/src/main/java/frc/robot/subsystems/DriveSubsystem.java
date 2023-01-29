@@ -25,9 +25,9 @@ import frc.robot.Constants.RobotDriveChassisConstants;
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
 
-  public WPI_TalonFX[] rightDriveTalonFX = new WPI_TalonFX[DriveConstants.rightMotorPortID.length];
-  public WPI_TalonFX[] leftDriveTalonFX = new WPI_TalonFX[DriveConstants.leftMotorPortID.length];
-  public DifferentialDrive drive;
+  private WPI_TalonFX[] rightDriveTalonFX = new WPI_TalonFX[DriveConstants.rightMotorPortID.length];
+  private WPI_TalonFX[] leftDriveTalonFX = new WPI_TalonFX[DriveConstants.leftMotorPortID.length];
+  private DifferentialDrive drive;
 
   // Software Trajectory navigation
   private DifferentialDriveOdometry odometry;
@@ -48,7 +48,7 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].configFactoryDefault(); // reset the motor controller to defaults
       if (motor == 0) { // setup master
         leftDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
-        leftDriveTalonFX[motor].setInverted(Constants.DriveConstants.MotorInvert[0]);
+        leftDriveTalonFX[motor].setInverted(DriveConstants.MotorInvert[0]);
       } else { // setup followers
         leftDriveTalonFX[motor].follow(leftDriveTalonFX[0]);
         leftDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
@@ -65,7 +65,7 @@ public class DriveSubsystem extends SubsystemBase {
 
       if (motor == 0) { // setup master
         rightDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
-        rightDriveTalonFX[motor].setInverted( Constants.DriveConstants.MotorInvert[1]);
+        rightDriveTalonFX[motor].setInverted( DriveConstants.MotorInvert[1]);
       } else { // setup followers
         rightDriveTalonFX[motor].follow(rightDriveTalonFX[0]);
         rightDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward

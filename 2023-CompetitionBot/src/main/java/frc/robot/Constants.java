@@ -162,6 +162,56 @@ public final class Constants {
 
   }
 
+  public static final class GamepieceManipulator {
+    public static final class Turret {
+      public static final int turretMotorID = 20;
+      public static final int turretEncoderPort = 20;
+      public static final boolean turretMotorInverted = false;
+      public static final boolean turretSensorPhase = false;
+
+      // PID
+      public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
+      public static final int turret_configureTimeoutMs = 30;
+      public static final double turret_NeutralDeadband = 0.001;
+      
+      public static final int turret_SLOT_0 = 0;
+      public static final double turret_kP = 1.5;
+      public static final double turret_kI = 0.0002;
+      public static final double turret_kD = 15;
+      public static final double turret_kF = 0;
+      public static final double turret_Acceleration = 50;
+      public static final double turret_CruiseVelocity = 50;
+      public static final double turret_Smoothing = 3;
+      public static final double turret_DefaultAcceptableError = 1;
+      public static final double turret_Izone = 500;
+
+    }
+    public static final class Elevator {
+      public static final int elevatorMotorID = 21;
+      public static final int elevatorEncoderPort = 21;
+      public static final boolean elevatorMotorInverted = false;
+      public static final boolean elevatorSensorPhase = false;
+
+      // PID
+      public static int PID_Elevator_Idx = 0; // 0 - closed loop; 1 - open loop
+      public static int elevator_configureTimeoutMs = 30;
+    }
+    public static final class Arm {
+      public static final int armMotorID = 22;
+      public static final int armEncoderPort = 22;
+      public static final boolean armMotorInverted = false;
+      public static final boolean armSensorPhase = false;
+
+      // PID
+      public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop
+      public static final int arm_configureTimeoutMs = 30;
+    }
+    public static final class Claw {
+      
+    }
+
+  }
+
   public static final class PigeonIMUConstants {
     // CAN ID of Pigeon2
     public static int pigeonIMUId = 11;
