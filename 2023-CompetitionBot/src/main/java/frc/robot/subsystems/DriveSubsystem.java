@@ -265,6 +265,14 @@ public class DriveSubsystem extends SubsystemBase {
     );
   }
 
+  public void updateTrajectoryOdometry() {
+    odometry.update(
+      RobotContainer.pigeonIMUSubsystem.getRotation2d(),
+      TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition()),
+      TranslateDistanceIntoMeters(-rightDriveTalonFX[0].getSelectedSensorPosition())
+    ); 
+  }
+
   /**
    * Controls the left and right sides of the drive directly with voltages.
    *
