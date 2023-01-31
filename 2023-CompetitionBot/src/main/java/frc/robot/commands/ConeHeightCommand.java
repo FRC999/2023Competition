@@ -11,29 +11,17 @@ import frc.robot.Constants.GamepieceManipulator.Elevator.coneHeights;
 
 public class ConeHeightCommand extends CommandBase {
   /** Creates a new LowConeHeight. */
+  coneHeights targetHeight;
 
-  public ConeHeightCommand() {
+  public ConeHeightCommand(coneHeights goToHeight) {
     addRequirements(RobotContainer.elevatorSubsystem);
+    targetHeight = goToHeight;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.elevatorSubsystem.initializeElevator();
-
-    coneHeights myVar = coneHeights.MidCone;
-
-    switch(myVar) {
-      case LowCone:
-        
-        break;
-      case MidCone://Sam Esha not finished will continue on Monday
-         // test
-        break;
-      case HighCone:
-        
-        break;
-    }
+    RobotContainer.elevatorSubsystem.moveToPosition(targetHeight.getHeight());
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -117,8 +117,8 @@ public class TurretSubsystem extends SubsystemBase {
  }
 
  public void moveToPosition(double endingPosition) {
-  turretMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition*clicksPerFullRotationSRX);
-  System.out.println(endingPosition*clicksPerFullRotationSRX);
+  turretMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
+  System.out.println(endingPosition);
  }
 
  public void manualDrive() {

@@ -115,8 +115,8 @@ public class ElevatorSubsystem extends SubsystemBase {
  }
 
  public void moveToPosition(double endingPosition) {
-  elevatorMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition*clicksPerFullRotationSRX);
-  System.out.println(endingPosition*clicksPerFullRotationSRX);
+  elevatorMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
+  System.out.println("Elevator going to " + endingPosition);
  }
   
  public void manualDrive() {

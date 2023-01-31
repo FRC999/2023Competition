@@ -229,9 +229,16 @@ public final class Constants {
 
       //will set them in encoder ticks later on
       public static enum coneHeights{
-        LowCone,
-        MidCone,
-        HighCone
+        LowCone(1000),  //TODO: Set manualy to the encoder value for hight
+        MidCone(2000),
+        HighCone(3000);
+        private double encoderSetting;
+        coneHeights(int height) {
+          this.encoderSetting = height;
+        }
+        public double getHeight() {
+          return encoderSetting;
+        }
       }
     }
     public static final class Arm {

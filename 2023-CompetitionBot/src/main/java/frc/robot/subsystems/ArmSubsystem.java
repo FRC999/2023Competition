@@ -115,8 +115,8 @@ public class ArmSubsystem extends SubsystemBase {
  }
 
  public void moveToPosition(double endingPosition) {
-  armMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition*clicksPerFullRotationSRX);
-  System.out.println(endingPosition*clicksPerFullRotationSRX);
+  armMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
+  System.out.println(endingPosition);
  }
 
  public void manualDrive() {
