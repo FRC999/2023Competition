@@ -21,7 +21,6 @@ public class ElevatorSubsystem extends SubsystemBase {
   public ElevatorSubsystem() {
     initializeElevator();
     calibrateRelativeEncoder();
-    calibrateZero();
   }
 
   public void initializeElevator() {
@@ -97,11 +96,6 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public double getError() {
     return elevatorMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
-  }
-
-  public void calibrateZero() {
-    zeroEncoders();
-    calibrateRelativeEncoder();
   }
 
   public int getDriveAbsEncoder() {

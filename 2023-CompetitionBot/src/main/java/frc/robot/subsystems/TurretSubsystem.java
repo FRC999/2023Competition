@@ -23,7 +23,6 @@ public class TurretSubsystem extends SubsystemBase {
   public TurretSubsystem() {
     initializeTurret();
     calibrateRelativeEncoder();
-    calibrateZero();
   }
 
   private void initializeTurret() {
@@ -99,11 +98,6 @@ public class TurretSubsystem extends SubsystemBase {
 
   public double getError() {
     return turretMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
-  }
-
-  public void calibrateZero() {
-    zeroEncoders();
-    calibrateRelativeEncoder();
   }
 
   public int getDriveAbsEncoder() {

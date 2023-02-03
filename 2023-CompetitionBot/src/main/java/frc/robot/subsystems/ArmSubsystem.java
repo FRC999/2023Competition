@@ -21,7 +21,6 @@ public class ArmSubsystem extends SubsystemBase {
   public ArmSubsystem() {
     initializeArm();
     calibrateRelativeEncoder();
-    calibrateZero();
   }
 
   private void initializeArm() {
@@ -82,7 +81,7 @@ public class ArmSubsystem extends SubsystemBase {
     armMotorController.configMotionSCurveStrength(Arm.arm_Smoothing);
   }
 
-  public void zeroEncoders(){
+  public void zeroEncoder(){
     armMotorController.setSelectedSensorPosition(0);
     System.out.println("arm encoders zeroed");
   }
@@ -97,11 +96,6 @@ public class ArmSubsystem extends SubsystemBase {
 
   public double getError() {
     return armMotorController.getClosedLoopError(); // Returns the PID error for Pan motion control;
-  }
-
-  public void calibrateZero() {
-    zeroEncoders();
-    calibrateRelativeEncoder();
   }
 
   public int getDriveAbsEncoder() {

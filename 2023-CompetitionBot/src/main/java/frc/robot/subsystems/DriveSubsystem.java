@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
@@ -135,11 +136,13 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setLeftVoltage(double voltage) {
-    rightDriveTalonFX[0].setVoltage(voltage);
+    for (int i=0; i<leftDriveTalonFX.length;i++)
+      leftDriveTalonFX[0].setVoltage(voltage);
   }
 
   public void setRightVoltage(double voltage) {
-    rightDriveTalonFX[0].setVoltage(voltage);
+    for (int i=0; i<rightDriveTalonFX.length;i++)
+      rightDriveTalonFX[0].setVoltage(voltage);
   }
 
   public double deadbandMove(double move) {
@@ -283,8 +286,8 @@ public class DriveSubsystem extends SubsystemBase {
 
     //System.out.println("TV L:" + leftVolts + " R:" + rightVolts);
 
-    leftDriveTalonFX[0].setVoltage(leftVolts);
-    rightDriveTalonFX[0].setVoltage(-rightVolts);
+    setLeftVoltage(leftVolts);
+    setRightVoltage(-rightVolts);
     drive.feed();
   }
 
