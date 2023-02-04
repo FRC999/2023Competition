@@ -100,8 +100,8 @@ public final class Constants {
     // Motor neutral dead-band, set to the minimum 0.1%
     public final static double NeutralDeadband = 0.001;
 
-    public final static int Izone_0 = 500;
-    public static double PeakOutput_0 = 1;
+    public static final int Izone_0 = 500;
+    public static final double PeakOutput_0 = 1;
 
     /**
      * Talon PID methods often demand slot ID's, so we wil keep this here I do not
@@ -159,6 +159,10 @@ public final class Constants {
     // Default max values for trajectories - m/s and m/s^2
     public static final double maxVelocityDefault = 2;
     public static final double maxAccelerationDefault = 1;
+
+    public static final class BigFoot {
+      public static final int[] footSolenoidChannels = {5,6}; // First channel - DOWN, second - UP
+    }
 
   }
 
@@ -274,15 +278,23 @@ public final class Constants {
 
 
     }
-    public static final class Claw {
-      
+    public static final class Claw { 
+      public static final int[] clawSolenoidChannels = {1,2};   // First channel to CLOSE, second to OPEN
+      public static final int[] flipperSolenoidChannels = {3,4}; // First channel UP, second - DOWN
     }
+
 
   }
 
   public static final class PigeonIMUConstants {
     // CAN ID of Pigeon2
-    public static int pigeonIMUId = 11;
+    public static final int pigeonIMUId = 11;
+}
+
+public static final class PneumaticsConstants {
+
+  public static final int compressorCANID = 0;
+
 }
 
 }

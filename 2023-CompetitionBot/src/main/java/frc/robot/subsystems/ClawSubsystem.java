@@ -4,32 +4,36 @@
 
 package frc.robot.subsystems;
 
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.GamepieceManipulator.Claw;
 
 public class ClawSubsystem extends SubsystemBase {
-  private static DoubleSolenoid solenoid;
+  private static DoubleSolenoid clawSolenoid;
+  private static DoubleSolenoid flipperSolenoid;
 
   /** Creates a new ClawSubsystem. */
   public ClawSubsystem() {
-    solenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Constants.PneumaticsConstants.SolenoidGripperClawChannel[0], Constants.PneumaticsConstants.SolenoidGripperClawChannel[1]);
+    clawSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
+    flipperSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
   }
 
-  public void extendCylinder() {
-    solenoid.set(Value.kForward);
+  public void closeClaw() {
+    clawSolenoid.set(Value.kForward);
   }
 
-  public void retractCylinder() {
-    solenoid.set(Value.kReverse);
+  public void openClaw() {
+    clawSolenoid.set(Value.kReverse);
   }
 
-  public void toggleCylinder() {
-    solenoid.toggle();
+  public void flipperUp() {
+    flipperSolenoid.set(Value.kForward);
+  }
+
+  public void flipperDown() {
+    flipperSolenoid.set(Value.kReverse);
   }
 
   @Override
