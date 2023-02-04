@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PneumaticsSubsystem extends SubsystemBase {
   /** Creates a new PneumaticsSubsystem. */
-  Compressor compressor;
+  private Compressor compressor;
 
   public PneumaticsSubsystem() {
     compressor = new Compressor(PneumaticsConstants.compressorCANID, PneumaticsModuleType.CTREPCM);

@@ -300,12 +300,36 @@ public final class Constants {
   public static final class PigeonIMUConstants {
     // CAN ID of Pigeon2
     public static final int pigeonIMUId = 11;
-}
+  }
 
-public static final class PneumaticsConstants {
+  public static final class PneumaticsConstants {
 
-  public static final int compressorCANID = 0;
+    public static final int compressorCANID = 0;
 
-}
+  }
+
+  public static final class NavigationConstants {
+    public static final double[] fieldCenter = {8.725, 4.043};
+    // X,Y coordinates of the tags from 0,0 in the blue/lower-left
+    public static final double tags[][] = {
+      {}, // 0
+      {7.24310 + fieldCenter[0], -2.93659 + fieldCenter[1]}, // id 1
+      {7.24310 + fieldCenter[0], -1.26019 + fieldCenter[1]}, // id 2
+      {7.24310 + fieldCenter[0], 0.41621 + fieldCenter[1]}, // id 3
+      {7.90832 + fieldCenter[0], 2.74161 + fieldCenter[1]}, // id 4
+      {-7.90832 + fieldCenter[0], 2.74161 + fieldCenter[1]}, // id 5
+      {-7.24310 + fieldCenter[0], 0.41621 + fieldCenter[1]}, // id 6
+      {-7.24310 + fieldCenter[0], -1.26019 + fieldCenter[1]}, // id 7
+      {-7.24310 + fieldCenter[0], -2.93659 + fieldCenter[1]} // id 8
+    } ;
+
+    public static final double yTargetOffset = tags[8][1] - 0.512;
+
+    public static final double xTargetOffest[] = {
+      1.1055-tags[8][0], // front/bottom offset
+      0.653-tags[8][0], // middle offset
+      0.238-tags[8][0] // top offset
+    };
+  }
 
 }

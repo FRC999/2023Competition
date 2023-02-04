@@ -7,7 +7,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.GamepieceManipulator.Arm;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.Constants.GamepieceManipulator.Turret;
