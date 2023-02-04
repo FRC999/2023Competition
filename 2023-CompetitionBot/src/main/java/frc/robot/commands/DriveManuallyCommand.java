@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.DriveConstants;
 
 /**
  * This command never ends; 
@@ -29,10 +30,10 @@ public class DriveManuallyCommand extends CommandBase {
   public void execute() {
 
     double move = RobotContainer.driveStick.getY() * (-1);
-    double turn = RobotContainer.turnStick.getX();
+    double turn = RobotContainer.turnStick.getX()*(-1);
 
     // Note that turns are adjusted; modify adjustment as needed, depending on how sharp/fast you want the turns to be
-    RobotContainer.driveSubsystem.manualDrive(move, turn * Constants.DriveConstants.turnAdjust);
+    RobotContainer.driveSubsystem.manualDrive(move, turn * DriveConstants.turnAdjust);
     
   }
 

@@ -134,7 +134,15 @@ public final class Constants {
     public static int defaultAcceptableError = 250;
 
     // Make smoother turns - see Cheezy Driving
-    public static double turnAdjust = 0.6;
+    public static double 
+    
+    
+    
+    
+    
+    
+    
+    turnAdjust = 0.6;
 
     //autoRoutineConstants
 
@@ -161,7 +169,7 @@ public final class Constants {
     public static final double maxAccelerationDefault = 1;
 
     public static final class BigFoot {
-      public static final int[] footSolenoidChannels = {5,6}; // First channel - DOWN, second - UP
+      public static final int[] footSolenoidChannels = {4,5}; // First channel - DOWN, second - UP
     }
 
   }

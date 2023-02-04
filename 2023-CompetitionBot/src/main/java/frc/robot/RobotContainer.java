@@ -34,21 +34,37 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   // ***** Initialize Subsystems *******
-  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
 
+  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
+
   // GamePiece Manipulator subsystems
-  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
-  public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
-  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
+  //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
+
   public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
-  public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
+  
+  //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
   public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
   // ***** End of Subsystem initialization *******
+
+  // ***** Dummy subsystems so the code will compile, use for testing
+  //  !!!!!!! Make sure to comment it out for thre real competition
+  public static final ElevatorSubsystem elevatorSubsystem = null;
+  public static final TurretSubsystem turretSubsystem = null;
+  public static final ArmSubsystem armSubsystem = null;
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  public static final ClawSubsystem clawSubsystem = null;
+  //public static final BigFootSubsystem bigFootSubsystem = null;
+
+
+
+
 
   public static Joystick driveStick;
   public static Joystick turnStick;
@@ -105,6 +121,13 @@ public class RobotContainer {
           .whileTrue(new OperateTurret())
           .whileFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
     */
+
+    // Solenoid test with the BigFoot subsystem
+    new JoystickButton(driveStick, 11)
+          .whileTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown,RobotContainer.bigFootSubsystem))
+          .whileFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp,RobotContainer.bigFootSubsystem));
+
+
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     //new Trigger(m_exampleSubsystem::exampleCondition)
     //    .onTrue(new ExampleCommand(m_exampleSubsystem));
