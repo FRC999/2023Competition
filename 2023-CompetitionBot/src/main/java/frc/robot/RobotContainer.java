@@ -9,9 +9,13 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.OperateTurret;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.BigFootSubsystem;
+import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PigeonIMUSubsystem;
+import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,13 +33,22 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  // ***** Initialize Subsystems *******
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
 
+  // GamePiece Manipulator subsystems
   public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
+  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
+  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
-  public static final TurretSubsystem turretSubsystem = new TurretSubsystem(); 
+  // Foot that stops us when balanced
+  public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+  // ***** End of Subsystem initialization *******
 
   public static Joystick driveStick;
   public static Joystick turnStick;
@@ -43,11 +56,11 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    // Configure driver interface - joysticks
+    // Configure driver interface - binding joystick objects to port numbers
     configureDriverInterface();
 
-    // Configure the trigger bindings
-    configureBindings();
+    // Configure the trigger/button bindings for commands
+    configureButtonBindings();
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
@@ -81,8 +94,9 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {
+  private void configureButtonBindings() {
 
+    /*
     new JoystickButton(driveStick, 10)
           .whileTrue(new OperateTurret())
           .whileFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
@@ -90,6 +104,7 @@ public class RobotContainer {
     new JoystickButton(driveStick, 7)
           .whileTrue(new OperateTurret())
           .whileFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
+    */
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     //new Trigger(m_exampleSubsystem::exampleCondition)
     //    .onTrue(new ExampleCommand(m_exampleSubsystem));
