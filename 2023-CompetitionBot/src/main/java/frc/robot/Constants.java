@@ -196,6 +196,8 @@ public final class Constants {
       //manual drive constant
       public static final double TdefaultPowerManual = 0.3;
 
+      public static final double turretCruisingPosition = 200.0; // Cruising position when we have a gamepiece
+
     }
     public static final class Elevator {
       public static final int elevatorMotorID = 21;
@@ -235,7 +237,8 @@ public final class Constants {
       public static enum coneHeights{
         LowCone(1000),  //TODO: Set manualy to the encoder value for hight
         MidCone(2000),
-        HighCone(3000);
+        HighCone(3000),
+        Cruising(1200); // Cruising height - when we transport the gamepiece
         private double encoderSetting;
         coneHeights(int height) {
           this.encoderSetting = height;
@@ -275,7 +278,7 @@ public final class Constants {
       //manual drive constant
       public static final double AdefaultPowerManual = 0.3;
       
-
+      public static final double armCruisingPosition = 200.0;
 
     }
     public static final class Claw { 

@@ -9,11 +9,11 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.GamepieceManipulator.Elevator.coneHeights;
 
-public class ConeHeightCommand extends CommandBase {
+public class MoveElevatorToPredefinedHeight extends CommandBase {
   /** Creates a new LowConeHeight. */
   coneHeights targetHeight;
 
-  public ConeHeightCommand(coneHeights goToHeight) {
+  public MoveElevatorToPredefinedHeight(coneHeights goToHeight) {
     addRequirements(RobotContainer.elevatorSubsystem);
     targetHeight = goToHeight;
   }
