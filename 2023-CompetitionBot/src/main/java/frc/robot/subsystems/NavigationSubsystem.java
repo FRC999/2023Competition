@@ -18,9 +18,10 @@ public class NavigationSubsystem extends SubsystemBase {
     return null; //TODO: change this later
   }
 
-  public boolean isFacingRight() {
+  /* public boolean isFacingRight() {
     if(-90 < RobotContainer.pigeonIMUSubsystem.getYaw() && 90 > RobotContainer.pigeonIMUSubsystem.)
   }
+  */
 
   //public
 
