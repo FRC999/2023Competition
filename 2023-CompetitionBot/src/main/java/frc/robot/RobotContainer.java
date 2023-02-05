@@ -64,9 +64,9 @@ public class RobotContainer {
   //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
   //public static final BigFootSubsystem bigFootSubsystem = null;
+  public static final NavigationSubsystem navigationSubsystem = null;
 
-
-
+  public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem(); 
 
 
   public static Joystick driveStick;
