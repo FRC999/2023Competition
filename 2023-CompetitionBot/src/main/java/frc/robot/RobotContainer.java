@@ -14,6 +14,7 @@ import frc.robot.subsystems.BigFootSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.NavigationSubsystem;
 import frc.robot.subsystems.PigeonIMUSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
@@ -61,6 +62,7 @@ public class RobotContainer {
   //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
   //public static final BigFootSubsystem bigFootSubsystem = null;
+  public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
 
 
 

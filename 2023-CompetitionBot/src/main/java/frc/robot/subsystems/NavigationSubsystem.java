@@ -10,18 +10,25 @@ import frc.robot.RobotContainer;
 
 public class NavigationSubsystem extends SubsystemBase {
   /** Creates a new NavigationSubsystem. */
+  Pose2d currentAngleFromPose;
+
   public NavigationSubsystem() {
+    currentAngleFromPose = getCurrentPoseOfRobot();
 
   }
 
-  public Pose2d returnCurrentPoseOfRobot() {
+  public Pose2d getCurrentPoseOfRobot() {
     return null; //TODO: change this later
+    
   }
 
-  /* public boolean isFacingRight() {
-    if(-90 < RobotContainer.pigeonIMUSubsystem.getYaw() && 90 > RobotContainer.pigeonIMUSubsystem.)
+  public boolean isFacingRight() {
+    return ((-90 < currentAngleFromPose.getRotation().getDegrees() && 0 > currentAngleFromPose.getRotation().getDegrees()) 
+    || (270 < currentAngleFromPose.getRotation().getDegrees() && 360 > currentAngleFromPose.getRotation().getDegrees())
+    || (0 < currentAngleFromPose.getRotation().getDegrees() && 90 > currentAngleFromPose.getRotation().getDegrees())
+    || (-270 < currentAngleFromPose.getRotation().getDegrees() && 0 > currentAngleFromPose.getRotation().getDegrees()));
   }
-  */
+  
 
   //public
 

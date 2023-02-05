@@ -4,12 +4,21 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class LaneRecognitionSubsystem extends SubsystemBase {
   /** Creates a new LaneRecognitionSubsystem. */
-  public LaneRecognitionSubsystem() {
 
+  public LaneRecognitionSubsystem() {
+    
+  }
+//use isFacingRight, and getcurrentPoseOfRobot
+  public void identifyNearestTarget() {   //what return type would we want this 2 be
+    if(RobotContainer.navigationSubsystem.isFacingRight()) {
+      
+    }
   }
 
   
