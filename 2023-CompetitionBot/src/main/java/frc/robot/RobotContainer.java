@@ -9,6 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.OperateTurret;
+import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
@@ -129,6 +130,11 @@ public class RobotContainer {
     new JoystickButton(driveStick, 11)
           .whileTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown,RobotContainer.bigFootSubsystem))
           .whileFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp,RobotContainer.bigFootSubsystem));
+
+    // Simple Trajectory test
+    new JoystickButton(driveStick, 11)
+          .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("trajtest1"))
+          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
 
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`

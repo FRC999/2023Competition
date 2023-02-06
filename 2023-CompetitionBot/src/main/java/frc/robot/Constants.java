@@ -134,15 +134,7 @@ public final class Constants {
     public static int defaultAcceptableError = 250;
 
     // Make smoother turns - see Cheezy Driving
-    public static double 
-    
-    
-    
-    
-    
-    
-    
-    turnAdjust = 0.6;
+    public static double turnAdjust = 0.6;
 
     //autoRoutineConstants
 
