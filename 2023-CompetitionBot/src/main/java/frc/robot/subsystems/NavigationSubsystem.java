@@ -23,11 +23,10 @@ public class NavigationSubsystem extends SubsystemBase {
   }
 
   public boolean isFacingRight() {
-    return ((-90 < currentAngleFromPose.getRotation().getDegrees() && 0 > currentAngleFromPose.getRotation().getDegrees()) 
-    || (270 < currentAngleFromPose.getRotation().getDegrees() && 360 > currentAngleFromPose.getRotation().getDegrees())
-    || (0 < currentAngleFromPose.getRotation().getDegrees() && 90 > currentAngleFromPose.getRotation().getDegrees())
-    || (-270 < currentAngleFromPose.getRotation().getDegrees() && 0 > currentAngleFromPose.getRotation().getDegrees()));
-  }
+    return ( ( Math.abs(currentAngleFromPose.getRotation().getDegrees()) >= 270 && 
+    Math.abs(currentAngleFromPose.getRotation().getDegrees())<=360 )  || 
+    Math.abs(currentAngleFromPose.getRotation().getDegrees())<=90);
+   }
   
 
   //public
