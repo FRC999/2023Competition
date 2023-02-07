@@ -4,8 +4,11 @@
 
 package frc.robot;
 
+import java.util.List;
+
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.math.geometry.Pose2d;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -314,6 +317,8 @@ public final class Constants {
       {-7.24310 + fieldCenter[0], -1.26019 + fieldCenter[1]}, // id 7
       {-7.24310 + fieldCenter[0], -2.93659 + fieldCenter[1]} // id 8
     } ;
+    public static List<Pose2d> leftTargets;
+    public static List<Pose2d> rightTargets;
 
     public static final double yTargetOffset = tags[8][1] - 0.512;
 
