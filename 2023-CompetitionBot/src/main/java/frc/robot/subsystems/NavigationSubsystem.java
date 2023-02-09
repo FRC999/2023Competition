@@ -27,9 +27,14 @@ public class NavigationSubsystem extends SubsystemBase {
     Math.abs(currentAngleFromPose.getRotation().getDegrees())<=360 )  || 
     Math.abs(currentAngleFromPose.getRotation().getDegrees())<=90);
    }
+
+   public boolean isFacingLeft() {
+    return ( ( Math.abs(currentAngleFromPose.getRotation().getDegrees()) <= 270 && 
+    Math.abs(currentAngleFromPose.getRotation().getDegrees())>=360 )  || 
+    Math.abs(currentAngleFromPose.getRotation().getDegrees())>=90);
+   }
   
 
-  //public
 
   @Override
   public void periodic() {
