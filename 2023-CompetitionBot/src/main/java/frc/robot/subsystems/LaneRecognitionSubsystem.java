@@ -51,10 +51,13 @@ public class LaneRecognitionSubsystem extends SubsystemBase {
    return detectedPose2dofRobot;
   }
 
-  public Pose2d returnPoseOfChosenTarget(TargetConstants.targetPoses){
-    return pose2dOfTarget.relativeTo();
-  }
 
+
+
+  public Pose2d[] returnPosesOfChosenTarget(Pose2d pose2dOfTarget){
+    
+  }
+ 
   public void populateListsOfTargetPoses() {
     for(int i=6; i<=8; i++){
       NavigationConstants.leftTargets.add(
