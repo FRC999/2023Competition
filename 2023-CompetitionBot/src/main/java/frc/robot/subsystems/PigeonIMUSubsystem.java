@@ -18,6 +18,8 @@ public class PigeonIMUSubsystem extends SubsystemBase {
   private double[] xyz = new double[3]; // so not to allocate one every time
 
   public PigeonIMUSubsystem() {
+
+    System.out.println("**** Axctivating IMU");
     pigeon2 = new WPI_Pigeon2(PigeonIMUConstants.pigeonIMUId);
   }
 
