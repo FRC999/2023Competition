@@ -250,6 +250,7 @@ public final class Constants {
           return encoderSetting;
         }
       }
+
     }
     public static final class Arm {
       public static final int armMotorID = 22;
@@ -327,6 +328,9 @@ public final class Constants {
       0.653-tags[8][0], // middle offset
       0.238-tags[8][0] // top offset
     };
+  }
+  public static final class TargetConstants {
+    public static final int[] targetPoses = {0,1,2};
   }
 
 }
