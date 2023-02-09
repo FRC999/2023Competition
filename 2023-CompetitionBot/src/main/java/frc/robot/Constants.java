@@ -167,6 +167,13 @@ public final class Constants {
       public static final int[] footSolenoidChannels = {4,5}; // First channel - DOWN, second - UP
     }
 
+    public static final class SelfBalance {
+      public static final double balancePitch = 0;  // target pitch to self-balance on a charger
+      public static final double poorMaxClimbingPower = 0.09; //once I know I am on ramp (Phase-1), use that power to climb further (Phase-2)
+      public static final double poorMaxClimbingPitch = 15; // Pitch from which we start to reduce the motor power (Phase-2)
+      public static final double angleTolerance = 14.0; // Pitch where I stop the robot when the charger starts to balance (Phase-2)
+    }
+
   }
 
   public static final class GamepieceManipulator {
