@@ -181,6 +181,15 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(move, turn);
   }
 
+  /**
+   * Drive forward with constant speed using PercentOutput
+   * @param power - motor power -1..+1
+   */
+  public void driveForward(double power) {
+    leftDriveTalonFX[0].set(TalonFXControlMode.PercentOutput, power);
+    rightDriveTalonFX[0].set(TalonFXControlMode.PercentOutput, power);
+  }
+
   public void stopRobot() {
     leftDriveTalonFX[0].set(TalonFXControlMode.PercentOutput, 0);
     rightDriveTalonFX[0].set(TalonFXControlMode.PercentOutput, 0);
