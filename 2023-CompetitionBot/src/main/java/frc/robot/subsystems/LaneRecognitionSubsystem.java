@@ -54,7 +54,7 @@ public class LaneRecognitionSubsystem extends SubsystemBase {
 
 
 
-  public static int[][] getTargetPoseFromLaneRecognition(int[] currentRobotPose, int[] apriltagPose) {
+  public int[][] getTargetPoseFromLaneRecognition(int[] currentRobotPose, int[] apriltagPose) {
 
     int yr = currentRobotPose[1];
     int yt = apriltagPose[1];
@@ -63,9 +63,9 @@ public class LaneRecognitionSubsystem extends SubsystemBase {
     int b = 0; // b,c,d are difference in x coord
     int c = 0; 
     int d = 0;
-    int[][] targetPose;
+    int[][] targetPose; //still need to fix targetPose and apriltagPose, respectively
 
-    
+
     if (yr + 0.5 * a > yr && yt - 0.5 * a < yr) {
         targetPose = new int[][] {{x - b, yt}, {x - c, yt}, {x - d, yt}}; //for facing left
     } else if (yt - 0.5 * a > yr) {
