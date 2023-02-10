@@ -19,6 +19,13 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Right Encoder Speed", RobotContainer.driveSubsystem.getRightEncoderSpeed());
   }
 
+  public void updateTurretTelemetry() {
+    SmartDashboard.putNumber("Turret Relative Encoder Value", RobotContainer.turretSubsystem.getEncoder());
+    SmartDashboard.putNumber("Turret Absolute Encoder Value", RobotContainer.turretSubsystem.getAbsEncoder());
+    SmartDashboard.putNumber("Turret Speed", RobotContainer.turretSubsystem.getSpeed());
+    SmartDashboard.putNumber("Turret PID Error", RobotContainer.turretSubsystem.getError());
+  }
+
 
   public void updateAllDisplays() {
 

@@ -183,7 +183,10 @@ public final class Constants {
       public static final int turretEncoderPort = 20;
       public static final boolean turretMotorInverted = false;
       public static final boolean turretSensorPhase = false;
-      // PID
+
+      public static final double ticksPerDegree = 300 ; // Encoder ticks per 1 degree of rotation
+
+      // *** PID ***
 
       public static final double turretAbsoluteZero = 0.0;
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop

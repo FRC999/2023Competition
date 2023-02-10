@@ -100,12 +100,16 @@ public class TurretSubsystem extends SubsystemBase {
     return turretMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
   }
 
-  public int getDriveAbsEncoder() {
+  public int getAbsEncoder() {
     return (int) turretMotorController.getSensorCollection().getPulseWidthPosition() & 0xFFF;
  }
 
+ public double getSpeed() {
+  return turretMotorController.getSelectedSensorVelocity();
+}
+
  public void calibrateRelativeEncoder() {
-  double relativePosition = getDriveAbsEncoder() - Turret.turretAbsoluteZero; 
+  double relativePosition = getAbsEncoder() - Turret.turretAbsoluteZero; 
   turretMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("Set encoder for elevator motor to " + relativePosition);
  }
