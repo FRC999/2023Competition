@@ -15,7 +15,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
 
   double power;
   double targetPitch;
-  boolean compareDirection;
+  boolean initialPitchLowerThanTarget;
 
   boolean continueBalance = true; // True - do not stop afgter the first phase - when detected beiong on the ramp
   boolean rampReached = false;  // Flag that indicates whether we detected that we are on the ramp
@@ -28,14 +28,14 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
    * Drive forward with "power" until "pitch" is detected . It's assumed that you start with 
    * @param power - -1..+1; positive number - forward
    * @param targetPitch   -90..90; positive pitch means front faces UP
-   * @param compareDirection  true - initial pitch assumed to be lower than target; false - initial pitch assumed to be higher than target
+   * @param initialPitchLowerThanTarget  true - initial pitch assumed to be lower than target; false - initial pitch assumed to be higher than target
    */
-  public SelfBalanceWhenFacingTheCharger (double power, double targetPitch, boolean compareDirection) {
+  public SelfBalanceWhenFacingTheCharger (double power, double targetPitch, boolean initialPitchLowerThanTarget) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem);
     this.power=power;
     this.targetPitch=targetPitch;
-    this.compareDirection=compareDirection;
+    this.initialPitchLowerThanTarget=initialPitchLowerThanTarget;
   }
 
   // Called when the command is initially scheduled.
@@ -78,7 +78,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
   public boolean isFinished() {
 
     if (! rampReached) {
-     rampReached = (compareDirection)?
+     rampReached = (initialPitchLowerThanTarget)?
       (targetPitch<=RobotContainer.pigeonIMUSubsystem.getPitch()):
       (targetPitch>=RobotContainer.pigeonIMUSubsystem.getPitch())
       ;

@@ -10,6 +10,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
+import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
@@ -116,6 +117,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
+    //TODO: all of the current commands and triggers are related to unit testing. Make sure to put real commands here
     /*
     new JoystickButton(driveStick, 10)
           .whileTrue(new OperateTurret())
@@ -135,6 +137,11 @@ public class RobotContainer {
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("trajtest1"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+    // Self-Balance test
+    new JoystickButton(driveStick, 10)
+      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.4, 0, true))
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
 
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
