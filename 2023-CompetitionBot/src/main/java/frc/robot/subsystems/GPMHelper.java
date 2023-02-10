@@ -15,11 +15,11 @@ import frc.robot.RobotContainer;
 import frc.robot.Constants.NavigationConstants;
 import frc.robot.Constants.TargetConstants;
 
-public class LaneRecognitionSubsystem extends SubsystemBase {
+public class GPMHelper {
   
   /** Creates a new LaneRecognitionSubsystem. */
 
-  public LaneRecognitionSubsystem() {
+  public GPMHelper() {
     
     // Calculate Apriltag target poses for left and right sides of the field
     populateListsOfTargetPoses();
@@ -95,10 +95,7 @@ public class LaneRecognitionSubsystem extends SubsystemBase {
   
   
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+  
 }
 
 
