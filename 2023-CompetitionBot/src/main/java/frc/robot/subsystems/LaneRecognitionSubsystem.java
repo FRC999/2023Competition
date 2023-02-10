@@ -54,9 +54,28 @@ public class LaneRecognitionSubsystem extends SubsystemBase {
 
 
 
-  public Pose2d[] returnPosesOfChosenTarget(Pose2d pose2dOfTarget){
+  public static int[][] getTargetPoseFromLaneRecognition(int[] currentRobotPose, int[] apriltagPose) {
+
+    int yr = currentRobotPose[1];
+    int yt = apriltagPose[1];
+    int x = currentRobotPose[0];
+    int a = 0; //difference in y coord 
+    int b = 0; // b,c,d are difference in x coord
+    int c = 0; 
+    int d = 0;
+    int[][] targetPose;
+
     
-  }
+    if (yr + 0.5 * a > yr && yt - 0.5 * a < yr) {
+        targetPose = new int[][] {{x - b, yt}, {x - c, yt}, {x - d, yt}}; //for facing left
+    } else if (yt - 0.5 * a > yr) {
+        targetPose = new int[][] {{x - b, yt - a}, {x - c, yt - a}, {x - d, yt - a}}; //for facing right
+    } else {
+        targetPose = new int[][] {{x - b, yt + a}, {x - c, yt + a}, {x - d, yt + a}};
+    }
+    return targetPose;
+}
+
  
   public void populateListsOfTargetPoses() {
     for(int i=6; i<=8; i++){
