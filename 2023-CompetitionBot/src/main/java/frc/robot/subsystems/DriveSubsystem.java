@@ -182,7 +182,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   /**
-   * Drive forward with constant speed using PercentOutput
+   * Drive forward or backwards with constant speed using PercentOutput
    * @param power - motor power -1..+1
    */
   public void driveForward(double power) {

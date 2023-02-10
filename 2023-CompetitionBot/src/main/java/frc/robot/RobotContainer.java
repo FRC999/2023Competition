@@ -140,7 +140,7 @@ public class RobotContainer {
 
     // Self-Balance test
     new JoystickButton(driveStick, 10)
-      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.4, 0, true))
+      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.4, 0, true, true))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
 
