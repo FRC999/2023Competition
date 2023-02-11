@@ -19,11 +19,9 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
 
   boolean continueBalance = true; // True - do not stop afgter the first phase - when detected beiong on the ramp
   boolean rampReached = false;  // Flag that indicates whether we detected that we are on the ramp
-  double rampReachedPitch = 14;
-  double balancePitch = 0;
+  double rampReachedPitch = SelfBalance.rampReachedPitch;
   //double poorMaxClimbingPower = 0.09; //was 0.09
-  double poorMaxClimbingPitch = 15; // Pitch from which we start to reduce the motor power
-  double angleTolerance = 12.0; // Angle when we try to stop the robot in Phase-2
+  double poorMaxClimbingPitch = SelfBalance.poorMaxClimbingPitch; // Pitch from which we start to reduce the motor power
 
   /**
    * Drive forward with "power" until "pitch" is detected . It's assumed that you start with 
@@ -51,7 +49,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
   @Override
   public void initialize() {
 
-    System.out.println("*** Phase-1 of self-balance");
+    System.out.println("*** Starting Phase-1 of self-balance");
     rampReached = false;
     RobotContainer.driveSubsystem.driveForward(climbingPower);
 
@@ -66,13 +64,13 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
       multiplier = (RobotContainer.pigeonIMUSubsystem.getPitch() - targetPitch) / Math.abs(poorMaxClimbingPitch);
       climbingPower = SelfBalance.poorMaxClimbingPower * multiplier;
 
-      System.out.println("CalcC:"+climbingPower+" M:"+multiplier);
+      //System.out.println("CalcC:"+climbingPower+" M:"+multiplier);
 
       // Cap positive and negative power to the -poorMaxClimbingPower..poorMaxClimbingPower range
       climbingPower = MathUtil.clamp(climbingPower,-SelfBalance.poorMaxClimbingPower,SelfBalance.poorMaxClimbingPower);
 
       // Cut the power to 0 once my angle is below angleTolerance for the targetPitch
-      climbingPower = (Math.abs(RobotContainer.pigeonIMUSubsystem.getPitch()) - targetPitch < angleTolerance) ? 0 : climbingPower;
+      climbingPower = (Math.abs(RobotContainer.pigeonIMUSubsystem.getPitch()) - targetPitch < SelfBalance.angleTolerance) ? 0 : climbingPower;
 
       RobotContainer.driveSubsystem.driveForward(climbingPower);
 
@@ -84,7 +82,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.driveSubsystem.stopRobot();
-    System.out.println("Reached target pitch "+targetPitch+" I:"+interrupted);
+    System.out.println("Reached target pitch "+targetPitch+" CurrentPitch:"+ RobotContainer.pigeonIMUSubsystem.getPitch() + " I:"+interrupted);
   }
 
   // Returns true when the command should end.
