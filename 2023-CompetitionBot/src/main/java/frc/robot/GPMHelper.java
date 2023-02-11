@@ -10,9 +10,8 @@ import java.util.List;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.math.geometry.Transform2d;
 import frc.robot.Constants.NavigationConstants;
-import frc.robot.Constants.TargetConstants;
 
 public class GPMHelper {
   
@@ -111,6 +110,25 @@ public class GPMHelper {
         };
       }
     } 
+  }
+
+  public static double[] getTurretRotationAndArmExtension(Pose2d currentRobotPose, Pose2d targetPose) {
+    double[] turretRotationAndArmExtension = {0,0};
+    //The problem with this method of finding the hypotenuse is that it is not a double
+    Transform2d hypotenuseTransform2d = currentRobotPose.minus(targetPose); 
+
+    //Below is an alternate calculation of the hypotenuse (arm extension)
+    double xValue = Math.abs(currentRobotPose.getX() - targetPose.getX());
+    double yValue = Math.abs(currentRobotPose.getY() - targetPose.getY());
+    double hypotenuse = Math.sqrt(Math.pow(xValue, 2) + Math.pow(yValue, 2));
+    turretRotationAndArmExtension[1] = hypotenuse;
+    
+    //Below is tha calculation of the angle difference.
+    
+    //turretRotationAndArmExtension[0] = 50;
+
+    return turretRotationAndArmExtension;
+
   }
 
 
