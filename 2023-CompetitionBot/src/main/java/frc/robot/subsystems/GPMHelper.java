@@ -11,6 +11,7 @@ import java.util.List;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.NavigationConstants;
 import frc.robot.Constants.TargetConstants;
@@ -54,24 +55,21 @@ public class GPMHelper {
 
 
 
-  public int[][] getTargetPoseFromLaneRecognition(int[] currentRobotPose, int[] apriltagPose) {
+  public double[][] getTargetPoseFromLaneRecognition(double[] currentRobotPose, double[] apriltagPose) {
 
-    int yr = currentRobotPose[1];
-    int yt = apriltagPose[1];
-    int x = currentRobotPose[0];
-    int a = 0; //difference in y coord 
-    int b = 0; // b,c,d are difference in x coord
-    int c = 0; 
-    int d = 0;
-    int[][] targetPose; //still need to fix targetPose and apriltagPose, respectively
+    double robotPoseY = currentRobotPose[1];//TODO: will change later, needs to be updated
+    double robotPoseX = currentRobotPose[0];//TODO: will change later, needs to be updated
+    double targetPoseY = apriltagPose[1];//TODO: will change later, needs to be updated
+
+    double[][] targetPose; //still need to fix targetPose and apriltagPose, respectively
 
 
-    if (yr + 0.5 * a > yr && yt - 0.5 * a < yr) {
-        targetPose = new int[][] {{x - b, yt}, {x - c, yt}, {x - d, yt}}; //for facing left
-    } else if (yt - 0.5 * a > yr) {
-        targetPose = new int[][] {{x - b, yt - a}, {x - c, yt - a}, {x - d, yt - a}}; //for facing right
+    if (robotPoseY + 0.5 * Constants.NavigationConstants.yTargetOffset > robotPoseY && targetPoseY - 0.5 * Constants.NavigationConstants.yTargetOffset < robotPoseY) {
+        targetPose = new double[][] {{robotPoseX - Constants.NavigationConstants.xTargetOffset[0], targetPoseY}, {robotPoseX - Constants.NavigationConstants.xTargetOffset[1], targetPoseY}, {robotPoseX - Constants.NavigationConstants.xTargetOffset[2], targetPoseY}}; //for facing left
+    } else if (targetPoseY - 0.5 * Constants.NavigationConstants.yTargetOffset > robotPoseY) {
+        targetPose = new double[][] {{robotPoseX - Constants.NavigationConstants.xTargetOffset[0], targetPoseY - Constants.NavigationConstants.yTargetOffset}, {robotPoseX - Constants.NavigationConstants.xTargetOffset[1], targetPoseY - Constants.NavigationConstants.yTargetOffset}, {robotPoseX - Constants.NavigationConstants.xTargetOffset[2], targetPoseY - Constants.NavigationConstants.yTargetOffset}}; //for facing right
     } else {
-        targetPose = new int[][] {{x - b, yt + a}, {x - c, yt + a}, {x - d, yt + a}};
+        targetPose = new double[][] {{robotPoseX - Constants.NavigationConstants.xTargetOffset[0], targetPoseY + Constants.NavigationConstants.yTargetOffset}, {robotPoseX - Constants.NavigationConstants.xTargetOffset[1], targetPoseY + Constants.NavigationConstants.yTargetOffset}, {robotPoseX - Constants.NavigationConstants.xTargetOffset[2], targetPoseY + Constants.NavigationConstants.yTargetOffset}};
     }
     return targetPose;
 }

@@ -335,11 +335,12 @@ public final class Constants {
 
     public static final double yTargetOffset = tags[8][1] - 0.512;
 
-    public static final double xTargetOffest[] = {
+    public static final double xTargetOffset[] = {
       1.1055-tags[8][0], // front/bottom offset
       0.653-tags[8][0], // middle offset
       0.238-tags[8][0] // top offset
     };
+
   }
   public static final class TargetConstants {
     public static final int[] targetPoses = {0,1,2};
