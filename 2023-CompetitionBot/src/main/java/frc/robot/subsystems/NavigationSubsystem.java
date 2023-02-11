@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.GPMHelper;
 import frc.robot.RobotContainer;
 
 public class NavigationSubsystem extends SubsystemBase {
@@ -14,6 +15,7 @@ public class NavigationSubsystem extends SubsystemBase {
 
   public NavigationSubsystem() {
     currentAngleFromPose = getCurrentPoseOfRobot();
+    GPMHelper.populateListsOfTargetPoses();
 
   }
 
@@ -21,18 +23,6 @@ public class NavigationSubsystem extends SubsystemBase {
     return null; //TODO: change this later
     
   }
-
-  public boolean isFacingRight() {
-    return ( ( Math.abs(currentAngleFromPose.getRotation().getDegrees()) >= 270 && 
-    Math.abs(currentAngleFromPose.getRotation().getDegrees())<=360 )  || 
-    Math.abs(currentAngleFromPose.getRotation().getDegrees())<=90);
-   }
-
-   public boolean isFacingLeft() {
-    return ( ( Math.abs(currentAngleFromPose.getRotation().getDegrees()) <= 270 && 
-    Math.abs(currentAngleFromPose.getRotation().getDegrees())>=360 )  || 
-    Math.abs(currentAngleFromPose.getRotation().getDegrees())>=90);
-   }
   
 
 
