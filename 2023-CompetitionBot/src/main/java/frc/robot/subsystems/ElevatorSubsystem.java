@@ -105,7 +105,7 @@ public class ElevatorSubsystem extends SubsystemBase {
  public void calibrateRelativeEncoder() {
   double relativePosition = getDriveAbsEncoder() - Elevator.elevatorAbsoluteZero; 
   elevatorMotorController.setSelectedSensorPosition(relativePosition);
-  System.out.println("Set encoder for elevator motor to " + relativePosition);
+  System.out.println("*** Set relative encoder for elevator motor to " + relativePosition);
  }
 
  public void moveToPosition(double endingPosition) {
@@ -114,7 +114,7 @@ public class ElevatorSubsystem extends SubsystemBase {
  }
   
  public void manualDrive() {
-  elevatorMotorController.set(TalonSRXControlMode.PercentOutput, Constants.GamepieceManipulator.Elevator.EdefaultPowerManual);
+  elevatorMotorController.set(TalonSRXControlMode.PercentOutput, Elevator.EdefaultPowerManual);
  }
 
  public void manualDrive(double power) {

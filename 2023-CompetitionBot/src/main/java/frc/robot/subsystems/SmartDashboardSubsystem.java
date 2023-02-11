@@ -26,10 +26,19 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Turret PID Error", RobotContainer.turretSubsystem.getError());
   }
 
+  public void updateIMUTelemetry() {
+    SmartDashboard.putNumber("IMU Yaw", RobotContainer.pigeonIMUSubsystem.getYaw());
+    SmartDashboard.putNumber("IMU Pitch", RobotContainer.pigeonIMUSubsystem.getPitch());
+    SmartDashboard.putNumber("IMU Roll", RobotContainer.pigeonIMUSubsystem.getRoll());
+    SmartDashboard.putNumber("IMU Heading", RobotContainer.pigeonIMUSubsystem.getHeading());
+    SmartDashboard.putNumber("IMU TurnRate", RobotContainer.pigeonIMUSubsystem.getTurnRate());
+  }
+
 
   public void updateAllDisplays() {
 
     updateDriveSubsystemTelemetry();
+    updateIMUTelemetry();
     
   }
 

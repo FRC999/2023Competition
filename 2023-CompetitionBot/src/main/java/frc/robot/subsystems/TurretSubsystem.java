@@ -111,12 +111,17 @@ public class TurretSubsystem extends SubsystemBase {
  public void calibrateRelativeEncoder() {
   double relativePosition = getAbsEncoder() - Turret.turretAbsoluteZero; 
   turretMotorController.setSelectedSensorPosition(relativePosition);
-  System.out.println("Set encoder for elevator motor to " + relativePosition);
+  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition);
  }
 
  public void moveToPosition(double endingPosition) {
   turretMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
-  System.out.println(endingPosition);
+  System.out.println("Turret PID turn to "+ endingPosition);
+ }
+
+ public void turnTurretToAngle(double angle) {
+  System.out.println("Turn to angle "+angle);
+  moveToPosition(angle * Turret.ticksPerDegree);
  }
 
  public void manualDrive() {

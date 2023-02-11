@@ -105,12 +105,17 @@ public class ArmSubsystem extends SubsystemBase {
  public void calibrateRelativeEncoder() {
   double relativePosition = getDriveAbsEncoder() - Arm.armAbsoluteZero; 
   armMotorController.setSelectedSensorPosition(relativePosition);
-  System.out.println("Set encoder for elevator motor to " + relativePosition);
+  System.out.println("*** Set relative encoder for Arm motor to " + relativePosition);
  }
 
  public void moveToPosition(double endingPosition) {
   armMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
-  System.out.println(endingPosition);
+  System.out.println("Extending to "+endingPosition);
+ }
+
+ public void extendArmToLength(double toLength) {
+  System.out.println("Extend to length "+toLength);
+  moveToPosition(toLength * Arm.ticksPerMeter);
  }
 
  public void manualDrive() {

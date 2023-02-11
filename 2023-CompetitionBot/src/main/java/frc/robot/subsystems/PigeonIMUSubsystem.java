@@ -30,9 +30,12 @@ public class PigeonIMUSubsystem extends SubsystemBase {
    * @return The pitch of the robot
    */
   public double getPitch() {
-    double[] ypr = new double[3];
-    pigeon2.getYawPitchRoll(ypr);
-    return ypr[1];
+    //double[] ypr = new double[3];
+    //pigeon2.getYawPitchRoll(ypr);
+    //return ypr[1];
+
+    // Front UP - positive Pitch
+    return -pigeon2.getPitch();
   }
 
   /**
@@ -42,9 +45,12 @@ public class PigeonIMUSubsystem extends SubsystemBase {
    * @return
    */
   public double getRoll() {
-    double[] ypr = new double[3];
-    pigeon2.getYawPitchRoll(ypr);
-    return ypr[2];
+    //double[] ypr = new double[3];
+    //pigeon2.getYawPitchRoll(ypr);
+    //return ypr[2];
+
+    // Left UP - positive Roll
+    return pigeon2.getRoll();
   }
 
   /**
@@ -54,9 +60,10 @@ public class PigeonIMUSubsystem extends SubsystemBase {
    * @return
    */
   public double getYaw() {
-    double[] ypr = new double[3];
-    pigeon2.getYawPitchRoll(ypr);
-    return ypr[0];
+    //double[] ypr = new double[3];
+    //pigeon2.getYawPitchRoll(ypr);
+    //return ypr[0];
+    return pigeon2.getYaw();
   }
 
   /**
