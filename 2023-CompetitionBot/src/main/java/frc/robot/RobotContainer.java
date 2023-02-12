@@ -17,6 +17,7 @@ import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.NavigationSubsystem;
+import frc.robot.subsystems.NetworkTablesSubsystem;
 import frc.robot.subsystems.PigeonIMUSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
@@ -67,6 +68,7 @@ public class RobotContainer {
   public static final ClawSubsystem clawSubsystem = null;
   //public static final BigFootSubsystem bigFootSubsystem = null;
   public static final NavigationSubsystem navigationSubsystem = null;
+  public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
 
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem(); 
 

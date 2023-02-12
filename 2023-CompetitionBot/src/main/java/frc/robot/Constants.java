@@ -343,6 +343,10 @@ public final class Constants {
       0.238-tags[8][0] // top offset
     };
 
+    public static double xOffsetOfCameraFromTurret = -0.1; // Offset of camera lens from the turret center of rotation
+    public static double yOffsetOfCameraFromTurret = 0.2; // Offset of camera lens from the turret center of rotation
+    public static double angleOffsetOfCameraFromTurretDirection = 30; // degrees; offset of camera direction from the arm direction
+
   }
   public static final class TargetConstants {
     public static final int[] targetPoses = {0,1,2};

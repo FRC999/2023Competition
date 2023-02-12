@@ -12,6 +12,17 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   /** Creates a new SmartDashboardSubsystem. */
   public SmartDashboardSubsystem() {}
 
+  public void updateRobotPose() {
+
+    SmartDashboard.putNumber("LL1-X", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getX());
+    SmartDashboard.putNumber("LL1-Y", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getY());
+    SmartDashboard.putNumber("LL1-angle", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getRotation().getDegrees());
+
+    SmartDashboard.putNumber("LL2-X", RobotContainer.networkTablesSubsystem.getLimelightTwoRobotPose().getX());
+    SmartDashboard.putNumber("LL2-Y", RobotContainer.networkTablesSubsystem.getLimelightTwoRobotPose().getY());
+    SmartDashboard.putNumber("LL2-angle", RobotContainer.networkTablesSubsystem.getLimelightTwoRobotPose().getRotation().getDegrees());
+  }
+  
   public void updateDriveSubsystemTelemetry() {
     SmartDashboard.putNumber("Left Encoder Value", RobotContainer.driveSubsystem.getLeftEncoder());
     SmartDashboard.putNumber("Left Encoder Speed", RobotContainer.driveSubsystem.getLeftEncoderSpeed());
@@ -39,6 +50,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
     updateDriveSubsystemTelemetry();
     updateIMUTelemetry();
+    updateRobotPose();
     
   }
 
