@@ -270,6 +270,7 @@ public final class Constants {
       public static final boolean armSensorPhase = false;
 
       public static final double ticksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
+      public static final double maximumExtension = 2.5; // meters
 
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop

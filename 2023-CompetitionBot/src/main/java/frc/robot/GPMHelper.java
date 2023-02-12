@@ -13,6 +13,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
 import frc.robot.Constants.NavigationConstants;
 
+import frc.robot.Constants.GamepieceManipulator.Arm;
+
 public class GPMHelper {
   
   /** Creates a new LaneRecognitionSubsystem. */
@@ -31,7 +33,7 @@ public class GPMHelper {
    * @param poses - list of nearest poses to consider
    * @return - nearest Pose2d from the list
    */
-  public Pose2d nearest(Pose2d mainObject, List<Pose2d> poses) {
+  public static Pose2d nearest(Pose2d mainObject, List<Pose2d> poses) {
     return Collections.min(
         poses,
         Comparator.comparing(
@@ -49,7 +51,7 @@ public class GPMHelper {
    * @param robotPose - robot Pose2d
    * @return - Pose2d of the nearest AprilTag target
    */
-  public Pose2d identifyNearestTarget(Pose2d robotPose) {   
+  public static Pose2d identifyNearestTarget(Pose2d robotPose) {   
     if(isFacingRight(robotPose)) {
        return nearest(robotPose, NavigationConstants.rightTargets); 
     } else { // Facing LEFT
@@ -112,22 +114,39 @@ public class GPMHelper {
     } 
   }
 
+  /**
+   * Get Turret rotation angle and arm extension length for known robot Pose2d and target Pose2d
+   * If the target is impossible to reach (arm is not long enough), return -1 for the length
+   * @param currentRobotPose - Pose2d of the robot
+   * @param targetPose - Pose2d where I want to place a target
+   * @return - double[] : 0 - turret rotation angle (degrees); 1 - arm extension (meters)
+   */
   public static double[] getTurretRotationAndArmExtension(Pose2d currentRobotPose, Pose2d targetPose) {
-    double[] turretRotationAndArmExtension = {0,0};
-    //The problem with this method of finding the hypotenuse is that it is not a double
-    Transform2d hypotenuseTransform2d = currentRobotPose.minus(targetPose); 
 
-    //Below is an alternate calculation of the hypotenuse (arm extension)
-    double xValue = Math.abs(currentRobotPose.getX() - targetPose.getX());
-    double yValue = Math.abs(currentRobotPose.getY() - targetPose.getY());
-    double hypotenuse = Math.sqrt(Math.pow(xValue, 2) + Math.pow(yValue, 2));
-    turretRotationAndArmExtension[1] = hypotenuse;
-    
-    //Below is tha calculation of the angle difference.
-    
-    //turretRotationAndArmExtension[0] = 50;
+    // This calculates linear distance between two poses
+    // Note that simple scalar distances are calculated between Translation2d, hence it's extracted from Pose2d first
+    double armExtension = currentRobotPose.getTranslation().getDistance(targetPose.getTranslation());
 
-    return turretRotationAndArmExtension;
+    // Angle calculcation between two poses
+    // May be optimized considering current location of the Arm
+    // The reason variable was declared above, so not ot use expensive getTranslation and getDistance multiple times
+    // We assume that angle from each pose is between -360..+360
+
+    double angleDiff = (targetPose.getRotation().getDegrees() - currentRobotPose.getRotation().getDegrees() + 360.0) % 360 ;
+
+    // If angleDiff is positive, calculate correspponding negative angle, and vice versa
+
+    double secondAngleDiff = (angleDiff<=0)?angleDiff+360:angleDiff-360;
+
+    // In a first-cut optimization method we will use the angle with the lowest absolute value
+    // If Turret currently is at 0, that will determine the minimum rotation
+    // and will never exceed the turret limit, providing that the limit is above +-180
+    // For the turret the angle will mean relative rotation from 0 that is in front of the robot
+
+    return new double[] {
+      (Math.abs(angleDiff)<Math.abs(secondAngleDiff))?angleDiff:secondAngleDiff,
+      (armExtension > Arm.maximumExtension)?(-1):armExtension // If arm extension exceeeds maximum possible, return -1
+    };
 
   }
 
