@@ -56,17 +56,19 @@ public class RobotContainer {
   //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
-  public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+  //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
   // ***** End of Subsystem initialization *******
 
   // ***** Dummy subsystems so the code will compile, use for testing
   //  !!!!!!! Make sure to comment it out for thre real competition
+  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
+  //public static final DriveSubsystem driveSubsystem = null;
   public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
   public static final ArmSubsystem armSubsystem = null;
   //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
-  //public static final BigFootSubsystem bigFootSubsystem = null;
+  public static final BigFootSubsystem bigFootSubsystem = null;
   public static final NavigationSubsystem navigationSubsystem = null;
   public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
 
