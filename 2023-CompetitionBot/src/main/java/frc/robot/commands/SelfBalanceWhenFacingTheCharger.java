@@ -13,6 +13,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
   /** Creates a new DriveForwardUntilPitch. */
 
   double climbingPower;
+  double phase1ClimbingPower;
   double targetPitch;
   boolean initialPitchLowerThanTarget;
   boolean climbForward;
@@ -35,6 +36,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem);
     this.climbingPower=Math.abs(climbingPowerPhase1)*((climbForward)?1:-1); // Make sure the power is positive; we reverse it if needed based on climbForward
+    this.phase1ClimbingPower = this.climbingPower;
     this.targetPitch=targetPitch;
     this.initialPitchLowerThanTarget=initialPitchLowerThanTarget;
     this.climbForward=climbForward;
@@ -50,7 +52,8 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
   public void initialize() {
 
     System.out.println("*** Starting Phase-1 of self-balance");
-    rampReached = false;
+    this.rampReached = false;
+    climbingPower = phase1ClimbingPower;
     RobotContainer.driveSubsystem.driveForward(climbingPower);
 
     rampReachedPitch = (climbForward)?rampReachedPitch:-rampReachedPitch;

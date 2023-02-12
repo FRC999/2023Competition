@@ -51,7 +51,7 @@ public class RobotContainer {
   //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
-  //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
   //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
@@ -64,7 +64,7 @@ public class RobotContainer {
   public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
   public static final ArmSubsystem armSubsystem = null;
-  public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
   //public static final BigFootSubsystem bigFootSubsystem = null;
   public static final NavigationSubsystem navigationSubsystem = null;
@@ -142,7 +142,7 @@ public class RobotContainer {
 
     // Self-Balance test
     new JoystickButton(driveStick, 10)
-      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.4, 0, false, false))
+      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
 

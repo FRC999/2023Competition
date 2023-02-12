@@ -19,6 +19,9 @@ public class PneumaticsSubsystem extends SubsystemBase {
 
     System.out.println("**** Activating compressor");
     activateCompressor();
+
+    //TODO: for testing **** !!!!!!!
+    deactivateCompressor();
   }
 
   public void activateCompressor() {
