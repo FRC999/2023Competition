@@ -39,8 +39,8 @@ public final class Constants {
 
     // TODO: check and change the constants below
 
-    public static final double encoderGearReduction = 11.25;
-    public static final int encoderUnitsPerRobotRotation = 66500;// thats the SUM of the two (this is just a rough
+    public static final double encoderGearReduction = 9.91748; // Confirmed with Kurt on 02/12/23
+    public static final int encoderUnitsPerRobotAxelRotation = 20311; // measured manually on C2023 02/12/2023
     // guess, and should be measured)
     static final double clicksPerFoot = 1.021*(120615/10);
     public static final int tickPerInch = (int)(clicksPerFoot / 12); // (int) (2048/(4*Math.PI));

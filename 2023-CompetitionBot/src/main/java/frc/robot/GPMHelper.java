@@ -10,6 +10,7 @@ import java.util.List;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import frc.robot.Constants.NavigationConstants;
 
 import frc.robot.Constants.GamepieceManipulator.Arm;
@@ -131,7 +132,9 @@ public class GPMHelper {
     // The reason variable was declared above, so not ot use expensive getTranslation and getDistance multiple times
     // We assume that angle from each pose is between -360..+360
 
-    double angleDiff = (targetPose.getRotation().getDegrees() - currentRobotPose.getRotation().getDegrees() + 360.0) % 360 ;
+    //double angleDiff = (targetPose.getRotation().getDegrees() - currentRobotPose.getRotation().getDegrees() + 360.0) % 360 ;
+
+    double angleDiff = Units.radiansToDegrees(currentRobotPose.log(targetPose).dtheta);
 
     // If angleDiff is positive, calculate correspponding negative angle, and vice versa
 
