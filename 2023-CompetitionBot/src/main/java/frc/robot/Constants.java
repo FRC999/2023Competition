@@ -148,9 +148,13 @@ public final class Constants {
     public static int[] ticksPerDegree = new int[] {};
 
     // **** Software trajectory values; get from characterization
-    public static final double ksVolts = 0.15219;
+    /*public static final double ksVolts = 0.15219;
     public static final double kvVoltSecondsPerMeter = 2.1748;
     public static final double kaVoltSecondsSquaredPerMeter = 0.49391;
+    */
+    public static final double ksVolts = 0.1231;
+    public static final double kvVoltSecondsPerMeter = 1.0882;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.092837;
     public static final DifferentialDriveKinematics kDriveKinematics = 
       new DifferentialDriveKinematics(
         Units.inchesToMeters(RobotDriveChassisConstants.distanceBetweenWheels)
