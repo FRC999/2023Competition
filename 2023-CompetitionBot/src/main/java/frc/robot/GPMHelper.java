@@ -10,7 +10,6 @@ import java.util.List;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import frc.robot.Constants.NavigationConstants;
 
 import frc.robot.Constants.GamepieceManipulator.Arm;
@@ -19,12 +18,12 @@ public class GPMHelper {
   
   /** Creates a new LaneRecognitionSubsystem. */
 
-  public GPMHelper() {
+  //public GPMHelper() {
     
     // Calculate Apriltag target poses for left and right sides of the field
-    populateListsOfTargetPoses();
+  //  populateListsOfTargetPoses();
     
-  }
+  //}
 
   /**
    * Find a pose in the list of Pose2d "poses" that has smallest linear distance 
@@ -193,11 +192,6 @@ public static boolean isFacingRight(Pose2d currentPose) {
              new Rotation2d(Math.toRadians(0))));
    }
  }
-
-  
-  
-
-  
 }
 
 
