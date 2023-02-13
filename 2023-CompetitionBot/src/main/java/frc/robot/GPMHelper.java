@@ -133,8 +133,13 @@ public class GPMHelper {
     // We assume that angle from each pose is between -360..+360
 
     //double angleDiff = (targetPose.getRotation().getDegrees() - currentRobotPose.getRotation().getDegrees() + 360.0) % 360 ;
+    //double angleDiff = Units.radiansToDegrees(currentRobotPose.log(targetPose).dtheta);
 
-    double angleDiff = Units.radiansToDegrees(currentRobotPose.log(targetPose).dtheta);
+    // This constructs a Rotation2d object based on a vector pointing from acurrentRobotPose to targetPose
+    Rotation2d pointerToTarget = new Rotation2d(targetPose.getX()-currentRobotPose.getX(),targetPose.getY()-currentRobotPose.getY());
+
+    // The difference between two rotations gives you an angle
+    double angleDiff = pointerToTarget.minus(currentRobotPose.getRotation()).getDegrees();
 
     // If angleDiff is positive, calculate correspponding negative angle, and vice versa
 
