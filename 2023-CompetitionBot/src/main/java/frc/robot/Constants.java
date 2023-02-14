@@ -42,9 +42,14 @@ public final class Constants {
     public static final double encoderGearReduction = 9.91748; // Confirmed with Kurt on 02/12/23
     public static final int encoderUnitsPerRobotAxelRotation = 20311; // measured manually on C2023 02/12/2023
     // guess, and should be measured)
+    //franketbot code :)
+    /*
     static final double clicksPerFoot = 1.021*(120615/10);
     public static final int tickPerInch = (int)(clicksPerFoot / 12); // (int) (2048/(4*Math.PI));
-    public static final int tolerance = 1*tickPerInch;
+    */
+
+    public static final double tickPerInch = 1292.0333; //Derived from calculation
+    public static final double tolerance = 1*tickPerInch;
   }
 
   public static final class OIConstants {
@@ -159,13 +164,22 @@ public final class Constants {
       new DifferentialDriveKinematics(
         Units.inchesToMeters(RobotDriveChassisConstants.distanceBetweenWheels)
       );
-    public static final double trajectoryRioPidP_Value = 0.054151 ;
+    /*public static final double trajectoryRioPidP_Value = 0.054151 ;
     public static final double trajectoryRioPidD_Value = 0;
     public static final double trajectoryRioPidI_Value = 0;
-    
+    */
+
+    // aquired values from sysid, multiplied by 100 since original values were too small
+    public static final double trajectoryRioPidP_Value = 0.19693;
+    public static final double trajectoryRioPidD_Value = 0.011828;
+    public static final double trajectoryRioPidI_Value = 0.0;
+
+
     // Default max values for trajectories - m/s and m/s^2
-    public static final double maxVelocityDefault = 2;
-    public static final double maxAccelerationDefault = 1;
+    //Max velocity is 12 feet per second (3.5 is converted to meters)
+    public static final double maxVelocityDefault = 3.5;
+    public static final double maxAccelerationDefault = 2;
+    //Max Acceleration is based Alex's superior intelligence
 
     public static final class BigFoot {
       public static final int[] footSolenoidChannels = {4,5}; // First channel - DOWN, second - UP
