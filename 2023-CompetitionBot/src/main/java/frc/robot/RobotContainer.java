@@ -10,6 +10,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
+import frc.robot.commands.SYSIDMoveForward;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
@@ -141,7 +142,10 @@ public class RobotContainer {
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("trajtest1"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
-
+    // SYSID Test
+    new JoystickButton(driveStick, 9)
+          .whileTrue(new SYSIDMoveForward("SYSIDMoveForwardTest"))
+          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
     // Self-Balance test
     new JoystickButton(driveStick, 10)
       .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
