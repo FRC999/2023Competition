@@ -142,10 +142,24 @@ public class RobotContainer {
           .whileFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp,RobotContainer.bigFootSubsystem));
     */
     // Simple Trajectory test
+
+    //Test direction of left motor
+    new JoystickButton(driveStick, 7)
+          .whileTrue(new InstantCommand(()->RobotContainer.driveSubsystem.setLeftVoltage(3.00)))
+          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+  
+    //test direction of right motor
+    new JoystickButton(driveStick, 8)
+          .whileTrue(new InstantCommand(()->RobotContainer.driveSubsystem.setRightVoltage(3.00)))
+          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+    
     
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("trajtest1"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
     
     // SYSID Test
     
@@ -160,7 +174,6 @@ public class RobotContainer {
       .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
     
-    
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     //new Trigger(m_exampleSubsystem::exampleCondition)
     //    .onTrue(new ExampleCommand(m_exampleSubsystem));
@@ -169,6 +182,7 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
