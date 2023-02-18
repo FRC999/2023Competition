@@ -270,6 +270,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   // Should be used in periodic when the trajectory navigation is running
   public void updateOdometry() {
+
+    System.out.println("L:"+TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition())+
+            " R:"+TranslateDistanceIntoMeters(-rightDriveTalonFX[0].getSelectedSensorPosition())+
+            " A:"+RobotContainer.pigeonIMUSubsystem.getRotation2d().getDegrees()+
+            " R-L:"+leftDriveTalonFX[0].getSelectedSensorPosition()+
+            " R-R:"+(rightDriveTalonFX[0].getSelectedSensorPosition())+
+            " X:"+odometry.getPoseMeters().getX()+
+            " Y:"+odometry.getPoseMeters().getY()+
+            " FA:"+odometry.getPoseMeters().getRotation().getDegrees()
+            );
     odometry.update(
       RobotContainer.pigeonIMUSubsystem.getRotation2d(),
       TranslateDistanceIntoMeters(getLeftEncoder()),
@@ -281,7 +291,7 @@ public class DriveSubsystem extends SubsystemBase {
     odometry.update(
       RobotContainer.pigeonIMUSubsystem.getRotation2d(),
       TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition()),
-      TranslateDistanceIntoMeters(-rightDriveTalonFX[0].getSelectedSensorPosition())
+      TranslateDistanceIntoMeters(rightDriveTalonFX[0].getSelectedSensorPosition())
     ); 
   }
 
@@ -293,10 +303,10 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void tankDriveVolts(double leftVolts, double rightVolts) {
 
-    //System.out.println("TV L:" + leftVolts + " R:" + rightVolts);
+    System.out.println("TV L:" + leftVolts + " R:" + rightVolts);
 
     setLeftVoltage(leftVolts);
-    setRightVoltage(-rightVolts);
+    setRightVoltage(rightVolts);
     drive.feed();
   }
 

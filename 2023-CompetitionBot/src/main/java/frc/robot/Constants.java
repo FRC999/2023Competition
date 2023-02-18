@@ -33,8 +33,8 @@ public final class Constants {
     // here, such as dimensions, wheel diameter etc
     public static final double wheelDiameter = 5; // inches
     public static final double distanceBetweenWheels = 21.5; // inches
-    public static final double chassisLength = 32.0; // inches, not including bumpers
-    public static final double chassisWidth = 22.5; // inches, not including bumpers
+    public static final double chassisLength = 39; // inches, including bumpers
+    public static final double chassisWidth = 30; // inches, including bumpers
     public static final int encoderUnitsPerMotorRotation = 2048;
 
     // TODO: check and change the constants below

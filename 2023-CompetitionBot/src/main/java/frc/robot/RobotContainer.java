@@ -150,7 +150,7 @@ public class RobotContainer {
     // SYSID Test
     
     new JoystickButton(driveStick, 9)
-          .whileTrue(new SYSIDMoveForward("SYSIDMoveForwardTest"))
+          .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("SYSIDMoveForwardTest"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
           
 

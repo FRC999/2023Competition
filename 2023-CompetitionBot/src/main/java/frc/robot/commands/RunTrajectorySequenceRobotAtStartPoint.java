@@ -4,9 +4,12 @@
 
 package frc.robot.commands;
 
+import com.pathplanner.lib.PathConstraints;
+import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
@@ -22,8 +25,17 @@ public class RunTrajectorySequenceRobotAtStartPoint extends SequentialCommandGro
   public RunTrajectorySequenceRobotAtStartPoint(String trajectory, double maxVelocity, double maxAcceleration) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+
+    // Read the trajectory from a file
+    trajectoryPath = PathPlanner.loadPath(trajectory, new PathConstraints(maxVelocity, maxAcceleration));
+
     addCommands(
-      new InstantCommand( () -> RobotContainer.driveSubsystem.resetOdometry(trajectoryPath.getInitialPose()) ),  // Set the initial pose of the robot to the one in a trajectory
+      new InstantCommand( () -> RobotContainer.driveSubsystem.resetOdometry(trajectoryPath.getInitialPose()) ),
+      new PrintCommand(
+        "START IX:" + trajectoryPath.getInitialPose().getX()+
+        " IY:" + trajectoryPath.getInitialPose().getY()+
+        " IA:" + trajectoryPath.getInitialPose().getRotation().getDegrees()
+        ),  // Set the initial pose of the robot to the one in a trajectory
       new AutonomousTrajectoryRioCommand(trajectoryPath) // Run a trajectory
     );
   }
