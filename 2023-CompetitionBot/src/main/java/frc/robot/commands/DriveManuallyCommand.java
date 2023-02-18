@@ -29,7 +29,7 @@ public class DriveManuallyCommand extends CommandBase {
   @Override
   public void execute() {
 
-    double move = RobotContainer.driveStick.getY() * (-1);
+    double move = RobotContainer.driveStick.getY()*(-1);
     double turn = RobotContainer.turnStick.getX()*(-1);
 
     // Note that turns are adjusted; modify adjustment as needed, depending on how sharp/fast you want the turns to be

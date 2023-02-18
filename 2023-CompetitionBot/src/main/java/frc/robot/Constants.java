@@ -177,8 +177,8 @@ public final class Constants {
 
     // Default max values for trajectories - m/s and m/s^2
     //Max velocity is 12 feet per second (3.5 is converted to meters)
-    public static final double maxVelocityDefault = 3.5;
-    public static final double maxAccelerationDefault = 2;
+    public static final double maxVelocityDefault = 2.5;  //3.5, but was changed for testing purposes
+    public static final double maxAccelerationDefault = 1;  //2, but was changed for testing purposes
     //Max Acceleration is based Alex's superior intelligence
 
     public static final class BigFoot {

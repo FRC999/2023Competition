@@ -120,38 +120,47 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureButtonBindings() {
+  private void configureButtonBindings() { 
 
     //TODO: all of the current commands and triggers are related to unit testing. Make sure to put real commands here
-    /*
+    /* 
     new JoystickButton(driveStick, 10)
           .whileTrue(new OperateTurret())
           .whileFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
+    */
+    /* 
     
     new JoystickButton(driveStick, 7)
           .whileTrue(new OperateTurret())
           .whileFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
     */
-
     // Solenoid test with the BigFoot subsystem
+    
+    /* 
     new JoystickButton(driveStick, 11)
           .whileTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown,RobotContainer.bigFootSubsystem))
           .whileFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp,RobotContainer.bigFootSubsystem));
-
+    */
     // Simple Trajectory test
+    
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("trajtest1"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+    
     // SYSID Test
+    
     new JoystickButton(driveStick, 9)
           .whileTrue(new SYSIDMoveForward("SYSIDMoveForwardTest"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+          
+
     // Self-Balance test
+    
     new JoystickButton(driveStick, 10)
       .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
-
-
+    
+    
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     //new Trigger(m_exampleSubsystem::exampleCondition)
     //    .onTrue(new ExampleCommand(m_exampleSubsystem));
