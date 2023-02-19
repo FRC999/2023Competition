@@ -93,7 +93,7 @@ public class DriveSubsystem extends SubsystemBase {
         new DifferentialDriveOdometry(
           RobotContainer.pigeonIMUSubsystem.getRotation2d(),
           TranslateDistanceIntoMeters(getLeftEncoder()),
-          TranslateDistanceIntoMeters(-getRightEncoder())
+          TranslateDistanceIntoMeters(getRightEncoder())
         );
 
   }
@@ -249,7 +249,7 @@ public class DriveSubsystem extends SubsystemBase {
   public DifferentialDriveWheelSpeeds getWheelSpeeds() { // needs to be meters per second
     return new DifferentialDriveWheelSpeeds(
         TranslateVelocityIntoMetersPerSecond(getLeftEncoderSpeed()),
-        TranslateVelocityIntoMetersPerSecond(-getRightEncoderSpeed())
+        TranslateVelocityIntoMetersPerSecond(getRightEncoderSpeed())
     );
   }
 
@@ -266,15 +266,19 @@ public class DriveSubsystem extends SubsystemBase {
     odometry.resetPosition(  // distances need to be in meters
         RobotContainer.pigeonIMUSubsystem.getRotation2d(),
         TranslateDistanceIntoMeters(getLeftEncoder()),
-        TranslateDistanceIntoMeters(-getRightEncoder()),
+        TranslateDistanceIntoMeters(getRightEncoder()),
         pose);
+
+    System.out.println("*** Reset - FP X:"+ odometry.getPoseMeters().getX() +
+       " Y:"+ odometry.getPoseMeters().getY()
+    );
   }
 
   // Should be used in periodic when the trajectory navigation is running
   public void updateOdometry() {
 
-    System.out.println("L:"+TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition())+
-            " R:"+TranslateDistanceIntoMeters(-rightDriveTalonFX[0].getSelectedSensorPosition())+
+    System.out.println("UO L:"+TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition())+
+            " R:"+TranslateDistanceIntoMeters(rightDriveTalonFX[0].getSelectedSensorPosition())+
             " A:"+RobotContainer.pigeonIMUSubsystem.getRotation2d().getDegrees()+
             " R-L:"+leftDriveTalonFX[0].getSelectedSensorPosition()+
             " R-R:"+(rightDriveTalonFX[0].getSelectedSensorPosition())+
@@ -285,16 +289,41 @@ public class DriveSubsystem extends SubsystemBase {
     odometry.update(
       RobotContainer.pigeonIMUSubsystem.getRotation2d(),
       TranslateDistanceIntoMeters(getLeftEncoder()),
-      TranslateDistanceIntoMeters(-getRightEncoder())
+      TranslateDistanceIntoMeters(getRightEncoder())
     );
   }
 
+  public DifferentialDriveOdometry returnOdometry () {
+    return odometry;
+  }
+
   public void updateTrajectoryOdometry() {
-    odometry.update(
+
+    System.out.println("UTO L:"+TranslateDistanceIntoMeters(getLeftEncoder())+
+            " R:"+TranslateDistanceIntoMeters(getRightEncoder())+
+            " A:"+RobotContainer.pigeonIMUSubsystem.getRotation2d().getDegrees()+
+            " R-L:"+leftDriveTalonFX[0].getSelectedSensorPosition()+
+            " R-R:"+(rightDriveTalonFX[0].getSelectedSensorPosition())+
+            " X:"+odometry.getPoseMeters().getX()+
+            " Y:"+odometry.getPoseMeters().getY()+
+            " FA:"+odometry.getPoseMeters().getRotation().getDegrees()
+            );
+
+    Pose2d p1;
+    p1 = odometry.update(
       RobotContainer.pigeonIMUSubsystem.getRotation2d(),
       TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition()),
       TranslateDistanceIntoMeters(rightDriveTalonFX[0].getSelectedSensorPosition())
-    ); 
+      //TranslateDistanceIntoMeters(getLeftEncoder()),
+      //TranslateDistanceIntoMeters(getRightEncoder())
+    );
+    
+    System.out.println("UTP1 "+
+    " X:"+p1.getX()+
+    " Y:"+p1.getY()+
+    " FA:"+p1.getRotation().getDegrees()
+    );
+
   }
 
   /**
@@ -305,7 +334,7 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void tankDriveVolts(double leftVolts, double rightVolts) {
 
-    System.out.println("TV L:" + leftVolts + " R:" + rightVolts);
+    //System.out.println("TV L:" + leftVolts + " R:" + rightVolts);
 
     setLeftVoltage(leftVolts);
     setRightVoltage(rightVolts);

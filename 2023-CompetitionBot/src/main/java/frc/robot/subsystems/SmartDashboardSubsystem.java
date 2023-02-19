@@ -12,6 +12,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   /** Creates a new SmartDashboardSubsystem. */
   public SmartDashboardSubsystem() {}
 
+  public void updateOdometryTelemetry() {
+    SmartDashboard.putNumber("OdometryX", RobotContainer.driveSubsystem.returnOdometry().getPoseMeters().getX());
+    SmartDashboard.putNumber("OdometryY", RobotContainer.driveSubsystem.returnOdometry().getPoseMeters().getY());
+  }
+
   public void updateRobotPose() {
 
     SmartDashboard.putNumber("LL1-X", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getX());
@@ -51,6 +56,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     updateDriveSubsystemTelemetry();
     updateIMUTelemetry();
     updateRobotPose();
+    updateOdometryTelemetry();
     
   }
 

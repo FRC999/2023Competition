@@ -8,7 +8,9 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
+import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
+import frc.robot.commands.RightSetVoltageDrive;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
 import frc.robot.commands.SYSIDMoveForward;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
@@ -26,6 +28,7 @@ import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -145,13 +148,13 @@ public class RobotContainer {
 
     //Test direction of left motor
     new JoystickButton(driveStick, 7)
-          .whileTrue(new InstantCommand(()->RobotContainer.driveSubsystem.setLeftVoltage(3.00)))
+          .whileTrue(new LeftSetVoltageDrive(-3.00))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
   
     //test direction of right motor
     new JoystickButton(driveStick, 8)
-          .whileTrue(new InstantCommand(()->RobotContainer.driveSubsystem.setRightVoltage(3.00)))
+          .whileTrue(new RightSetVoltageDrive(-3.00))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
     
@@ -159,6 +162,9 @@ public class RobotContainer {
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("trajtest1"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+    new JoystickButton(driveStick, 11)
+          .whileTrue(new InstantCommand(driveSubsystem::zeroDriveEncoders));
 
     
     // SYSID Test

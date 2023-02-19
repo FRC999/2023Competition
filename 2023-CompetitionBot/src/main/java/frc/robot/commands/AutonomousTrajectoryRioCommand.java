@@ -105,7 +105,7 @@ public class AutonomousTrajectoryRioCommand extends PPRamseteCommand {
   @Override
   public boolean isFinished() {
 
-    RobotContainer.driveSubsystem.updateOdometry();
+    //RobotContainer.driveSubsystem.updateOdometry();
 
     return super.isFinished();
   }

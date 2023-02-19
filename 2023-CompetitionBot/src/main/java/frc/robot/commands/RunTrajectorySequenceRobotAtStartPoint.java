@@ -11,6 +11,7 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
@@ -30,6 +31,9 @@ public class RunTrajectorySequenceRobotAtStartPoint extends SequentialCommandGro
     trajectoryPath = PathPlanner.loadPath(trajectory, new PathConstraints(maxVelocity, maxAcceleration));
 
     addCommands(
+      new InstantCommand(RobotContainer.driveSubsystem::zeroDriveEncoders),
+      new PrintCommand("ZEncoder"),
+      new WaitCommand(0.4),
       new InstantCommand( () -> RobotContainer.driveSubsystem.resetOdometry(trajectoryPath.getInitialPose()) ),
       new PrintCommand(
         "START IX:" + trajectoryPath.getInitialPose().getX()+

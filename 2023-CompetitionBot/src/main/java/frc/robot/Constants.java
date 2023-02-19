@@ -157,9 +157,13 @@ public final class Constants {
     public static final double kvVoltSecondsPerMeter = 2.1748;
     public static final double kaVoltSecondsSquaredPerMeter = 0.49391;
     */
+    ///public static final double ksVolts = 0.1231;
+    ///public static final double kvVoltSecondsPerMeter = 1.0882;
+    ///public static final double kaVoltSecondsSquaredPerMeter = 0.092837;
     public static final double ksVolts = 0.1231;
-    public static final double kvVoltSecondsPerMeter = 1.0882;
-    public static final double kaVoltSecondsSquaredPerMeter = 0.092837;
+    public static final double kvVoltSecondsPerMeter = 2.0882;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.592837;
+  
     public static final DifferentialDriveKinematics kDriveKinematics = 
       new DifferentialDriveKinematics(
         Units.inchesToMeters(RobotDriveChassisConstants.distanceBetweenWheels)
@@ -170,15 +174,16 @@ public final class Constants {
     */
 
     // aquired values from sysid, multiplied by 100 since original values were too small
-    public static final double trajectoryRioPidP_Value = 0.19693;
-    public static final double trajectoryRioPidD_Value = 0.011828;
-    public static final double trajectoryRioPidI_Value = 0.0;
+    public static final double trajectoryRioPidP_Value = 4.19693;
+    //public static final double trajectoryRioPidD_Value = 0.011828;
+    public static final double trajectoryRioPidD_Value = 0.0;
+    public static final double trajectoryRioPidI_Value = 1.0;
 
 
     // Default max values for trajectories - m/s and m/s^2
     //Max velocity is 12 feet per second (3.5 is converted to meters)
-    public static final double maxVelocityDefault = 2.5;  //3.5, but was changed for testing purposes
-    public static final double maxAccelerationDefault = 1;  //2, but was changed for testing purposes
+    public static final double maxVelocityDefault = 3;  //3.5, but was changed for testing purposes
+    public static final double maxAccelerationDefault = 2;  //2, but was changed for testing purposes
     //Max Acceleration is based Alex's superior intelligence
 
     public static final class BigFoot {
