@@ -18,8 +18,21 @@ public class TurretSubsystem extends SubsystemBase {
 
   private WPI_TalonSRX turretMotorController;
   final int clicksPerFullRotationSRX = 4096;
-
   
+  //some filler variables that will be based on limelight measurements
+  public double deltaX = 5; //this variable stores the "x" offset of the limelight relative to the turret
+  public double deltaY = 5; //this variable store the "y" offset of the limelight relative to the turret
+  public double hype = Math.sqrt(Math.pow(deltaX, 2.00) + Math.pow(deltaY, 2.00) ); //distance between center of the camera and center of the turret
+
+  //some filler variables that will be based on limelight data
+  public double limelightFieldAngle = 0;
+  public double limelightFieldx = 15;
+  public double limelightFieldY = 15;
+
+  //values that will be retrieved by method
+  public double turretX = 0;
+  public double turretY = 0;
+
   public TurretSubsystem() {
     initializeTurret();
     calibrateRelativeEncoder();
@@ -114,6 +127,16 @@ public class TurretSubsystem extends SubsystemBase {
     (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimit+Turret.turretAbsoluteZero); //Done because absolute encoder increases clockwise
   turretMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+getAbsEncoder());
+ }
+
+ public double[] findTurretCenterRelLimelight(){
+
+  turretX = limelightFieldx + Math.cos(limelightFieldAngle)*hype;
+  turretY = limelightFieldY + Math.sin(limelightFieldAngle)*hype;
+  double[] turretValues = {turretX,turretY};
+  
+  return turretValues;
+
  }
 
  public void moveToPosition(double endingPosition) {
