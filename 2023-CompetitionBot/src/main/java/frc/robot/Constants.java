@@ -161,23 +161,23 @@ public final class Constants {
     ///public static final double kvVoltSecondsPerMeter = 1.0882;
     ///public static final double kaVoltSecondsSquaredPerMeter = 0.092837;
     public static final double ksVolts = 0.1231;
-    public static final double kvVoltSecondsPerMeter = 2.0882;
-    public static final double kaVoltSecondsSquaredPerMeter = 0.592837;
+    public static final double kvVoltSecondsPerMeter = 1.0882;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.092837;
   
     public static final DifferentialDriveKinematics kDriveKinematics = 
       new DifferentialDriveKinematics(
         Units.inchesToMeters(RobotDriveChassisConstants.distanceBetweenWheels)
       );
-    /*public static final double trajectoryRioPidP_Value = 0.054151 ;
-    public static final double trajectoryRioPidD_Value = 0;
-    public static final double trajectoryRioPidI_Value = 0;
-    */
+    //public static final double trajectoryRioPidP_Value = 0.054151 ;
+    //public static final double trajectoryRioPidD_Value = 0;
+    //public static final double trajectoryRioPidI_Value = 0;
+    
 
     // aquired values from sysid, multiplied by 100 since original values were too small
-    public static final double trajectoryRioPidP_Value = 4.19693;
+    public static final double trajectoryRioPidP_Value = 5.19693;
     //public static final double trajectoryRioPidD_Value = 0.011828;
-    public static final double trajectoryRioPidD_Value = 0.0;
-    public static final double trajectoryRioPidI_Value = 1.0;
+    public static final double trajectoryRioPidD_Value = 0;
+    public static final double trajectoryRioPidI_Value = 0.04;
 
 
     // Default max values for trajectories - m/s and m/s^2
@@ -212,7 +212,7 @@ public final class Constants {
 
       // *** PID ***
 
-      public static final double turretAbsoluteZero = 0.0;
+      public static final double turretAbsoluteZero = 2922.0;
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
       public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms
