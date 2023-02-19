@@ -49,8 +49,8 @@ public class TurretSubsystem extends SubsystemBase {
         10,
         Turret.turret_configureTimeoutMs);
 
-    turretMotorController.configPeakOutputForward(+1.0, Turret.turret_configureTimeoutMs);
-    turretMotorController.configPeakOutputReverse(-1.0, Turret.turret_configureTimeoutMs);
+    turretMotorController.configPeakOutputForward(+0.5, Turret.turret_configureTimeoutMs);
+    turretMotorController.configPeakOutputReverse(-0.5, Turret.turret_configureTimeoutMs);
     turretMotorController.configNominalOutputForward(0, Turret.turret_configureTimeoutMs);
     turretMotorController.configNominalOutputReverse(0, Turret.turret_configureTimeoutMs);
 
@@ -109,13 +109,15 @@ public class TurretSubsystem extends SubsystemBase {
 }
 
  public void calibrateRelativeEncoder() {
-  double relativePosition = getAbsEncoder() - Turret.turretAbsoluteZero; 
+  double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimit) ?
+    (Turret.turretAbsoluteZero - getAbsEncoder()) :
+    (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimit+Turret.turretAbsoluteZero); //Done because absolute encoder increases clockwise
   turretMotorController.setSelectedSensorPosition(relativePosition);
-  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition);
+  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+getAbsEncoder());
  }
 
  public void moveToPosition(double endingPosition) {
-  turretMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
+  turretMotorController.set(TalonSRXControlMode.Position,endingPosition);
   System.out.println("Turret PID turn to "+ endingPosition);
  }
 

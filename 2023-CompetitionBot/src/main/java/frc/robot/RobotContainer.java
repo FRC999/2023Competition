@@ -180,6 +180,18 @@ public class RobotContainer {
       .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
     
+    // Turret rotation
+    new JoystickButton(turnStick, 11)
+      .whileTrue(new InstantCommand(()->turretSubsystem.manualDrive(0.3), turretSubsystem))
+      .whileFalse(new InstantCommand(turretSubsystem::stopTurret, turretSubsystem));
+
+    new JoystickButton(turnStick, 12)
+      .whileTrue(new InstantCommand(()->turretSubsystem.turnTurretToAngle(180), turretSubsystem))
+      .whileFalse(new InstantCommand(turretSubsystem::stopTurret, turretSubsystem));
+    new JoystickButton(turnStick, 10)
+      .whileTrue(new InstantCommand(()->turretSubsystem.turnTurretToAngle(0), turretSubsystem))
+      .whileFalse(new InstantCommand(turretSubsystem::stopTurret, turretSubsystem));
+    
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     //new Trigger(m_exampleSubsystem::exampleCondition)
     //    .onTrue(new ExampleCommand(m_exampleSubsystem));

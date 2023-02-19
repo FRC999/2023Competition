@@ -205,26 +205,28 @@ public final class Constants {
     public static final class Turret {
       public static final int turretMotorID = 20;
       public static final int turretEncoderPort = 20;
-      public static final boolean turretMotorInverted = false;
+      public static final boolean turretMotorInverted = true;
       public static final boolean turretSensorPhase = false;
 
-      public static final double ticksPerDegree = 300 ; // Encoder ticks per 1 degree of rotation
+      public static final double ticksPerDegree = 85.36 ; // Encoder ticks per 1 degree of rotation
 
       // *** PID ***
 
-      public static final double turretAbsoluteZero = 2922.0;
+      public static final double turretAbsoluteZero = 857.0;
+      public static final double turretAbsoluteZeroRollover = 4096;
+      public static final double turretAbsoluteZeroClockwisePositionLimit = 3000;
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
       public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms
       public static final double turret_NeutralDeadband = 0.001;
       
       public static final int turret_SLOT_0 = 0;
-      public static final double turret_kP = 1.5;
-      public static final double turret_kI = 0.0002;
-      public static final double turret_kD = 15;
+      public static final double turret_kP = 1.7;
+      public static final double turret_kI = 0.002;
+      public static final double turret_kD = 0.01;
       public static final double turret_kF = 0;
-      public static final double turret_Acceleration = 50; // raw sensor units per 100 ms per second
-      public static final double turret_CruiseVelocity = 50; // raw sensor units per 100 ms
+      public static final double turret_Acceleration = 100; // raw sensor units per 100 ms per second
+      public static final double turret_CruiseVelocity = 100; // raw sensor units per 100 ms
       public static final int turret_Smoothing = 3; // CurveStrength. 0 to use Trapezoidal Motion Profile. [1,8] for S-Curve (greater value yields greater smoothing).
       public static final double turret_DefaultAcceptableError = 1; // Sensor units
       public static final double turret_Izone = 500;
