@@ -77,7 +77,7 @@ public class SelfBalanceWhenFacingTheCharger extends CommandBase {
 
       RobotContainer.driveSubsystem.driveForward(climbingPower);
 
-      System.out.println("P:" + climbingPower + " A:" + RobotContainer.pigeonIMUSubsystem.getPitch());
+      //System.out.println("P:" + climbingPower + " A:" + RobotContainer.pigeonIMUSubsystem.getPitch());
     }
   }
 

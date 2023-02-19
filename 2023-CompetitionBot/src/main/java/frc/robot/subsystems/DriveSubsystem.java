@@ -260,23 +260,28 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void resetOdometry(Pose2d pose) {
 
-    zeroDriveEncoders();   // Reset Encoders
-    RobotContainer.pigeonIMUSubsystem.zeroHeading();  // Reset Yaw
+    //TODO: test without zeroing the encoders and Yaw
+    // If this works, it means it will use current encoders and YAW as the initial position
+
+    // zeroDriveEncoders();   // Reset Encoders
+    // RobotContainer.pigeonIMUSubsystem.zeroHeading();  // Reset Yaw
 
     odometry.resetPosition(  // distances need to be in meters
         RobotContainer.pigeonIMUSubsystem.getRotation2d(),
-        TranslateDistanceIntoMeters(getLeftEncoder()),
-        TranslateDistanceIntoMeters(getRightEncoder()),
+        TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition()),
+        TranslateDistanceIntoMeters(rightDriveTalonFX[0].getSelectedSensorPosition()),
         pose);
 
-    System.out.println("*** Reset - FP X:"+ odometry.getPoseMeters().getX() +
+    System.out.println("*** Reset Position - X:"+ odometry.getPoseMeters().getX() +
        " Y:"+ odometry.getPoseMeters().getY()
     );
   }
 
   // Should be used in periodic when the trajectory navigation is running
-  public void updateOdometry() {
+  /*
+    public void updateOdometry() {
 
+    //TODO: remove this print after testing
     System.out.println("UO L:"+TranslateDistanceIntoMeters(leftDriveTalonFX[0].getSelectedSensorPosition())+
             " R:"+TranslateDistanceIntoMeters(rightDriveTalonFX[0].getSelectedSensorPosition())+
             " A:"+RobotContainer.pigeonIMUSubsystem.getRotation2d().getDegrees()+
@@ -292,6 +297,7 @@ public class DriveSubsystem extends SubsystemBase {
       TranslateDistanceIntoMeters(getRightEncoder())
     );
   }
+  */
 
   public DifferentialDriveOdometry returnOdometry () {
     return odometry;

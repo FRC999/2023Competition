@@ -31,15 +31,15 @@ public class RunTrajectorySequenceRobotAtStartPoint extends SequentialCommandGro
     trajectoryPath = PathPlanner.loadPath(trajectory, new PathConstraints(maxVelocity, maxAcceleration));
 
     addCommands(
-      new InstantCommand(RobotContainer.driveSubsystem::zeroDriveEncoders),
-      new PrintCommand("ZEncoder"),
-      new WaitCommand(0.4),
+      //new InstantCommand(RobotContainer.driveSubsystem::zeroDriveEncoders),
+      //new PrintCommand("ZEncoder"),
+      //new WaitCommand(0.4),
       new InstantCommand( () -> RobotContainer.driveSubsystem.resetOdometry(trajectoryPath.getInitialPose()) ),
-      new PrintCommand(
-        "START IX:" + trajectoryPath.getInitialPose().getX()+
-        " IY:" + trajectoryPath.getInitialPose().getY()+
-        " IA:" + trajectoryPath.getInitialPose().getRotation().getDegrees()
-        ),  // Set the initial pose of the robot to the one in a trajectory
+      //new PrintCommand(
+      //  "START IX:" + trajectoryPath.getInitialPose().getX()+
+      //  " IY:" + trajectoryPath.getInitialPose().getY()+
+      //  " IA:" + trajectoryPath.getInitialPose().getRotation().getDegrees()
+      //  ),  // Set the initial pose of the robot to the one in a trajectory
       new AutonomousTrajectoryRioCommand(trajectoryPath) // Run a trajectory
     );
   }
