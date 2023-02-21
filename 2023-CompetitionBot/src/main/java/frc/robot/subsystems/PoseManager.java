@@ -37,6 +37,7 @@ public class PoseManager {
         ySum = 0;
         zSum = 0;
 
+        /*
         for(int i=0; i<queueSize; i++){
             Pose2d pose2d = poseQueue.get(i);
             xSum += Math.pow(pose2d.getX()-xMean, 2);
@@ -50,14 +51,14 @@ public class PoseManager {
         xSum = 0;
         ySum = 0;
         zSum = 0;
-
+*/
         int validCount = 0;
 
         for(int i=0; i<queueSize; i++){
             Pose2d pose2d = poseQueue.get(i);
-            if ((Math.abs(pose2d.getX()-xMean)<2*xSD) && 
-                    (Math.abs(pose2d.getY()-yMean)<2*ySD) &&
-                    (Math.abs(pose2d.getRotation().getDegrees()-zMean)<2*zSD)) {
+            if ((Math.abs(pose2d.getX()-xMean)<=NavigationConstants.MEAN_DEV*xMean) && 
+                    (Math.abs(pose2d.getY()-yMean)<=NavigationConstants.MEAN_DEV*yMean) &&
+                    (Math.abs(pose2d.getRotation().getDegrees()-zMean)<=NavigationConstants.MEAN_DEV*zMean)) {
                 validCount++;
                 xSum += pose2d.getX();
                 ySum += pose2d.getY();
