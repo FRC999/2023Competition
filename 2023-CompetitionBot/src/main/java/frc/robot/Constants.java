@@ -350,18 +350,23 @@ public final class Constants {
   }
 
   public static final class NavigationConstants {
+
+    public static final double BLUE_X_ERROR = -0.45604;
+    public static final double BLUE_Y_ERROR = -0.06521;
+    public static final double RED_X_ERROR = 0.46169;
+    public static final double RED_Y_ERROR = 0.03884;
     public static final double[] fieldCenter = {8.725, 4.043};
     // X,Y coordinates of the tags from 0,0 in the blue/lower-left
     public static final double tags[][] = {
       {}, // 0
-      {7.24310 + fieldCenter[0], -2.93659 + fieldCenter[1]}, // id 1
-      {7.24310 + fieldCenter[0], -1.26019 + fieldCenter[1]}, // id 2
-      {7.24310 + fieldCenter[0], 0.41621 + fieldCenter[1]}, // id 3
-      {7.90832 + fieldCenter[0], 2.74161 + fieldCenter[1]}, // id 4
-      {-7.90832 + fieldCenter[0], 2.74161 + fieldCenter[1]}, // id 5
-      {-7.24310 + fieldCenter[0], 0.41621 + fieldCenter[1]}, // id 6
-      {-7.24310 + fieldCenter[0], -1.26019 + fieldCenter[1]}, // id 7
-      {-7.24310 + fieldCenter[0], -2.93659 + fieldCenter[1]} // id 8
+      {7.24310 + fieldCenter[0] + RED_X_ERROR, -2.93659 + fieldCenter[1] + RED_Y_ERROR}, // id 1
+      {7.24310 + fieldCenter[0] + RED_X_ERROR, -1.26019 + fieldCenter[1] + RED_Y_ERROR}, // id 2
+      {7.24310 + fieldCenter[0] + RED_X_ERROR, 0.41621 + fieldCenter[1] + RED_Y_ERROR}, // id 3
+      {7.90832 + fieldCenter[0] + RED_X_ERROR, 2.74161 + fieldCenter[1] + RED_Y_ERROR}, // id 4
+      {-7.90832 + fieldCenter[0] + BLUE_X_ERROR, 2.74161 + fieldCenter[1] + BLUE_Y_ERROR}, // id 5
+      {-7.24310 + fieldCenter[0] + BLUE_X_ERROR, 0.41621 + fieldCenter[1] + BLUE_Y_ERROR}, // id 6
+      {-7.24310 + fieldCenter[0] + BLUE_X_ERROR, -1.26019 + fieldCenter[1] + BLUE_Y_ERROR}, // id 7
+      {-7.24310 + fieldCenter[0] + BLUE_X_ERROR, -2.93659 + fieldCenter[1] + BLUE_Y_ERROR} // id 8
     } ;
     public static List<Pose2d> leftTargets;
     public static List<Pose2d> rightTargets;
@@ -373,6 +378,9 @@ public final class Constants {
       0.653-tags[8][0], // middle offset
       0.238-tags[8][0] // top offset
     };
+
+    public static final int POSE_QUEUE_MAXSIZE = 10;
+    public static final double MEAN_DEV = 0.2;
 
     public static double xOffsetOfCameraFromTurret = -0.1; // Offset of camera lens from the turret center of rotation
     public static double yOffsetOfCameraFromTurret = 0.2; // Offset of camera lens from the turret center of rotation
