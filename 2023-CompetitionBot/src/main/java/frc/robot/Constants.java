@@ -236,6 +236,12 @@ public final class Constants {
       public static final double TdefaultPowerManual = 0.3;
 
       public static final double turretCruisingPosition = 200.0; // Cruising position when we have a gamepiece
+      
+      public static final double deltaX = 5;
+      public static final double deltaY = 5;
+      public static final double limelightFieldX = 0.15;  // meters
+      public static final double limelightFieldY = 0.15;  // meters
+      public static final double turretDistanceFromCenterToCameraLens = 0; // meters
 
     }
     public static final class Elevator {

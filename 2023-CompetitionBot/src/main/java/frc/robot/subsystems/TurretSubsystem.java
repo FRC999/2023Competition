@@ -9,8 +9,11 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.GamepieceManipulator;
 import frc.robot.Constants.GamepieceManipulator.Turret;
 
 public class TurretSubsystem extends SubsystemBase {
@@ -20,18 +23,18 @@ public class TurretSubsystem extends SubsystemBase {
   final int clicksPerFullRotationSRX = 4096;
   
   //some filler variables that will be based on limelight measurements
-  public double deltaX = 5; //this variable stores the "x" offset of the limelight relative to the turret
-  public double deltaY = 5; //this variable store the "y" offset of the limelight relative to the turret
-  public double hype = Math.sqrt(Math.pow(deltaX, 2.00) + Math.pow(deltaY, 2.00) ); //distance between center of the camera and center of the turret
+  //public double deltaX = 5; //this variable stores the "x" offset of the limelight relative to the turret
+  //public double deltaY = 5; //this variable store the "y" offset of the limelight relative to the turret
+  //public double hype = Math.sqrt(Math.pow(deltaX, 2.00) + Math.pow(deltaY, 2.00) ); //distance between center of the camera and center of the turret
 
   //some filler variables that will be based on limelight data
-  public double limelightFieldAngle = 0;
-  public double limelightFieldx = 15;
-  public double limelightFieldY = 15;
+  //public double limelightFieldAngle = 0;
+  //public double limelightFieldx = 15;
+  //public double limelightFieldY = 15;
 
   //values that will be retrieved by method
-  public double turretX = 0;
-  public double turretY = 0;
+  //public double turretX = 0;
+  //public double turretY = 0;
 
   public TurretSubsystem() {
     initializeTurret();
@@ -129,15 +132,15 @@ public class TurretSubsystem extends SubsystemBase {
   System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+getAbsEncoder());
  }
 
- public double[] findTurretCenterRelLimelight(){
+ //public double[] findTurretCenterRelLimelight(){
 
-  turretX = limelightFieldx + Math.cos(limelightFieldAngle)*hype;
-  turretY = limelightFieldY + Math.sin(limelightFieldAngle)*hype;
-  double[] turretValues = {turretX,turretY};
+  //turretX = limelightFieldx + Math.cos(limelightFieldAngle)*hype;
+  //turretY = limelightFieldY + Math.sin(limelightFieldAngle)*hype;
+  //double[] turretValues = {turretX,turretY};
   
-  return turretValues;
+  //return turretValues;
 
- }
+ //}    method commented out for moving constants
 
  public void moveToPosition(double endingPosition) {
   turretMotorController.set(TalonSRXControlMode.Position,endingPosition);
@@ -155,6 +158,29 @@ public class TurretSubsystem extends SubsystemBase {
 
  public void manualDrive(double power) {
   turretMotorController.set(TalonSRXControlMode.PercentOutput, power);
+ }
+
+ public double recalculateAngle(double zeroAngle, double rawPoseAngle){
+  return ((zeroAngle - rawPoseAngle + 360)%360);
+ }
+
+ public Pose2d calculatePoseOfTurret(Pose2d locationOfCamera, Pose2d zeroPoseofCamera){
+
+  double turretDistFromCenterToCameraLens = Math.sqrt(Math.pow(zeroPoseofCamera.getX(), 2) + Math.pow(zeroPoseofCamera.getY(), 2));
+
+  double trueAngle = recalculateAngle(zeroPoseofCamera.getRotation().getDegrees(), 
+  locationOfCamera.getRotation().getDegrees());
+
+  double currentTurretX = locationOfCamera.getX()
+    - Math.cos(trueAngle) *
+    turretDistFromCenterToCameraLens;
+
+  double currentTurretY = locationOfCamera.getY()
+    - Math.sin(trueAngle) *
+    turretDistFromCenterToCameraLens;
+
+  Pose2d poseOfTurret = new Pose2d(currentTurretX, currentTurretY, new Rotation2d(trueAngle));
+  return poseOfTurret;
  }
 
   @Override
