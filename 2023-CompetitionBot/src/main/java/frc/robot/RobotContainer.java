@@ -147,15 +147,15 @@ public class RobotContainer {
     // Simple Trajectory test
 
     //Test direction of left motor
-    new JoystickButton(driveStick, 7)
-          .whileTrue(new LeftSetVoltageDrive(-3.00))
-          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+    //new JoystickButton(driveStick, 7)
+    //      .whileTrue(new LeftSetVoltageDrive(-3.00))
+    //      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
   
     //test direction of right motor
-    new JoystickButton(driveStick, 8)
-          .whileTrue(new RightSetVoltageDrive(-3.00))
-          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+    //new JoystickButton(driveStick, 8)
+    //      .whileTrue(new RightSetVoltageDrive(-3.00))
+    //      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
     
     
@@ -169,29 +169,29 @@ public class RobotContainer {
     
     // SYSID Test
     
-    new JoystickButton(driveStick, 9)
-          .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("SYSIDMoveForwardTest"))
-          .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+    //new JoystickButton(driveStick, 9)
+    //      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("SYSIDMoveForwardTest"))
+    //      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
           
 
     // Self-Balance test
+    //new JoystickButton(driveStick, 10)
+    //  .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
+    //  .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
     
-    new JoystickButton(driveStick, 10)
-      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
-      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
-    
-    // Turret rotation
+    // Turret rotation test
+    /*
     new JoystickButton(turnStick, 11)
       .whileTrue(new InstantCommand(()->turretSubsystem.manualDrive(0.3), turretSubsystem))
       .whileFalse(new InstantCommand(turretSubsystem::stopTurret, turretSubsystem));
-
     new JoystickButton(turnStick, 12)
       .whileTrue(new InstantCommand(()->turretSubsystem.turnTurretToAngle(180), turretSubsystem))
       .whileFalse(new InstantCommand(turretSubsystem::stopTurret, turretSubsystem));
     new JoystickButton(turnStick, 10)
       .whileTrue(new InstantCommand(()->turretSubsystem.turnTurretToAngle(0), turretSubsystem))
       .whileFalse(new InstantCommand(turretSubsystem::stopTurret, turretSubsystem));
-    
+    */
+
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     //new Trigger(m_exampleSubsystem::exampleCondition)
     //    .onTrue(new ExampleCommand(m_exampleSubsystem));
