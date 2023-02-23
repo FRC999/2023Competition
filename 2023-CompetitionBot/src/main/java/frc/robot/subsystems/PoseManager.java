@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import frc.robot.Constants.NavigationConstants;
+import frc.robot.Constants.GamepieceManipulator.Arm;
 
 /** Add your docs here. */
 public class PoseManager {
@@ -72,5 +74,17 @@ public class PoseManager {
 
         Pose2d pose2d = new Pose2d(xMean, yMean, Rotation2d.fromDegrees(zMean));
         return pose2d;
+    }
+
+    public double[] getTargeting(Pose2d targetPose) {
+
+        Pose2d robotPose = getPose();
+        Transform2d targetTransform = robotPose.minus(targetPose);
+        double relX = targetTransform.getTranslation().getX();
+        double relY = targetTransform.getTranslation().getY();
+        double targetDistance = Math.hypot(relX, relY);
+        if(targetDistance > Arm.maximumExtension)
+            targetDistance = -1;
+        return (new double[]{targetTransform.getRotation().getDegrees(), targetDistance});
     }
 }
