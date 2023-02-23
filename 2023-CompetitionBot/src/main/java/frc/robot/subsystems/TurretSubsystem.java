@@ -179,8 +179,8 @@ public class TurretSubsystem extends SubsystemBase {
     - Math.sin(trueAngle) *
     turretDistFromCenterToCameraLens;
 
-  Pose2d poseOfTurret = new Pose2d(currentTurretX, currentTurretY, new Rotation2d(trueAngle));
-  return poseOfTurret;
+  return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(trueAngle));
+  
  }
 
   @Override

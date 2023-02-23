@@ -4,8 +4,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.NavigationConstants;
 
 public class AcquireRobotPosition extends CommandBase {
   /** Creates a new AcquireRobotPosition. */
@@ -28,6 +30,22 @@ public class AcquireRobotPosition extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("*** Robot pose samples acquired. I:"+interrupted);
+
+    // TEST - print robot pose
+    System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getX()+
+      ","+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getY()+","+
+      RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getRotation().getDegrees());
+
+    // TEST - print turret center pose
+    Pose2d lt = RobotContainer.turretSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
+    System.out.println("=== TPoseL:"+lt.getX()+
+      ","+lt.getY()+","+
+      lt.getRotation().getDegrees());
+    Pose2d rt = RobotContainer.turretSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
+    System.out.println("=== TPoseR:"+rt.getX()+
+      ","+rt.getY()+","+
+      rt.getRotation().getDegrees());
+
   }
 
   // Returns true when the command should end.

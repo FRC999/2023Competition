@@ -48,8 +48,31 @@ public class NavigationSubsystem extends SubsystemBase {
   }
 
   public Pose2d getCurrentPoseOfRobot() {
-    return null; //TODO: change this later
+    if (! isCollectingPoses) {
+      if (limelightPoseManager[0].numberOfPoses()>=limelightPoseManager[0].numberOfPoses()) {
+        return limelightPoseManager[0].getPose();
+      } else {
+        return limelightPoseManager[1].getPose();
+      }
+    }
+    return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
   }
+
+  // In case we only want the pose calculated for left camera
+  public Pose2d getCurrentPoseOfRobotLeft() {
+    if (! isCollectingPoses) {
+        return limelightPoseManager[0].getPose();
+    }
+    return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
+  }
+  // In case we only want the pose calculated for right camera
+  public Pose2d getCurrentPoseOfRobotRight() {
+    if (! isCollectingPoses) {
+        return limelightPoseManager[1].getPose();
+    }
+    return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
+  }
+
   
   @Override
   public void periodic() {
