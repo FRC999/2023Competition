@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
@@ -351,6 +352,8 @@ public final class Constants {
 
   public static final class NavigationConstants {
 
+    public static final int numberOfMeasurements = 10; // Number of robot pose measurements to collect in order to make robot pose determination
+
     public static final double BLUE_X_ERROR = -0.45604;
     public static final double BLUE_Y_ERROR = -0.06521;
     public static final double RED_X_ERROR = 0.46169;
@@ -368,8 +371,8 @@ public final class Constants {
       {-7.24310 + fieldCenter[0] + BLUE_X_ERROR, -1.26019 + fieldCenter[1] + BLUE_Y_ERROR}, // id 7
       {-7.24310 + fieldCenter[0] + BLUE_X_ERROR, -2.93659 + fieldCenter[1] + BLUE_Y_ERROR} // id 8
     } ;
-    public static List<Pose2d> leftTargets;
-    public static List<Pose2d> rightTargets;
+    public static List<Pose2d> leftTargets = new ArrayList<Pose2d>();
+    public static List<Pose2d> rightTargets = new ArrayList<Pose2d>();
 
     public static final double yTargetOffset = tags[8][1] - 0.512;
 

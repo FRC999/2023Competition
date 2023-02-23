@@ -15,17 +15,25 @@ public class NetworkTablesSubsystem extends SubsystemBase {
   public NetworkTablesSubsystem() {
     ntInst = NetworkTableInstance.getDefault();
   }
-  public Pose2d getLimelightOneRobotPose() {
+  public Pose2d getLimelightLeftRobotPose() {
 
-    double[] robotPoseArray = ntInst.getTable("limelight").getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
+    double[] robotPoseArray = ntInst.getTable("limelight-left").getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
 
     return new Pose2d(robotPoseArray[0],robotPoseArray[1],new Rotation2d(robotPoseArray[5]));
   }
-  public Pose2d getLimelightTwoRobotPose() {
 
-    double[] robotPoseArray = ntInst.getTable("limelight").getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
+  public Pose2d getLimelightRightRobotPose() {
+
+    double[] robotPoseArray = ntInst.getTable("limelight-right").getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
 
     return new Pose2d(robotPoseArray[0],robotPoseArray[1],new Rotation2d(robotPoseArray[5]));
+  }
+
+  public boolean isLeftTargetAcquired() {
+    return ntInst.getTable("limelight-left").getEntry("tv").getDouble(0) == 1.0; // return true if the target visible
+  }
+  public boolean isRightTargetAcquired() {
+    return ntInst.getTable("limelight-right").getEntry("tv").getDouble(0) == 1.0; // return true if the target visible
   }
 
   @Override

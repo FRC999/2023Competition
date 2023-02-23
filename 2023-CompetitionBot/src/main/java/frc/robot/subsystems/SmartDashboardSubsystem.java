@@ -19,13 +19,16 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void updateRobotPose() {
 
-    SmartDashboard.putNumber("LL1-X", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getX());
-    SmartDashboard.putNumber("LL1-Y", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getY());
-    SmartDashboard.putNumber("LL1-angle", RobotContainer.networkTablesSubsystem.getLimelightOneRobotPose().getRotation().getDegrees());
+    SmartDashboard.putNumber("LL1-X", RobotContainer.networkTablesSubsystem.getLimelightLeftRobotPose().getX());
+    SmartDashboard.putNumber("LL1-Y", RobotContainer.networkTablesSubsystem.getLimelightLeftRobotPose().getY());
+    SmartDashboard.putNumber("LL1-angle", RobotContainer.networkTablesSubsystem.getLimelightLeftRobotPose().getRotation().getDegrees());
+    SmartDashboard.putBoolean("LL1-visible", RobotContainer.networkTablesSubsystem.isLeftTargetAcquired());
 
-    SmartDashboard.putNumber("LL2-X", RobotContainer.networkTablesSubsystem.getLimelightTwoRobotPose().getX());
-    SmartDashboard.putNumber("LL2-Y", RobotContainer.networkTablesSubsystem.getLimelightTwoRobotPose().getY());
-    SmartDashboard.putNumber("LL2-angle", RobotContainer.networkTablesSubsystem.getLimelightTwoRobotPose().getRotation().getDegrees());
+    SmartDashboard.putNumber("LL2-X", RobotContainer.networkTablesSubsystem.getLimelightRightRobotPose().getX());
+    SmartDashboard.putNumber("LL2-Y", RobotContainer.networkTablesSubsystem.getLimelightRightRobotPose().getY());
+    SmartDashboard.putNumber("LL2-angle", RobotContainer.networkTablesSubsystem.getLimelightRightRobotPose().getRotation().getDegrees());
+    SmartDashboard.putBoolean("LL2-visible", RobotContainer.networkTablesSubsystem.isRightTargetAcquired());
+
   }
   
   public void updateDriveSubsystemTelemetry() {
@@ -53,11 +56,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void updateAllDisplays() {
 
-    updateDriveSubsystemTelemetry();
-    updateIMUTelemetry();
+    //updateDriveSubsystemTelemetry();
+    //updateIMUTelemetry();
     updateRobotPose();
-    updateOdometryTelemetry();
-    updateTurretTelemetry();
+    //updateOdometryTelemetry();
+    //updateTurretTelemetry();
     
   }
 

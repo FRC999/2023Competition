@@ -12,7 +12,16 @@ import frc.robot.Constants.NavigationConstants;
 
 /** Add your docs here. */
 public class PoseManager {
-    ArrayList<Pose2d> poseQueue = new ArrayList<Pose2d>();
+    private ArrayList<Pose2d> poseQueue = new ArrayList<Pose2d>();
+
+    // Delete all poses from the queue 
+    public void clearAllPoses() {
+        poseQueue.clear();
+    }
+
+    public int numberOfPoses() {
+        return poseQueue.size();
+    }
 
     public void addPose(Pose2d pose2d) {
         if (poseQueue.size() >= NavigationConstants.POSE_QUEUE_MAXSIZE)
