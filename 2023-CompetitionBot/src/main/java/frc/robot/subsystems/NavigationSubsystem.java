@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.GPMHelper;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.NavigationConstants;
@@ -14,8 +13,10 @@ import frc.robot.Constants.NavigationConstants;
 public class NavigationSubsystem extends SubsystemBase {
 
   private boolean isCollectingPoses = false;
-  private int[] numberOfValidMeasurements = new int[2];
-  private PoseManager[] limelightPoseManager = new PoseManager[2];
+  private int numberOfValidMeasurementsLeft;
+  private int numberOfValidMeasurementsRight;
+  private PoseManager limelightPoseManagerLeft = new PoseManager();
+  private PoseManager limelightPoseManagerRight = new PoseManager();
 
   /** Creates a new NavigationSubsystem. */
   Pose2d currentAngleFromPose;
@@ -23,24 +24,23 @@ public class NavigationSubsystem extends SubsystemBase {
   public NavigationSubsystem() {
     currentAngleFromPose = getCurrentPoseOfRobot();
     GPMHelper.populateListsOfTargetPoses();
-
   }
 
   // Start acquisition of the robot poses
   public void acquireRobotPoses() {
-    numberOfValidMeasurements[0] = 0;
-    numberOfValidMeasurements[1] = 0;
-    limelightPoseManager[0] = new PoseManager();
-    limelightPoseManager[1] = new PoseManager();
+    numberOfValidMeasurementsLeft = 0;
+    numberOfValidMeasurementsRight = 0;
+    limelightPoseManagerLeft.clearAllPoses();
+    limelightPoseManagerRight.clearAllPoses();
     isCollectingPoses = true;
   }
 
   public boolean enoughPosesAcquired() {
-    if (numberOfValidMeasurements[0] >= NavigationConstants.numberOfMeasurements ||
-      numberOfValidMeasurements[1] >= NavigationConstants.numberOfMeasurements ) {
+    if (numberOfValidMeasurementsLeft >= NavigationConstants.numberOfMeasurements ||
+      numberOfValidMeasurementsRight >= NavigationConstants.numberOfMeasurements ) {
 
         // TEST - number of poses acquired
-        System.out.println("Poses L:"+limelightPoseManager[0].numberOfPoses()+" R:"+limelightPoseManager[0].numberOfPoses());
+        System.out.println("Poses L:"+limelightPoseManagerLeft.numberOfPoses()+" R:"+limelightPoseManagerRight.numberOfPoses());
 
       return true;
     }
@@ -49,10 +49,10 @@ public class NavigationSubsystem extends SubsystemBase {
 
   public Pose2d getCurrentPoseOfRobot() {
     if (! isCollectingPoses) {
-      if (limelightPoseManager[0].numberOfPoses()>=limelightPoseManager[0].numberOfPoses()) {
-        return limelightPoseManager[0].getPose();
+      if (limelightPoseManagerLeft.numberOfPoses()>=limelightPoseManagerRight.numberOfPoses()) {
+        return limelightPoseManagerLeft.getPose();
       } else {
-        return limelightPoseManager[1].getPose();
+        return limelightPoseManagerRight.getPose();
       }
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
@@ -61,14 +61,14 @@ public class NavigationSubsystem extends SubsystemBase {
   // In case we only want the pose calculated for left camera
   public Pose2d getCurrentPoseOfRobotLeft() {
     if (! isCollectingPoses) {
-        return limelightPoseManager[0].getPose();
+        return limelightPoseManagerLeft.getPose();
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
   }
   // In case we only want the pose calculated for right camera
   public Pose2d getCurrentPoseOfRobotRight() {
     if (! isCollectingPoses) {
-        return limelightPoseManager[1].getPose();
+        return limelightPoseManagerRight.getPose();
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
   }
@@ -80,12 +80,12 @@ public class NavigationSubsystem extends SubsystemBase {
 
     if (isCollectingPoses) {
       if (RobotContainer.networkTablesSubsystem.isLeftTargetAcquired()) {
-        limelightPoseManager[0].addPose(RobotContainer.networkTablesSubsystem.getLimelightLeftRobotPose());
-        numberOfValidMeasurements[0]++;
+        limelightPoseManagerLeft.addPose(RobotContainer.networkTablesSubsystem.getLimelightLeftRobotPose());
+        numberOfValidMeasurementsLeft++;
       }
       if (RobotContainer.networkTablesSubsystem.isRightTargetAcquired()) {
-        limelightPoseManager[1].addPose(RobotContainer.networkTablesSubsystem.getLimelightRightRobotPose());
-        numberOfValidMeasurements[1]++;
+        limelightPoseManagerRight.addPose(RobotContainer.networkTablesSubsystem.getLimelightRightRobotPose());
+        numberOfValidMeasurementsRight++;
       }
 
       // Stop pose acquisition if enough poses are acquired

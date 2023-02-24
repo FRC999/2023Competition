@@ -354,7 +354,7 @@ public final class Constants {
   public static final class NavigationConstants {
 
     public static final int numberOfMeasurements = 10; // Number of robot pose measurements to collect in order to make robot pose determination
-    public static final Pose2d dummyPose = new Pose2d(-1,-1, new Rotation2d(-1));
+    public static final Pose2d dummyPose = new Pose2d(-1,-1, new Rotation2d(Units.degreesToRadians(-1)));
 
     // Camera poses relative to the Turret/Arm
     public static final Pose2d leftCameraPose = new Pose2d(0.05,0.1,new Rotation2d(Units.degreesToRadians(30)));

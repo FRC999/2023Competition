@@ -72,7 +72,7 @@ public class GPMHelper {
     if ( currentRobotPose.getY()+ 0.5 * NavigationConstants.yTargetOffset < nearestApriltagPose.getY()) { // I am in a lane BELOW the one with the AprilTag
       if (isFacingLeft(currentRobotPose)) {
         return new Pose2d[] {
-          new Pose2d(nearestApriltagPose.getX() + NavigationConstants.xTargetOffset[0], nearestApriltagPose.getY() - NavigationConstants.yTargetOffset, Rotation2d.fromDegrees(180)), // lower target
+          new Pose2d(nearestApriltagPose.getX() + NavigationConstants.xTargetOffset[0], nearestApriltagPose.getY() - NavigationConstants.yTargetOffset, Rotation2d.fromDegrees(180)), // lower targetRotation2d
           new Pose2d(nearestApriltagPose.getX() + NavigationConstants.xTargetOffset[1], nearestApriltagPose.getY() - NavigationConstants.yTargetOffset, Rotation2d.fromDegrees(180)), // middle target
           new Pose2d(nearestApriltagPose.getX() + NavigationConstants.xTargetOffset[2], nearestApriltagPose.getY() - NavigationConstants.yTargetOffset, Rotation2d.fromDegrees(180)) // high target
         }; 
@@ -191,13 +191,13 @@ public static boolean isFacingRight(Pose2d currentPose) {
      NavigationConstants.leftTargets.add(
          new Pose2d(NavigationConstants.tags[i][0],
              NavigationConstants.tags[i][1],
-             new Rotation2d(Math.toRadians(180))));
+             new Rotation2d(Units.degreesToRadians(180))));
    }
    for (int i = 1; i <= 3; i++) {
      NavigationConstants.rightTargets.add(
          new Pose2d(NavigationConstants.tags[i][0],
              NavigationConstants.tags[i][1],
-             new Rotation2d(Math.toRadians(0))));
+             new Rotation2d(Units.degreesToRadians(0))));
    }
  }
 }
