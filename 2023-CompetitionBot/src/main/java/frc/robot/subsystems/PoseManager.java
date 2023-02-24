@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -31,6 +32,11 @@ public class PoseManager {
 
     public Pose2d getPose() {
         int queueSize = poseQueue.size();
+
+        if (poseQueue.size()<1) {  // If do not have a valid pose to return, return a dummy pose
+            return NavigationConstants.dummyPose;
+        }
+
         double xSum=0, ySum=0, zSum=0, xMean=0, yMean=0, zMean=0, xSD=0, ySD=0, zSD=0;
         for(int i=0; i<queueSize; i++){
             Pose2d pose2d = poseQueue.get(i);
@@ -45,6 +51,27 @@ public class PoseManager {
         xSum = 0;
         ySum = 0;
         zSum = 0;
+
+        // Stream implementation of the AVERAGE calculation
+        xMean = poseQueue.stream()
+                    .mapToDouble(Pose2d::getX)
+                    .average()
+                    .orElse(-1)
+                    ;
+
+        yMean = poseQueue.stream()
+                    .mapToDouble(Pose2d::getY)
+                    .average()
+                    .orElse(-1)
+                    ;
+
+        zMean = poseQueue.stream()
+                    .mapToDouble(p->p.getRotation().getDegrees())
+                    .average()
+                    .orElse(-1)
+                    ;
+
+        //poseQueue.stream().filter(p->p.getX()>10).toList();
 
         /*
         for(int i=0; i<queueSize; i++){
