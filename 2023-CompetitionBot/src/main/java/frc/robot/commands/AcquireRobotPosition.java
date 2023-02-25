@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.NavigationConstants;
+import frc.robot.GPMHelper;
 
 public class AcquireRobotPosition extends CommandBase {
   /** Creates a new AcquireRobotPosition. */
@@ -45,6 +46,13 @@ public class AcquireRobotPosition extends CommandBase {
     System.out.println("=== TPoseR:"+rt.getX()+
       ","+rt.getY()+","+
       rt.getRotation().getDegrees());
+
+    // Nearest AprilTag
+    Pose2d pNAT = GPMHelper.identifyNearestTarget(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot());
+    System.out.println("NearestAT: "+pNAT.getX()+","+pNAT.getY()+","+pNAT.getRotation().getDegrees());
+
+    // Poses in nearest lane
+    
 
   }
 

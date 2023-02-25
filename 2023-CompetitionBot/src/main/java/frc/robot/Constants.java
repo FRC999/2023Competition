@@ -212,6 +212,8 @@ public final class Constants {
 
       public static final double ticksPerDegree = 85.36 ; // Encoder ticks per 1 degree of rotation
 
+      public static final double turretLimit[] = new double[]{190,-190};
+
       // *** PID ***
 
       public static final double turretAbsoluteZero = 857.0;
@@ -369,9 +371,9 @@ public final class Constants {
     // X,Y coordinates of the tags from 0,0 in the blue/lower-left
     public static final double tags[][] = {
       {}, // 0
-      {7.24310 + fieldCenter[0] + RED_X_ERROR, -2.93659 + fieldCenter[1] + RED_Y_ERROR}, // id 1
-      {7.24310 + fieldCenter[0] + RED_X_ERROR, -1.26019 + fieldCenter[1] + RED_Y_ERROR}, // id 2
-      {7.24310 + fieldCenter[0] + RED_X_ERROR, 0.41621 + fieldCenter[1] + RED_Y_ERROR}, // id 3
+      {7.24310 + fieldCenter[0] + RED_X_ERROR, -2.93659 + fieldCenter[1] + RED_Y_ERROR}, // id 1 Y: 1.14525
+      {7.24310 + fieldCenter[0] + RED_X_ERROR, -1.26019 + fieldCenter[1] + RED_Y_ERROR}, // id 2 Y: 2.7176
+      {7.24310 + fieldCenter[0] + RED_X_ERROR, 0.41621 + fieldCenter[1] + RED_Y_ERROR}, // id 3  Y: 4.394
       {7.90832 + fieldCenter[0] + RED_X_ERROR, 2.74161 + fieldCenter[1] + RED_Y_ERROR}, // id 4
       {-7.90832 + fieldCenter[0] + BLUE_X_ERROR, 2.74161 + fieldCenter[1] + BLUE_Y_ERROR}, // id 5
       {-7.24310 + fieldCenter[0] + BLUE_X_ERROR, 0.41621 + fieldCenter[1] + BLUE_Y_ERROR}, // id 6

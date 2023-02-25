@@ -180,15 +180,5 @@ public class PoseManager {
         return new Pose2d(xFinal, yFinal, new Rotation2d(Units.degreesToRadians(zFinal)));
     }
 
-    public double[] getTargeting(Pose2d targetPose) {
 
-        Pose2d robotPose = getPose();
-        Transform2d targetTransform = robotPose.minus(targetPose);
-        double relX = targetTransform.getTranslation().getX();
-        double relY = targetTransform.getTranslation().getY();
-        double targetDistance = Math.hypot(relX, relY);
-        if(targetDistance > Arm.maximumExtension)
-            targetDistance = -1;
-        return (new double[]{targetTransform.getRotation().getDegrees(), targetDistance});
-    }
 }
