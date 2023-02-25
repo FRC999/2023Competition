@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.LeftSetVoltageDrive;
@@ -51,16 +52,20 @@ public class RobotContainer {
 
   // GamePiece Manipulator subsystems
   //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
-  public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
+  //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
   //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
-  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
   //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
   //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+
+  public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
+  public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
+
   // ***** End of Subsystem initialization *******
 
   // ***** Dummy subsystems so the code will compile, use for testing
@@ -68,13 +73,13 @@ public class RobotContainer {
   //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
   //public static final DriveSubsystem driveSubsystem = null;
   public static final ElevatorSubsystem elevatorSubsystem = null;
-  //public static final TurretSubsystem turretSubsystem = null;
+  public static final TurretSubsystem turretSubsystem = null;
   public static final ArmSubsystem armSubsystem = null;
-  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
   public static final BigFootSubsystem bigFootSubsystem = null;
-  public static final NavigationSubsystem navigationSubsystem = null;
-  public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
+  //public static final NetworkTablesSubsystem networkTablesSubsystem = null;
+  //public static final NavigationSubsystem navigationSubsystem = null;
 
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem(); 
 
@@ -166,6 +171,9 @@ public class RobotContainer {
     new JoystickButton(driveStick, 11)
           .whileTrue(new InstantCommand(driveSubsystem::zeroDriveEncoders));
 
+    // Test pose acquisition
+    new JoystickButton(driveStick, 3)
+          .onTrue(new AcquireRobotPosition());
     
     // SYSID Test
     

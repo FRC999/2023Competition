@@ -13,7 +13,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.GamepieceManipulator;
 import frc.robot.Constants.GamepieceManipulator.Turret;
 
 public class TurretSubsystem extends SubsystemBase {
@@ -158,29 +157,6 @@ public class TurretSubsystem extends SubsystemBase {
 
  public void manualDrive(double power) {
   turretMotorController.set(TalonSRXControlMode.PercentOutput, power);
- }
-
- public double recalculateAngle(double zeroAngle, double rawPoseAngle){
-  return ((zeroAngle - rawPoseAngle + 360)%360);
- }
-
- public Pose2d calculatePoseOfTurret(Pose2d locationOfCamera, Pose2d zeroPoseofCamera){
-
-  double turretDistFromCenterToCameraLens = Math.sqrt(Math.pow(zeroPoseofCamera.getX(), 2) + Math.pow(zeroPoseofCamera.getY(), 2));
-
-  double trueAngle = recalculateAngle(zeroPoseofCamera.getRotation().getDegrees(), 
-  locationOfCamera.getRotation().getDegrees());
-
-  double currentTurretX = locationOfCamera.getX()
-    - Math.cos(trueAngle) *
-    turretDistFromCenterToCameraLens;
-
-  double currentTurretY = locationOfCamera.getY()
-    - Math.sin(trueAngle) *
-    turretDistFromCenterToCameraLens;
-
-  Pose2d poseOfTurret = new Pose2d(currentTurretX, currentTurretY, new Rotation2d(trueAngle));
-  return poseOfTurret;
  }
 
   @Override

@@ -5,16 +5,28 @@
 package frc.robot.subsystems;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.math.geometry.Transform2d;
 import frc.robot.Constants.NavigationConstants;
 import frc.robot.Constants.GamepieceManipulator.Arm;
 
 /** Add your docs here. */
 public class PoseManager {
-    ArrayList<Pose2d> poseQueue = new ArrayList<Pose2d>();
+    private ArrayList<Pose2d> poseQueue = new ArrayList<Pose2d>();
+
+    // Delete all poses from the queue 
+    public void clearAllPoses() {
+        poseQueue.clear();
+    }
+
+    public int numberOfPoses() {
+        return poseQueue.size();
+    }
 
     public void addPose(Pose2d pose2d) {
         if (poseQueue.size() >= NavigationConstants.POSE_QUEUE_MAXSIZE)
@@ -23,8 +35,23 @@ public class PoseManager {
     } 
 
     public Pose2d getPose() {
-        int queueSize = poseQueue.size();
-        double xSum=0, ySum=0, zSum=0, xMean=0, yMean=0, zMean=0, xSD=0, ySD=0, zSD=0;
+        //int queueSize = poseQueue.size();
+
+        //test
+
+        //System.out.println("NPoses:"+poseQueue.size());
+        //for(int i=0;i<poseQueue.size();i++){
+        //    System.out.println("PX "+i+" :"+poseQueue.get(i).getX());
+        //}
+
+        if (poseQueue.size()<1) {  // If do not have a valid pose to return, return a dummy pose
+            return NavigationConstants.dummyPose;
+        }
+
+        //double xSum=0, ySum=0, zSum=0, xSD=0, ySD=0, zSD=0;
+
+        /*
+        // Replaced by teh refactored STREAM implementation below
         for(int i=0; i<queueSize; i++){
             Pose2d pose2d = poseQueue.get(i);
             xSum += pose2d.getX();
@@ -38,6 +65,34 @@ public class PoseManager {
         xSum = 0;
         ySum = 0;
         zSum = 0;
+        */
+
+        // Stream implementation of the AVERAGE calculation
+        double xMean = poseQueue.stream()
+                    .mapToDouble(Pose2d::getX)
+                    .average()
+                    .orElse(-1)
+                    ;
+
+        //System.out.println("P-AvgX:"+xMean);
+
+        double yMean = poseQueue.stream()
+                    .mapToDouble(Pose2d::getY)
+                    .average()
+                    .orElse(-1)
+                    ;
+
+        //System.out.println("P-AvgY:"+yMean);
+
+        double zMean = poseQueue.stream()
+                    .mapToDouble(p->p.getRotation().getDegrees())
+                    .average()
+                    .orElse(-1)
+                    ;
+
+        //System.out.println("P-AvgZ:"+zMean);
+
+        //poseQueue.stream().filter(p->p.getX()>10).toList();
 
         /*
         for(int i=0; i<queueSize; i++){
@@ -54,6 +109,8 @@ public class PoseManager {
         ySum = 0;
         zSum = 0;
 */
+
+/*
         int validCount = 0;
 
         for(int i=0; i<queueSize; i++){
@@ -67,13 +124,45 @@ public class PoseManager {
                 zSum += pose2d.getRotation().getDegrees();
             }
         }
-        
-        xMean = xSum/validCount;
-        yMean = ySum/validCount;
-        zMean = zSum/validCount;
+*/        
+        //xMean = xSum/validCount;
+        //yMean = ySum/validCount;
+        //zMean = zSum/validCount;
 
-        Pose2d pose2d = new Pose2d(xMean, yMean, Rotation2d.fromDegrees(zMean));
-        return pose2d;
+        //Pose2d pose2d = new Pose2d(xMean, yMean, Rotation2d.fromDegrees(zMean));
+
+        // Calculate the average pose - STREAMS implementation
+        //List<Pose2d> returnPose =  new ArrayList<Pose2d>();
+        double xFinal = poseQueue.stream()
+            .filter(x -> Math.abs(x.getX() - xMean) <=NavigationConstants.MEAN_DEV*xMean )
+            .filter(y -> Math.abs(y.getY() - yMean) <=NavigationConstants.MEAN_DEV*yMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_DEV*zMean) )
+            .mapToDouble(Pose2d::getX)
+            .average()
+            .orElse(-1)
+            ;
+
+        //System.out.println("P-FinX:"+xFinal);
+
+        double yFinal = poseQueue.stream()
+            .filter(x -> Math.abs(x.getX() - xMean) <=NavigationConstants.MEAN_DEV*xMean )
+            .filter(y -> Math.abs(y.getY() - yMean) <=NavigationConstants.MEAN_DEV*yMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_DEV*zMean) )
+            .mapToDouble(Pose2d::getY)
+            .average()
+            .orElse(-1)
+            ;
+
+        double zFinal = poseQueue.stream()
+            .filter(x -> Math.abs(x.getX() - xMean) <=NavigationConstants.MEAN_DEV*xMean )
+            .filter(y -> Math.abs(y.getY() - yMean) <=NavigationConstants.MEAN_DEV*yMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_DEV*zMean) )
+            .mapToDouble(p->p.getRotation().getDegrees())
+            .average()
+            .orElse(-1)
+            ;
+
+        return new Pose2d(xFinal, yFinal, new Rotation2d(Units.degreesToRadians(zFinal)));
     }
 
     public double[] getTargeting(Pose2d targetPose) {
