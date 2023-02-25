@@ -39,19 +39,31 @@ public class NavigationSubsystem extends SubsystemBase {
     isCollectingPoses = true;
   }
 
+  /**
+   * Check if we acquired enough pose samples
+   * Stop if left or right camera got enough measurements
+   * or if we exceed the maximum number of measurements we want to try
+   * @return
+   */
   public boolean enoughPosesAcquired() {
     if (numberOfValidMeasurementsLeft >= NavigationConstants.numberOfMeasurements ||
       numberOfValidMeasurementsRight >= NavigationConstants.numberOfMeasurements || 
       numberOfTotalMeasurements >= NavigationConstants.numberOfMaxPoseMeasurements ) {
 
         // TEST - number of poses acquired
-        System.out.println("Poses L:"+limelightPoseManagerLeft.numberOfPoses()+" R:"+limelightPoseManagerRight.numberOfPoses());
+        //System.out.println("Poses L:"+limelightPoseManagerLeft.numberOfPoses()+" R:"+limelightPoseManagerRight.numberOfPoses());
 
       return true;
     }
     return false;
   }
 
+  /**
+   * Calculate pose of the camera with relative trust
+   * Give more trust to the camera that collected more samples
+   * If the same number of samples, use left camera
+   * @return - pose of the camera
+   */
   public Pose2d getCurrentPoseOfRobot() {
     if (! isCollectingPoses) {
       if (limelightPoseManagerLeft.numberOfPoses()>=limelightPoseManagerRight.numberOfPoses()) {
@@ -78,6 +90,12 @@ public class NavigationSubsystem extends SubsystemBase {
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
   }
 
+  /**
+   * Recalculate angle in 0-360 range relative to another angle
+   * @param zeroAngle - "stamdard" angle that is the base we're calculating agains
+   * @param rawPoseAngle - "measured" angle to be recalculated
+   * @return - degrees 0-360
+   */
   public double recalculateAngle(double zeroAngle, double rawPoseAngle){
 
     // System.out.println("ZA:"+zeroAngle+" RA:"+rawPoseAngle);
@@ -85,6 +103,13 @@ public class NavigationSubsystem extends SubsystemBase {
     return ((rawPoseAngle - zeroAngle  + 360)%360);
    }
 
+  /**
+   * Calculate the pose of the turret center based on the pose of the camera on the field
+   * as well as relative pose of the camera to the center of the turret
+   * @param locationOfCamera  - location of the camera on the field
+   * @param zeroPoseofCamera - pose of the camera relative to the center of the turret (offsets); stored in NavigationConstants
+   * @return - pose of the center of the turret
+   */
   public Pose2d calculatePoseOfTurret(Pose2d locationOfCamera, Pose2d zeroPoseofCamera){
 
     double turretDistFromCenterToCameraLens = 

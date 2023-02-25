@@ -19,21 +19,36 @@ import frc.robot.Constants.GamepieceManipulator.Arm;
 public class PoseManager {
     private ArrayList<Pose2d> poseQueue = new ArrayList<Pose2d>();
 
-    // Delete all poses from the queue 
+    /**
+     * Delete all poses from the pose queue
+     */
     public void clearAllPoses() {
         poseQueue.clear();
     }
 
+    /**
+     * Return number of poses in the pose queue
+     * @return
+     */
     public int numberOfPoses() {
         return poseQueue.size();
     }
 
+    /**
+     * Add pose to the pose queue
+     */
     public void addPose(Pose2d pose2d) {
         if (poseQueue.size() >= NavigationConstants.POSE_QUEUE_MAXSIZE)
             poseQueue.remove(0);
         poseQueue.add(pose2d);
     } 
 
+    /**
+     * Eliminate outliers from the pose queue,
+     * get average of X,Y and Angle from the remaining poses
+     * Construct the pose consisting of averages and retuirn as a final pose
+     * @return - pose based on averages without outliers
+     */
     public Pose2d getPose() {
         //int queueSize = poseQueue.size();
 
