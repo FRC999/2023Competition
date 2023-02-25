@@ -51,6 +51,9 @@ public class AcquireRobotPosition extends CommandBase {
     System.out.println("GP1: "+targetPoses[1].toString());
     System.out.println("GP2: "+targetPoses[2].toString());
 
+    // Test GPM positioning
+    double[] gpmEX = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot(),targetPoses[2]);
+    System.out.println("T Angle:"+gpmEX[0]+" Arm:"+gpmEX[1]);
   }
 
   // Returns true when the command should end.
