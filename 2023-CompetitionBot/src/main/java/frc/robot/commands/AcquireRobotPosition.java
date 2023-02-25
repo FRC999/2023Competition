@@ -33,26 +33,23 @@ public class AcquireRobotPosition extends CommandBase {
     System.out.println("*** Robot pose samples acquired. I:"+interrupted);
 
     // TEST - print robot pose
-    System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getX()+
-      ","+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getY()+","+
-      RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getRotation().getDegrees());
+    System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().toString());
 
     // TEST - print turret center pose
     Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
-    System.out.println("=== TPoseL:"+lt.getX()+
-      ","+lt.getY()+","+
-      lt.getRotation().getDegrees());
+    System.out.println("=== TPoseL:"+lt.toString());
     Pose2d rt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotRight(),NavigationConstants.rightCameraPose);
-    System.out.println("=== TPoseR:"+rt.getX()+
-      ","+rt.getY()+","+
-      rt.getRotation().getDegrees());
+    System.out.println("=== TPoseR: "+rt.toString());
 
     // Nearest AprilTag
     Pose2d pNAT = GPMHelper.identifyNearestTarget(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot());
-    System.out.println("NearestAT: "+pNAT.getX()+","+pNAT.getY()+","+pNAT.getRotation().getDegrees());
+    System.out.println("NearestAT: "+pNAT.toString());
 
     // Poses in nearest lane
-    
+    Pose2d[] targetPoses = GPMHelper.getTargetPoseFromLaneRecognition(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot(),pNAT);
+    System.out.println("GP0: "+targetPoses[0].toString());
+    System.out.println("GP1: "+targetPoses[1].toString());
+    System.out.println("GP2: "+targetPoses[2].toString());
 
   }
 
