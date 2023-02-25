@@ -173,7 +173,7 @@ public class RobotContainer {
 
     // Test pose acquisition
     new JoystickButton(driveStick, 3)
-          .whileTrue(new AcquireRobotPosition());
+          .onTrue(new AcquireRobotPosition());
     
     // SYSID Test
     

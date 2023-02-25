@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.GPMHelper;
 import frc.robot.RobotContainer;
@@ -75,6 +77,35 @@ public class NavigationSubsystem extends SubsystemBase {
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
   }
+
+  public double recalculateAngle(double zeroAngle, double rawPoseAngle){
+
+    // System.out.println("ZA:"+zeroAngle+" RA:"+rawPoseAngle);
+
+    return ((rawPoseAngle - zeroAngle  + 360)%360);
+   }
+
+  public Pose2d calculatePoseOfTurret(Pose2d locationOfCamera, Pose2d zeroPoseofCamera){
+
+    double turretDistFromCenterToCameraLens = 
+       Math.sqrt(Math.pow(zeroPoseofCamera.getX(), 2) + Math.pow(zeroPoseofCamera.getY(), 2));
+  
+    double trueAngle = recalculateAngle(zeroPoseofCamera.getRotation().getDegrees(), 
+      locationOfCamera.getRotation().getDegrees());
+
+    // System.out.println("TA:"+trueAngle);
+  
+    double currentTurretX = locationOfCamera.getX()
+      - Math.cos(trueAngle) *
+      turretDistFromCenterToCameraLens;
+  
+    double currentTurretY = locationOfCamera.getY()
+      - Math.sin(trueAngle) *
+      turretDistFromCenterToCameraLens;
+  
+    return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(trueAngle)));
+    
+   }
 
   
   @Override

@@ -37,11 +37,11 @@ public class AcquireRobotPosition extends CommandBase {
       RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().getRotation().getDegrees());
 
     // TEST - print turret center pose
-    Pose2d lt = RobotContainer.turretSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
+    Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
     System.out.println("=== TPoseL:"+lt.getX()+
       ","+lt.getY()+","+
       lt.getRotation().getDegrees());
-    Pose2d rt = RobotContainer.turretSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
+    Pose2d rt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotRight(),NavigationConstants.rightCameraPose);
     System.out.println("=== TPoseR:"+rt.getX()+
       ","+rt.getY()+","+
       rt.getRotation().getDegrees());

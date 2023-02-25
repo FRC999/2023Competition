@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -19,14 +20,14 @@ public class NetworkTablesSubsystem extends SubsystemBase {
 
     double[] robotPoseArray = ntInst.getTable("limelight-left").getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
 
-    return new Pose2d(robotPoseArray[0],robotPoseArray[1],new Rotation2d(robotPoseArray[5]));
+    return new Pose2d(robotPoseArray[0],robotPoseArray[1],new Rotation2d(Units.degreesToRadians(robotPoseArray[5])));
   }
 
   public Pose2d getLimelightRightRobotPose() {
 
     double[] robotPoseArray = ntInst.getTable("limelight-right").getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
 
-    return new Pose2d(robotPoseArray[0],robotPoseArray[1],new Rotation2d(robotPoseArray[5]));
+    return new Pose2d(robotPoseArray[0],robotPoseArray[1],new Rotation2d(Units.degreesToRadians(robotPoseArray[5])));
   }
 
   public boolean isLeftTargetAcquired() {

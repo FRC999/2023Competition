@@ -35,6 +35,13 @@ public class PoseManager {
     public Pose2d getPose() {
         //int queueSize = poseQueue.size();
 
+        //test
+
+        //System.out.println("NPoses:"+poseQueue.size());
+        //for(int i=0;i<poseQueue.size();i++){
+        //    System.out.println("PX "+i+" :"+poseQueue.get(i).getX());
+        //}
+
         if (poseQueue.size()<1) {  // If do not have a valid pose to return, return a dummy pose
             return NavigationConstants.dummyPose;
         }
@@ -65,17 +72,23 @@ public class PoseManager {
                     .orElse(-1)
                     ;
 
+        //System.out.println("P-AvgX:"+xMean);
+
         double yMean = poseQueue.stream()
                     .mapToDouble(Pose2d::getY)
                     .average()
                     .orElse(-1)
                     ;
 
+        //System.out.println("P-AvgY:"+yMean);
+
         double zMean = poseQueue.stream()
                     .mapToDouble(p->p.getRotation().getDegrees())
                     .average()
                     .orElse(-1)
                     ;
+
+        //System.out.println("P-AvgZ:"+zMean);
 
         //poseQueue.stream().filter(p->p.getX()>10).toList();
 
@@ -121,16 +134,18 @@ public class PoseManager {
         double xFinal = poseQueue.stream()
             .filter(x -> Math.abs(x.getX() - xMean) <=NavigationConstants.MEAN_DEV*xMean )
             .filter(y -> Math.abs(y.getY() - yMean) <=NavigationConstants.MEAN_DEV*yMean )
-            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <=NavigationConstants.MEAN_DEV*zMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_DEV*zMean) )
             .mapToDouble(Pose2d::getX)
             .average()
             .orElse(-1)
             ;
 
+        //System.out.println("P-FinX:"+xFinal);
+
         double yFinal = poseQueue.stream()
             .filter(x -> Math.abs(x.getX() - xMean) <=NavigationConstants.MEAN_DEV*xMean )
             .filter(y -> Math.abs(y.getY() - yMean) <=NavigationConstants.MEAN_DEV*yMean )
-            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <=NavigationConstants.MEAN_DEV*zMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_DEV*zMean) )
             .mapToDouble(Pose2d::getY)
             .average()
             .orElse(-1)
@@ -139,7 +154,7 @@ public class PoseManager {
         double zFinal = poseQueue.stream()
             .filter(x -> Math.abs(x.getX() - xMean) <=NavigationConstants.MEAN_DEV*xMean )
             .filter(y -> Math.abs(y.getY() - yMean) <=NavigationConstants.MEAN_DEV*yMean )
-            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <=NavigationConstants.MEAN_DEV*zMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_DEV*zMean) )
             .mapToDouble(p->p.getRotation().getDegrees())
             .average()
             .orElse(-1)
