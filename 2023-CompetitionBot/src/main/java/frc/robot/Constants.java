@@ -191,7 +191,7 @@ public final class Constants {
     //Max Acceleration is based Alex's superior intelligence
 
     public static final class BigFoot {
-      public static final int[] footSolenoidChannels = {4,5}; // First channel - DOWN, second - UP
+      public static final int[] footSolenoidChannels = {5,4}; // First channel - DOWN, second - UP
     }
 
     public static final class SelfBalance {
@@ -309,6 +309,7 @@ public final class Constants {
       public static final boolean armSensorPhase = true;
 
       public static final double armMaxLimit = 10300; // 11578
+      public static final double armHoldingPower = -0.031; // power to hold the arm without goinf forward
 
       public static final double ticksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
       public static final double maximumExtension = 2.5; // meters
@@ -341,8 +342,8 @@ public final class Constants {
 
     }
     public static final class Claw { 
-      public static final int[] clawSolenoidChannels = {1,2};   // First channel to CLOSE, second to OPEN
-      public static final int[] flipperSolenoidChannels = {3,4}; // First channel UP, second - DOWN
+      public static final int[] clawSolenoidChannels = {2,3};   // First channel to CLOSE, second to OPEN
+      public static final int[] flipperSolenoidChannels = {0,1}; // First channel UP, second - DOWN
     }
 
 

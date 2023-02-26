@@ -21,7 +21,7 @@ public class PneumaticsSubsystem extends SubsystemBase {
     activateCompressor();
 
     //TODO: for testing **** !!!!!!!
-    deactivateCompressor();
+    //deactivateCompressor();
   }
 
   public void activateCompressor() {

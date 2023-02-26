@@ -36,11 +36,14 @@ public class DriveArmManuallyCommand extends CommandBase {
   public void execute() {
     double power = -RobotContainer.gpmStick.getZ();
 
+    System.out.println("R3:"+RobotContainer.gpmStick.getRawAxis(3));
+
     System.out.println("Z:"+power);
-    
+
     if (power<0) {
       if (RobotContainer.armSubsystem.getEncoder()<=0) {
-        power=0;
+        if (power < Arm.armHoldingPower)
+        power=Arm.armHoldingPower;  // apply constant force when reached 0 to avoid pulsing
       }
     } else {
       if (RobotContainer.armSubsystem.getEncoder()>=Arm.armMaxLimit) {
