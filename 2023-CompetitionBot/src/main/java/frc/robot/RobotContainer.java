@@ -87,6 +87,8 @@ public class RobotContainer {
   public static Joystick driveStick;
   public static Joystick turnStick;
 
+  public static Joystick gpmStick;
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
@@ -115,6 +117,8 @@ public class RobotContainer {
   private void configureDriverInterface() {
     turnStick = new Joystick(OIConstants.turnControllerPort);
     driveStick = new Joystick(OIConstants.driverControllerPort);
+
+    gpmStick = new Joystick(OIConstants.gpmControllerPort);
 
     System.out.println("Driver interface configured");
   }

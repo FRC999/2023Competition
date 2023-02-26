@@ -57,6 +57,8 @@ public final class Constants {
   public static final class OIConstants {
     public static final int driverControllerPort = 1;
     public static final int turnControllerPort = 0;
+
+    public static final int gpmControllerPort = 2;
   }
 
   public static final class DriveConstants {

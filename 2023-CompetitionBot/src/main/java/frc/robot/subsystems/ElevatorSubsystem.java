@@ -98,12 +98,16 @@ public class ElevatorSubsystem extends SubsystemBase {
     return elevatorMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
   }
 
-  public int getDriveAbsEncoder() {
+  public int getAbsEncoder() {
     return (int) elevatorMotorController.getSensorCollection().getPulseWidthPosition() & 0xFFF;
  }
 
+ public double getSpeed() {
+  return elevatorMotorController.getSelectedSensorVelocity();
+ }
+
  public void calibrateRelativeEncoder() {
-  double relativePosition = getDriveAbsEncoder() - Elevator.elevatorAbsoluteZero; 
+  double relativePosition = getAbsEncoder() - Elevator.elevatorAbsoluteZero; 
   elevatorMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for elevator motor to " + relativePosition);
  }

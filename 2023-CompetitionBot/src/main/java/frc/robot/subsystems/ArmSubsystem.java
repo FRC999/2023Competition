@@ -98,12 +98,16 @@ public class ArmSubsystem extends SubsystemBase {
     return armMotorController.getClosedLoopError(); // Returns the PID error for Pan motion control;
   }
 
-  public int getDriveAbsEncoder() {
+  public int getAbsEncoder() {
     return (int) armMotorController.getSensorCollection().getPulseWidthPosition() & 0xFFF;
- }
+  }
+
+  public double getSpeed() {
+    return armMotorController.getSelectedSensorVelocity();
+  }
 
  public void calibrateRelativeEncoder() {
-  double relativePosition = getDriveAbsEncoder() - Arm.armAbsoluteZero; 
+  double relativePosition = getAbsEncoder() - Arm.armAbsoluteZero; 
   armMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for Arm motor to " + relativePosition);
  }
