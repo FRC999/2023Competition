@@ -8,13 +8,13 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
+import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
-import frc.robot.commands.SYSIDMoveForward;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
@@ -52,7 +52,7 @@ public class RobotContainer {
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   // GamePiece Manipulator subsystems
-  //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
   //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
@@ -73,7 +73,7 @@ public class RobotContainer {
   //  !!!!!!! Make sure to comment it out for thre real competition
   //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
   //public static final DriveSubsystem driveSubsystem = null;
-  public static final ElevatorSubsystem elevatorSubsystem = null;
+  //public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
   public static final ArmSubsystem armSubsystem = null;
   public static final PneumaticsSubsystem pneumaticsSubsystem = null;
@@ -180,9 +180,14 @@ public class RobotContainer {
     new JoystickButton(driveStick, 3)
           .onTrue(new AcquireRobotPosition());
     
-    new JoystickButton(driveStick, 12)
+    new JoystickButton(gpmStick, 5)
         .onTrue(new DriveElevatorManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
+
+    new JoystickButton(gpmStick, 6)
+        .onTrue(new DriveArmManuallyCommand())
+        .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
+
 
     // SYSID Test
     

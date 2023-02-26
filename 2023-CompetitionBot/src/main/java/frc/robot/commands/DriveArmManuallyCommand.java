@@ -7,23 +7,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class DriveElevatorManuallyCommand extends CommandBase {
-  /** Creates a new DriveElevatorManuallyCommand. */
-  public DriveElevatorManuallyCommand() {
+public class DriveArmManuallyCommand extends CommandBase {
+  /** Creates a new DriveArmManually. */
+  public DriveArmManuallyCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.elevatorSubsystem);
+    addRequirements(RobotContainer.armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.elevatorSubsystem.manualDrive(-RobotContainer.gpmStick.getY());
+    RobotContainer.elevatorSubsystem.manualDrive(-RobotContainer.gpmStick.getTwist());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.elevatorSubsystem.manualDrive(-RobotContainer.gpmStick.getY());
+    RobotContainer.elevatorSubsystem.manualDrive(-RobotContainer.gpmStick.getTwist());
   }
 
   // Called once the command ends or is interrupted.
