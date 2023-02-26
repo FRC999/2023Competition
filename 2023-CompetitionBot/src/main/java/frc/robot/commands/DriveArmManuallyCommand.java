@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.GamepieceManipulator.Arm;
 
 public class DriveArmManuallyCommand extends CommandBase {
   /** Creates a new DriveArmManually. */
@@ -17,13 +18,36 @@ public class DriveArmManuallyCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.elevatorSubsystem.manualDrive(-RobotContainer.gpmStick.getTwist());
+    double power = -RobotContainer.gpmStick.getZ();
+    if (power<0) {
+      if (RobotContainer.armSubsystem.getEncoder()<=0) {
+        power=0;
+      }
+    } else {
+      if (RobotContainer.armSubsystem.getEncoder()>=Arm.armMaxLimit) {
+        power=0;
+      }
+    }
+    RobotContainer.armSubsystem.manualDrive(power);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.elevatorSubsystem.manualDrive(-RobotContainer.gpmStick.getTwist());
+    double power = -RobotContainer.gpmStick.getZ();
+
+    System.out.println("Z:"+power);
+    
+    if (power<0) {
+      if (RobotContainer.armSubsystem.getEncoder()<=0) {
+        power=0;
+      }
+    } else {
+      if (RobotContainer.armSubsystem.getEncoder()>=Arm.armMaxLimit) {
+        power=0;
+      }
+    }
+    RobotContainer.armSubsystem.manualDrive(power);
   }
 
   // Called once the command ends or is interrupted.

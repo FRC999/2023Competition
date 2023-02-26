@@ -75,6 +75,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     updateRobotPose();
     //updateOdometryTelemetry();
     //updateTurretTelemetry();
+    updateElevatorTelemetry();
+    updateArmTelemetry();
     
   }
 

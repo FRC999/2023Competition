@@ -253,8 +253,10 @@ public final class Constants {
     public static final class Elevator {
       public static final int elevatorMotorID = 21;
       public static final int elevatorEncoderPort = 21;
-      public static final boolean elevatorMotorInverted = false;
+      public static final boolean elevatorMotorInverted = true;
       public static final boolean elevatorSensorPhase = false;
+
+      public static final double elevatorMaxLimit = 36200;
 
       // PID
       public static int PID_Elevator_Idx = 0; // 0 - closed loop; 1 - open loop
@@ -263,7 +265,7 @@ public final class Constants {
       public static final double elevator_NeutralDeadband = 0.001;
       public static final int elevator_closedLoopPeriodMs = 30;
       
-      public static final double elevatorAbsoluteZero = 0.0;
+      public static final double elevatorAbsoluteZero = 3015;
       //TO CHANGE - PID values copied from turret constants
       public static final int elevator_SLOT_0 = 0;
       public static final double elevator_kP = 1.5;
@@ -304,7 +306,9 @@ public final class Constants {
       public static final int armMotorID = 22;
       public static final int armEncoderPort = 22;
       public static final boolean armMotorInverted = false;
-      public static final boolean armSensorPhase = false;
+      public static final boolean armSensorPhase = true;
+
+      public static final double armMaxLimit = 10300; // 11578
 
       public static final double ticksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
       public static final double maximumExtension = 2.5; // meters
@@ -316,7 +320,7 @@ public final class Constants {
       public static final double arm_NeutralDeadband = 0.001;
       public static final int arm_closedLoopPeriodMs = 30;
 
-      public static final double armAbsoluteZero = 0.0;
+      public static final double armAbsoluteZero = 400;
       //TO CHANGE - PID values copied from turret constants
       public static final int arm_SLOT_0 = 0;
       public static final double arm_kP = 1.5;

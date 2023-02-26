@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -20,6 +21,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   
   public ElevatorSubsystem() {
     initializeElevator();
+    brakeMode();
     calibrateRelativeEncoder();
   }
 
@@ -106,8 +108,17 @@ public class ElevatorSubsystem extends SubsystemBase {
   return elevatorMotorController.getSelectedSensorVelocity();
  }
 
+ public void brakeMode() {
+  elevatorMotorController.setNeutralMode(NeutralMode.Brake);
+ }
+
+ public void coastMode() {
+  elevatorMotorController.setNeutralMode(NeutralMode.Coast);
+ }
+
  public void calibrateRelativeEncoder() {
-  double relativePosition = getAbsEncoder() - Elevator.elevatorAbsoluteZero; 
+  double relativePosition = getAbsEncoder() - Elevator.elevatorAbsoluteZero;
+  relativePosition = (Elevator.elevatorMotorInverted)?-relativePosition:relativePosition; 
   elevatorMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for elevator motor to " + relativePosition);
  }
@@ -128,6 +139,9 @@ public class ElevatorSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public interface elevatorSensorPhase {
   }
 
 }

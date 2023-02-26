@@ -54,7 +54,7 @@ public class RobotContainer {
   // GamePiece Manipulator subsystems
   public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
-  //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
   //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
@@ -75,7 +75,7 @@ public class RobotContainer {
   //public static final DriveSubsystem driveSubsystem = null;
   //public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
-  public static final ArmSubsystem armSubsystem = null;
+  //public static final ArmSubsystem armSubsystem = null;
   public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
   public static final BigFootSubsystem bigFootSubsystem = null;
