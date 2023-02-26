@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
+import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
@@ -179,6 +180,10 @@ public class RobotContainer {
     new JoystickButton(driveStick, 3)
           .onTrue(new AcquireRobotPosition());
     
+    new JoystickButton(driveStick, 12)
+        .onTrue(new DriveElevatorManuallyCommand())
+        .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
+
     // SYSID Test
     
     //new JoystickButton(driveStick, 9)
