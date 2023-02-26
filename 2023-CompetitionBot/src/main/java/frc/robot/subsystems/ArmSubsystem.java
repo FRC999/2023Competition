@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -20,6 +21,7 @@ public class ArmSubsystem extends SubsystemBase {
   
   public ArmSubsystem() {
     initializeArm();
+    brakeMode();
     calibrateRelativeEncoder();
   }
 
@@ -98,12 +100,17 @@ public class ArmSubsystem extends SubsystemBase {
     return armMotorController.getClosedLoopError(); // Returns the PID error for Pan motion control;
   }
 
-  public int getDriveAbsEncoder() {
+  public int getAbsEncoder() {
     return (int) armMotorController.getSensorCollection().getPulseWidthPosition() & 0xFFF;
- }
+  }
+
+  public double getSpeed() {
+    return armMotorController.getSelectedSensorVelocity();
+  }
 
  public void calibrateRelativeEncoder() {
-  double relativePosition = getDriveAbsEncoder() - Arm.armAbsoluteZero; 
+  double relativePosition = getAbsEncoder() - Arm.armAbsoluteZero;
+  relativePosition = (Arm.armMotorInverted^Arm.armSensorPhase)?-relativePosition:relativePosition; 
   armMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for Arm motor to " + relativePosition);
  }
@@ -124,6 +131,14 @@ public class ArmSubsystem extends SubsystemBase {
 
  public void manualDrive(double power) {
   armMotorController.set(TalonSRXControlMode.PercentOutput, power);
+ }
+
+ public void brakeMode() {
+  armMotorController.setNeutralMode(NeutralMode.Brake);
+ }
+
+ public void coastMode() {
+  armMotorController.setNeutralMode(NeutralMode.Coast);
  }
 
 

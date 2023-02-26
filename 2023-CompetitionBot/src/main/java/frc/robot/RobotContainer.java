@@ -8,12 +8,13 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
+import frc.robot.commands.DriveArmManuallyCommand;
+import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
-import frc.robot.commands.SYSIDMoveForward;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
@@ -27,6 +28,7 @@ import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
@@ -51,17 +53,17 @@ public class RobotContainer {
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   // GamePiece Manipulator subsystems
-  //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
-  //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
-  //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
-  //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
+  public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
-  //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+  public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
 
   public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
   public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
@@ -72,12 +74,12 @@ public class RobotContainer {
   //  !!!!!!! Make sure to comment it out for thre real competition
   //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
   //public static final DriveSubsystem driveSubsystem = null;
-  public static final ElevatorSubsystem elevatorSubsystem = null;
+  //public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
-  public static final ArmSubsystem armSubsystem = null;
-  public static final PneumaticsSubsystem pneumaticsSubsystem = null;
-  public static final ClawSubsystem clawSubsystem = null;
-  public static final BigFootSubsystem bigFootSubsystem = null;
+  //public static final ArmSubsystem armSubsystem = null;
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  //public static final ClawSubsystem clawSubsystem = null;
+  //public static final BigFootSubsystem bigFootSubsystem = null;
   //public static final NetworkTablesSubsystem networkTablesSubsystem = null;
   //public static final NavigationSubsystem navigationSubsystem = null;
 
@@ -86,6 +88,8 @@ public class RobotContainer {
 
   public static Joystick driveStick;
   public static Joystick turnStick;
+
+  public static Joystick gpmStick;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -115,6 +119,8 @@ public class RobotContainer {
   private void configureDriverInterface() {
     turnStick = new Joystick(OIConstants.turnControllerPort);
     driveStick = new Joystick(OIConstants.driverControllerPort);
+
+    gpmStick = new Joystick(OIConstants.gpmControllerPort);
 
     System.out.println("Driver interface configured");
   }
@@ -175,6 +181,27 @@ public class RobotContainer {
     new JoystickButton(driveStick, 3)
           .onTrue(new AcquireRobotPosition());
     
+    new JoystickButton(gpmStick, 5)
+        .onTrue(new DriveElevatorManuallyCommand())
+        .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
+
+    new JoystickButton(gpmStick, 6)
+        .onTrue(new DriveArmManuallyCommand())
+        .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
+
+    new JoystickButton(turnStick, 11)
+        .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem))
+        .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
+
+    //Buttons 9 and 10 ;D
+
+    new JoystickButton(turnStick, 9)
+        .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem))
+        .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
+
+    new JoystickButton(turnStick, 10)
+        .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
+        .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
     // SYSID Test
     
     //new JoystickButton(driveStick, 9)

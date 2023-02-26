@@ -17,6 +17,7 @@ public class BigFootSubsystem extends SubsystemBase {
 
   public BigFootSubsystem() {
     footSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
+    footUp();
   }
 
   public void footDown() {

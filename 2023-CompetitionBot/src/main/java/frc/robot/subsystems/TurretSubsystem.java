@@ -121,7 +121,7 @@ public class TurretSubsystem extends SubsystemBase {
 
  public double getSpeed() {
   return turretMotorController.getSelectedSensorVelocity();
-}
+ }
 
  public void calibrateRelativeEncoder() {
   double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimit) ?
