@@ -18,7 +18,7 @@ public class DriveArmManuallyCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double power = -RobotContainer.gpmStick.getZ();
+    double power = -RobotContainer.gpmStick.getRawAxis(3);
     if (power<0) {
       if (RobotContainer.armSubsystem.getEncoder()<=0) {
         power=0;
@@ -34,7 +34,7 @@ public class DriveArmManuallyCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double power = -RobotContainer.gpmStick.getZ();
+    double power = -RobotContainer.gpmStick.getRawAxis(3);
 
     System.out.println("R3:"+RobotContainer.gpmStick.getRawAxis(3));
 

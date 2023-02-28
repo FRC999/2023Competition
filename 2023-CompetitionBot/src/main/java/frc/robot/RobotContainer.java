@@ -27,12 +27,16 @@ import frc.robot.subsystems.PigeonIMUSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
+
+import java.io.PrintStream;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -48,22 +52,22 @@ public class RobotContainer {
 
   // ***** Initialize Subsystems *******
 
-  public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
+  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
 
-  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  //public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   // GamePiece Manipulator subsystems
-  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
-  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
-  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
-  public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
+  //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
-  public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+  //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
 
   public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
   public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
@@ -72,14 +76,14 @@ public class RobotContainer {
 
   // ***** Dummy subsystems so the code will compile, use for testing
   //  !!!!!!! Make sure to comment it out for thre real competition
-  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
-  //public static final DriveSubsystem driveSubsystem = null;
-  //public static final ElevatorSubsystem elevatorSubsystem = null;
+  public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
+  public static final DriveSubsystem driveSubsystem = null;
+  public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
-  //public static final ArmSubsystem armSubsystem = null;
-  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
-  //public static final ClawSubsystem clawSubsystem = null;
-  //public static final BigFootSubsystem bigFootSubsystem = null;
+  public static final ArmSubsystem armSubsystem = null;
+  public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  public static final ClawSubsystem clawSubsystem = null;
+  public static final BigFootSubsystem bigFootSubsystem = null;
   //public static final NetworkTablesSubsystem networkTablesSubsystem = null;
   //public static final NavigationSubsystem navigationSubsystem = null;
 
@@ -102,13 +106,13 @@ public class RobotContainer {
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    driveSubsystem.setDefaultCommand(
+    //driveSubsystem.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
         // new RunCommand(() ->
         // driveSubsystem.arcadeDrive(joystick.getLeftY(),
         // joystick.getRightX()), driveSubsystem));
-        new DriveManuallyCommand());
+        //new DriveManuallyCommand());
         
   }
 
@@ -168,7 +172,7 @@ public class RobotContainer {
     //      .whileTrue(new RightSetVoltageDrive(-3.00))
     //      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
-    
+    /* 
     
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("1meterforward"))
@@ -202,6 +206,12 @@ public class RobotContainer {
     new JoystickButton(turnStick, 10)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+   */
+
+    new JoystickButton(driveStick, 4)
+        .onTrue(new InstantCommand(()->System.out.println(gpmStick.getRawAxis(3))));
+
+
     // SYSID Test
     
     //new JoystickButton(driveStick, 9)
