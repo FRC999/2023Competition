@@ -48,22 +48,22 @@ public class RobotContainer {
 
   // ***** Initialize Subsystems *******
 
-  public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
+  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
 
-  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  //public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   // GamePiece Manipulator subsystems
-  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
-  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
-  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
-  public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
+  //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
-  public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+  //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
 
   public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
   public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
@@ -72,14 +72,14 @@ public class RobotContainer {
 
   // ***** Dummy subsystems so the code will compile, use for testing
   //  !!!!!!! Make sure to comment it out for thre real competition
-  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
-  //public static final DriveSubsystem driveSubsystem = null;
-  //public static final ElevatorSubsystem elevatorSubsystem = null;
+  public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
+  public static final DriveSubsystem driveSubsystem = null;
+  public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
-  //public static final ArmSubsystem armSubsystem = null;
-  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
-  //public static final ClawSubsystem clawSubsystem = null;
-  //public static final BigFootSubsystem bigFootSubsystem = null;
+  public static final ArmSubsystem armSubsystem = null;
+  public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  public static final ClawSubsystem clawSubsystem = null;
+  public static final BigFootSubsystem bigFootSubsystem = null;
   //public static final NetworkTablesSubsystem networkTablesSubsystem = null;
   //public static final NavigationSubsystem navigationSubsystem = null;
 
@@ -169,7 +169,7 @@ public class RobotContainer {
     //      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
     
-    
+    /*
     new JoystickButton(driveStick, 12)
           .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("1meterforward"))
           .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
@@ -202,6 +202,9 @@ public class RobotContainer {
     new JoystickButton(turnStick, 10)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+
+    */
+
     // SYSID Test
     
     //new JoystickButton(driveStick, 9)
