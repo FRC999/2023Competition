@@ -89,7 +89,34 @@ public class PoseManager {
 
         // Calculate the average pose - STREAMS implementation
         //List<Pose2d> returnPose =  new ArrayList<Pose2d>();
-        double xFinal = poseQueue.stream()
+        double xFinalByMean = poseQueue.stream()
+            .filter(x -> Math.abs(x.getX() - xMean) <= NavigationConstants.MEAN_FACTOR*xMean )
+            .filter(y -> Math.abs(y.getY() - yMean) <= NavigationConstants.MEAN_FACTOR*yMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_FACTOR*zMean) )
+            .mapToDouble(Pose2d::getX)
+            .average()
+            .orElse(-1)
+            ;
+
+        double yFinalByMean = poseQueue.stream()
+            .filter(x -> Math.abs(x.getX() - xMean) <= NavigationConstants.MEAN_FACTOR*xMean )
+            .filter(y -> Math.abs(y.getY() - yMean) <= NavigationConstants.MEAN_FACTOR*yMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_FACTOR*zMean) )
+            .mapToDouble(Pose2d::getY)
+            .average()
+            .orElse(-1)
+            ;
+
+        double zFinalByMean = poseQueue.stream()
+            .filter(x -> Math.abs(x.getX() - xMean) <= NavigationConstants.MEAN_FACTOR*xMean )
+            .filter(y -> Math.abs(y.getY() - yMean) <= NavigationConstants.MEAN_FACTOR*yMean )
+            .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.MEAN_FACTOR*zMean) )
+            .mapToDouble(p->p.getRotation().getDegrees())
+            .average()
+            .orElse(-1)
+            ;
+
+        double xFinalBySD = poseQueue.stream()
             .filter(x -> Math.abs(x.getX() - xMean) <= NavigationConstants.SD_FACTOR*xSD )
             .filter(y -> Math.abs(y.getY() - yMean) <= NavigationConstants.SD_FACTOR*ySD )
             .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.SD_FACTOR*zSD) )
@@ -98,7 +125,7 @@ public class PoseManager {
             .orElse(-1)
             ;
 
-        double yFinal = poseQueue.stream()
+        double yFinalBySD = poseQueue.stream()
             .filter(x -> Math.abs(x.getX() - xMean) <= NavigationConstants.SD_FACTOR*xSD )
             .filter(y -> Math.abs(y.getY() - yMean) <= NavigationConstants.SD_FACTOR*ySD )
             .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.SD_FACTOR*zSD) )
@@ -107,7 +134,7 @@ public class PoseManager {
             .orElse(-1)
             ;
 
-        double zFinal = poseQueue.stream()
+        double zFinalBySD = poseQueue.stream()
             .filter(x -> Math.abs(x.getX() - xMean) <= NavigationConstants.SD_FACTOR*xSD )
             .filter(y -> Math.abs(y.getY() - yMean) <= NavigationConstants.SD_FACTOR*ySD )
             .filter(z -> Math.abs(z.getRotation().getDegrees() - zMean) <= Math.abs(NavigationConstants.SD_FACTOR*zSD) )
@@ -116,7 +143,7 @@ public class PoseManager {
             .orElse(-1)
             ;
 
-        return new Pose2d(xFinal, yFinal, new Rotation2d(Units.degreesToRadians(zFinal)));
+        return new Pose2d(xFinalBySD, yFinalBySD, new Rotation2d(Units.degreesToRadians(zFinalBySD)));
     }
 
     public double[] getTargeting(Pose2d targetPose) {

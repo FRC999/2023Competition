@@ -390,7 +390,7 @@ public final class Constants {
     };
 
     public static final int POSE_QUEUE_MAXSIZE = 10;
-    public static final double MEAN_DEV = 0.2;
+    public static final double MEAN_FACTOR = 0.2;
     public static final double SD_FACTOR = 2.0;
 
     public static double xOffsetOfCameraFromTurret = -0.1; // Offset of camera lens from the turret center of rotation
