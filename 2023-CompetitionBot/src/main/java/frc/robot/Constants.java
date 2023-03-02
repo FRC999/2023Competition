@@ -418,6 +418,9 @@ public final class Constants {
     public static final int MidBrightnessAngle = 180;
     public static final int ZeroBrightnessAngle = 270;
 
+    public static final int ledMatrixColumns = 32; // number of columns in the matrix
+    public static final int ledMatrixRows = 8; // number of columns in the matrix
+
 }
 
 }

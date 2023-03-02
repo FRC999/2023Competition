@@ -22,6 +22,11 @@ public class CANdleSubsystem extends SubsystemBase {
 
   private byte[][] ledMatrix;
 
+  private int currentMatrixColumn; // for the scrolling matrix - location of the first/last LED column of the image matrix in the LED matrix
+  private int scrollDirection = -1; // Negative - scroll left; otherwise scroll right
+  private byte[][] scrollImage; // placeholder for the scroll image
+  private byte[][] origImage; // keep a copy of the original image - just in case
+
   /** Creates a new CANdleSubsystem. */
   public CANdleSubsystem() {
     System.out.println("Initializing CANdle");
@@ -80,10 +85,14 @@ public class CANdleSubsystem extends SubsystemBase {
         if(i%2==0) {
           if (ledMatrix[j][i] == 0x01) {
             setOneLEDToColor(new int[]{200,10,10},i*8+j+LEDOFFSET);
+          } else {
+            setOneLEDToColor(new int[]{0,0,0},i*8+j+LEDOFFSET);
           }
         } else {
           if (ledMatrix[j][i] == 0x01) {
             setOneLEDToColor(new int[]{200,10,10},i*8+(7-j)+LEDOFFSET);
+          } else {
+            setOneLEDToColor(new int[]{0,0,0},i*8+j+LEDOFFSET);
           }
         }
       }
@@ -93,6 +102,69 @@ public class CANdleSubsystem extends SubsystemBase {
   public void printMsg(String s) {
     stringToMap(s);
     matrixToLed();
+  }
+
+  /**
+   * Initialize scrolling
+   * @param image - byte[][] array that contains the image to scroll; must have the same number of rows as LED matrix
+   * @param direction - negative - scroll left; otherwise - scroll right
+   */
+  public void prepareToScroll(byte[][] image, int direction) {
+    // Image for scrolling must be the same or bigger than the LED matrix and have the same number of rows
+    if (image.length != CANdleConstants.ledMatrixRows || image[0].length < CANdleConstants.ledMatrixColumns) {
+      System.out.println("==== Image is unsuitable for scrolling");
+      return;
+    }
+    setLEDOff(); // turn off all LEDs
+    ledMatrix = new byte[CANdleConstants.ledMatrixRows][CANdleConstants.ledMatrixColumns];
+    scrollImage = image;
+    scrollDirection = direction;
+    origImage = scrollImage.clone(); // save a copy of the original image - just in case; came remove if the RAM becomes an issue
+  }
+
+  /**
+   * Display current image based on the currentMatrixColumn
+   * Move scrolling image to the next line indicated by the currentMatrixColumn
+   */
+  public void moveScroll(){
+
+    // Current image to LED matrix
+    for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+      for (int j=0;i<CANdleConstants.ledMatrixColumns;i++) {
+        ledMatrix[i][j] = scrollImage[i][j] ;
+      }
+    }
+    // Display LED matrix
+    matrixToLed();
+
+    // Shift the image according to the direction
+    byte[] tmpCol= new byte[scrollImage.length]; // temp place to hold the column that needs to go to the other side
+
+    if (scrollDirection<0) { // Scroll to the left
+      for(int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+        tmpCol[i]=scrollImage[i][0]; // Save the first column
+      }
+      for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+        for (int j=0;j<scrollImage[0].length-2;j++) {
+          scrollImage[i][j] = scrollImage[i][j+1] ; // Shift columns to the left
+        }
+      }
+      for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+        scrollImage[i][scrollImage[0].length-1]=tmpCol[i]; // Put saved values in the last column
+      }
+    } else { // Scroll to the right
+      for(int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+        tmpCol[i]=scrollImage[i][scrollImage[0].length-1]; // Save the last column
+      }
+      for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+        for (int j=scrollImage[0].length-1;j>0;j--) {
+          scrollImage[i][j] = scrollImage[i][j-1] ; // Shift columns to the right
+        }
+      }
+      for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
+        scrollImage[i][0]=tmpCol[i]; // Put saved values in the first column
+      }
+    }
   }
 
   @Override
