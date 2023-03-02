@@ -18,6 +18,7 @@ import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
+import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -65,8 +66,10 @@ public class RobotContainer {
   // Foot that stops us when balanced
   //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
 
-  public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
-  public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
+  //public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
+  //public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
+
+  public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
 
   // ***** End of Subsystem initialization *******
 
@@ -80,8 +83,9 @@ public class RobotContainer {
   public static final PneumaticsSubsystem pneumaticsSubsystem = null;
   public static final ClawSubsystem clawSubsystem = null;
   public static final BigFootSubsystem bigFootSubsystem = null;
-  //public static final NetworkTablesSubsystem networkTablesSubsystem = null;
-  //public static final NavigationSubsystem navigationSubsystem = null;
+  public static final NetworkTablesSubsystem networkTablesSubsystem = null;
+  public static final NavigationSubsystem navigationSubsystem = null;
+  //public static final CANdleSubsystem candleSubsystem = null;
 
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem(); 
 
@@ -102,13 +106,13 @@ public class RobotContainer {
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    driveSubsystem.setDefaultCommand(
+    //driveSubsystem.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
         // new RunCommand(() ->
         // driveSubsystem.arcadeDrive(joystick.getLeftY(),
         // joystick.getRightX()), driveSubsystem));
-        new DriveManuallyCommand());
+     //   new DriveManuallyCommand());
         
   }
 
@@ -237,6 +241,10 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    new JoystickButton(turnStick, 11)
+      .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
+      .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
   }
 
 
