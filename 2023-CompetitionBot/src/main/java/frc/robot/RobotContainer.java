@@ -245,6 +245,10 @@ public class RobotContainer {
     new JoystickButton(turnStick, 11)
       .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
       .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
+
+    new JoystickButton(turnStick, 12)
+      .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
+      .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
   }
 
 
