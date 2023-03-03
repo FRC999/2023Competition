@@ -191,7 +191,10 @@ public class RobotContainer {
     // Test pose acquisition
     new JoystickButton(driveStick, 3)
           .onTrue(new AcquireRobotPosition());
-    
+    */
+
+    // Manual GPM motor operation commands
+    /*
     new JoystickButton(gpmStick, 5)
         .onTrue(new DriveElevatorManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
@@ -199,13 +202,18 @@ public class RobotContainer {
     new JoystickButton(gpmStick, 6)
         .onTrue(new DriveArmManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
-    */
+    
+    new JoystickButton(gpmStick, 7)
+        .onTrue(new DriveTurretManuallyCommand())
+        .onFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
+        */
+
+
+    // Manual Pneumatics operations commands
     new JoystickButton(turnStick, 11)
         .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem))
         .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
 
-    //Buttons 9 and 10 ;D
-   
     new JoystickButton(turnStick, 9)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));

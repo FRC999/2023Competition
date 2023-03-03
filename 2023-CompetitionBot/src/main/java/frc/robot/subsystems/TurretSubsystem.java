@@ -131,16 +131,6 @@ public class TurretSubsystem extends SubsystemBase {
   System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+getAbsEncoder());
  }
 
- //public double[] findTurretCenterRelLimelight(){
-
-  //turretX = limelightFieldx + Math.cos(limelightFieldAngle)*hype;
-  //turretY = limelightFieldY + Math.sin(limelightFieldAngle)*hype;
-  //double[] turretValues = {turretX,turretY};
-  
-  //return turretValues;
-
- //}    method commented out for moving constants
-
  public void moveToPosition(double endingPosition) {
   turretMotorController.set(TalonSRXControlMode.Position,endingPosition);
   System.out.println("Turret PID turn to "+ endingPosition);

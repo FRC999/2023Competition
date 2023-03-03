@@ -214,7 +214,9 @@ public final class Constants {
 
       public static final double ticksPerDegree = 85.36 ; // Encoder ticks per 1 degree of rotation
 
-      public static final double turretLimit[] = new double[]{190,-190};
+      // Rotation limits each direction in Encoder units
+      public static final double turretLeftLimit = -5000;
+      public static final double turretRightLimit = 5000;
 
       // *** PID ***
 
