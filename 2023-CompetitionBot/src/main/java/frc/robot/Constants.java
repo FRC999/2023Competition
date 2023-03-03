@@ -410,4 +410,17 @@ public final class Constants {
     public static final int[] targetPoses = {0,1,2};
   }
 
+  public static final class CANdleConstants {
+
+    public static final int CANdlePort = 6;
+    public static final int LedCount = 8+(8*32); // 8 on the controller + 8x32 panel
+    public static final int MaxBrightnessAngle = 90;
+    public static final int MidBrightnessAngle = 180;
+    public static final int ZeroBrightnessAngle = 270;
+
+    public static final int ledMatrixColumns = 32; // number of columns in the matrix
+    public static final int ledMatrixRows = 8; // number of columns in the matrix
+
+}
+
 }
