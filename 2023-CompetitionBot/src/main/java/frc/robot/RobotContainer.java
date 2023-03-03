@@ -59,17 +59,17 @@ public class RobotContainer {
   //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
 
-  //public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
   
-  //public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
+  public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   // Foot that stops us when balanced
-  //public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
+  public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();
 
   //public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
   //public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
 
-  public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
+  //public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
 
   // ***** End of Subsystem initialization *******
 
@@ -80,12 +80,12 @@ public class RobotContainer {
   public static final ElevatorSubsystem elevatorSubsystem = null;
   public static final TurretSubsystem turretSubsystem = null;
   public static final ArmSubsystem armSubsystem = null;
-  public static final PneumaticsSubsystem pneumaticsSubsystem = null;
-  public static final ClawSubsystem clawSubsystem = null;
-  public static final BigFootSubsystem bigFootSubsystem = null;
+  //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
+  //public static final ClawSubsystem clawSubsystem = null;
+  //public static final BigFootSubsystem bigFootSubsystem = null;
   public static final NetworkTablesSubsystem networkTablesSubsystem = null;
   public static final NavigationSubsystem navigationSubsystem = null;
-  //public static final CANdleSubsystem candleSubsystem = null;
+  public static final CANdleSubsystem candleSubsystem = null;
 
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem(); 
 
@@ -192,22 +192,22 @@ public class RobotContainer {
     new JoystickButton(gpmStick, 6)
         .onTrue(new DriveArmManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
-
+    */
     new JoystickButton(turnStick, 11)
         .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem))
         .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
 
     //Buttons 9 and 10 ;D
-
+   
     new JoystickButton(turnStick, 9)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
-
+    
     new JoystickButton(turnStick, 10)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
 
-    */
+    
 
     // SYSID Test
     
@@ -242,13 +242,13 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    new JoystickButton(turnStick, 11)
-      .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
-      .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
+    //new JoystickButton(turnStick, 11)
+    //  .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
+    //  .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
 
-    new JoystickButton(turnStick, 12)
-      .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
-      .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
+    //new JoystickButton(turnStick, 12)
+    //  .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
+    //  .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
   }
 
 
