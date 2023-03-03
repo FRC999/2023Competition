@@ -70,13 +70,29 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void updateAllDisplays() {
 
-    //updateDriveSubsystemTelemetry();
-    //updateIMUTelemetry();
-    //updateRobotPose();
-    //updateOdometryTelemetry();
-    //updateTurretTelemetry();
-    //updateElevatorTelemetry();
-    //updateArmTelemetry();
+    if (RobotContainer.driveSubsystem != null) {
+      updateDriveSubsystemTelemetry();
+      updateOdometryTelemetry();
+    }
+    
+    if (RobotContainer.pigeonIMUSubsystem != null) {
+      updateIMUTelemetry();
+    }
+    
+    if (RobotContainer.navigationSubsystem!= null && RobotContainer.networkTablesSubsystem != null) {
+      updateRobotPose();
+    }
+    
+    // GPM
+    if (RobotContainer.turretSubsystem != null) {
+      updateTurretTelemetry();
+    }
+    if (RobotContainer.elevatorSubsystem != null) {
+      updateElevatorTelemetry();
+    }
+    if (RobotContainer.armSubsystem != null) {
+      updateArmTelemetry();
+    }
     
   }
 
