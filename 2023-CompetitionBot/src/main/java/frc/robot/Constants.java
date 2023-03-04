@@ -217,6 +217,8 @@ public final class Constants {
       // Rotation limits each direction in Encoder units
       public static final double turretLeftLimit = -16150;
       public static final double turretRightLimit = 16150;
+      public static final double turretRightAbsolute180 = -15396;
+      public static final double turretLeftAbsolute180 = 15396;
       public static final double turretTurnLowerLimit = 903;
       public static final double turretTurnUpperLimit = 2951;
 
