@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -37,6 +38,7 @@ public class TurretSubsystem extends SubsystemBase {
 
   public TurretSubsystem() {
     initializeTurret();
+    brakeMode();
     calibrateRelativeEncoder();
   }
 
@@ -102,6 +104,10 @@ public class TurretSubsystem extends SubsystemBase {
     turretMotorController.setSelectedSensorPosition(0);
     System.out.println("turret encoders zeroed");
   }
+
+  public void brakeMode() {
+    turretMotorController.setNeutralMode(NeutralMode.Brake);
+   }
 
   public void stopTurret() {
     turretMotorController.set(TalonSRXControlMode.PercentOutput, 0);

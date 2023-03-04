@@ -39,6 +39,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -54,9 +55,9 @@ public class RobotContainer {
 
   // ***** Initialize Subsystems *******
 
-  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
+  public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
 
-  //public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   // GamePiece Manipulator subsystems
   public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
@@ -77,10 +78,10 @@ public class RobotContainer {
 
   // ***** Dummy subsystems so the code will compile, use for testing
   //  !!!!!!! Make sure to comment it out for thre real competition
-  public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
+  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
 
   // GPM
-  public static final DriveSubsystem driveSubsystem = null;
+  //public static final DriveSubsystem driveSubsystem = null;
   //public static final ElevatorSubsystem elevatorSubsystem = null;
   //public static final TurretSubsystem turretSubsystem = null;
   //public static final ArmSubsystem armSubsystem = null;
@@ -114,14 +115,14 @@ public class RobotContainer {
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
     //driveSubsystem.setDefaultCommand(
-    //driveSubsystem.setDefaultCommand(
+    driveSubsystem.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
-        // new RunCommand(() ->
-        // driveSubsystem.arcadeDrive(joystick.getLeftY(),
-        // joystick.getRightX()), driveSubsystem));
+         //new RunCommand(() ->
+     //    driveSubsystem.arcadeDrive(turnStick.getLeftY(),
+    //   driveStick.getRightX()), driveSubsystem));
      //   new DriveManuallyCommand());
-        //new DriveManuallyCommand());
+        new DriveManuallyCommand());
         
   }
 
@@ -273,6 +274,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
+
     return new AutonomousCommandPlaceholder();
   }
 }
