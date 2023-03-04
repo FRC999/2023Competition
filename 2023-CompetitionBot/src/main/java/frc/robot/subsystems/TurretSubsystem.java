@@ -135,26 +135,21 @@ public class TurretSubsystem extends SubsystemBase {
  public void calibrateRelativeEncoderTurning(){
   double currentAbsEncoder = getAbsEncoder();
 
-  double relativePosition = (currentAbsEncoder < Turret.turretAbsoluteZeroClockwisePositionLimitLeft) ?
-    (Turret.turretLeftLimit - currentAbsEncoder) :
-    (Turret.turretAbsoluteZeroRollover-currentAbsEncoder+Turret.turretLeftLimit); 
-
-
-  double relativePositionIfNotLeft = (currentAbsEncoder < Turret.turretAbsoluteZeroClockwisePositionLimitRight) ?
-    (Turret.turretRightLimit - currentAbsEncoder) :
-    (Turret.turretAbsoluteZeroRollover-currentAbsEncoder+Turret.turretRightLimit); 
-
-
-  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+currentAbsEncoder);
-
-  if(Turret.turretTurnLowerLimit < currentAbsEncoder && currentAbsEncoder < Turret.turretTurnLowerLimit){
-    turretMotorController.setSelectedSensorPosition(relativePosition);
+  if(Turret.turretTurnLowerLimit < currentAbsEncoder && currentAbsEncoder < Turret.turretTurnUpperLimit){
+    turretMotorController.setSelectedSensorPosition(
+      Turret.turretLeftAbsolute180 - (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder)
+    );
   } else {
     
-  turretMotorController.setSelectedSensorPosition(relativePositionIfNotLeft);
-
-  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+currentAbsEncoder);
+    turretMotorController.setSelectedSensorPosition(
+      (currentAbsEncoder<=Turret.turretAbsoluteZeroRollover) ?
+        Turret.turretRightAbsolute180 - (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder) :
+        Turret.turretRightAbsolute180 - (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitRight+currentAbsEncoder)
+    );
+  
   }
+
+  System.out.println("*** Set relative encoder for Turret motor to " + turretMotorController.getSelectedSensorPosition() + " Abs:"+currentAbsEncoder);
 
   /*double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimitLeft) ?
     (Turret.turretLeftLimit - getAbsEncoder()) :
