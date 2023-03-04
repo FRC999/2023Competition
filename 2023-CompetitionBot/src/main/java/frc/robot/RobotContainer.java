@@ -11,6 +11,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
+import frc.robot.commands.DriveTurretManuallyCommand;
 import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
@@ -58,9 +59,9 @@ public class RobotContainer {
   //public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   // GamePiece Manipulator subsystems
-  //public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
-  //public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
-  //public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+  public static final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  public static final TurretSubsystem turretSubsystem = new TurretSubsystem();
+  public static final ArmSubsystem armSubsystem = new ArmSubsystem();
   
   // The next two are pneumatically operated, so the PneumaticsSubsystem, which starts the compressor, should be initialized first
   public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
@@ -80,9 +81,9 @@ public class RobotContainer {
 
   // GPM
   public static final DriveSubsystem driveSubsystem = null;
-  public static final ElevatorSubsystem elevatorSubsystem = null;
-  public static final TurretSubsystem turretSubsystem = null;
-  public static final ArmSubsystem armSubsystem = null;
+  //public static final ElevatorSubsystem elevatorSubsystem = null;
+  //public static final TurretSubsystem turretSubsystem = null;
+  //public static final ArmSubsystem armSubsystem = null;
 
   // Pneumatics
   //public static final PneumaticsSubsystem pneumaticsSubsystem = null;
@@ -194,7 +195,7 @@ public class RobotContainer {
     */
 
     // Manual GPM motor operation commands
-    /*
+    
     new JoystickButton(gpmStick, 5)
         .onTrue(new DriveElevatorManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
@@ -206,7 +207,7 @@ public class RobotContainer {
     new JoystickButton(gpmStick, 7)
         .onTrue(new DriveTurretManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
-        */
+        
 
 
     // Manual Pneumatics operations commands

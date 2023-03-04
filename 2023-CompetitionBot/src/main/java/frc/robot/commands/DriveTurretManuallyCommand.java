@@ -28,7 +28,7 @@ public class DriveTurretManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.turretSubsystem.manualDrive(power);
+    RobotContainer.turretSubsystem.manualDrive(power*0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -44,7 +44,7 @@ public class DriveTurretManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.turretSubsystem.manualDrive(power);
+    RobotContainer.turretSubsystem.manualDrive(power*0.5);
   }
 
   // Called once the command ends or is interrupted.

@@ -124,11 +124,52 @@ public class TurretSubsystem extends SubsystemBase {
  }
 
  public void calibrateRelativeEncoder() {
+  double currentAbsEncoder = getAbsEncoder();
   double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimit) ?
     (Turret.turretAbsoluteZero - getAbsEncoder()) :
-    (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimit+Turret.turretAbsoluteZero); //Done because absolute encoder increases clockwise
+    (Turret.turretAbsoluteZeroRollover-getAbsEncoder()+Turret.turretAbsoluteZero); //Done because absolute encoder increases clockwise
+  turretMotorController.setSelectedSensorPosition(relativePosition);
+  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+currentAbsEncoder);
+ }
+
+ public void calibrateRelativeEncoderTurning(){
+  double currentAbsEncoder = getAbsEncoder();
+
+  double relativePosition = (currentAbsEncoder < Turret.turretAbsoluteZeroClockwisePositionLimitLeft) ?
+    (Turret.turretLeftLimit - currentAbsEncoder) :
+    (Turret.turretAbsoluteZeroRollover-currentAbsEncoder+Turret.turretLeftLimit); 
+
+
+  double relativePositionIfNotLeft = (currentAbsEncoder < Turret.turretAbsoluteZeroClockwisePositionLimitRight) ?
+    (Turret.turretRightLimit - currentAbsEncoder) :
+    (Turret.turretAbsoluteZeroRollover-currentAbsEncoder+Turret.turretRightLimit); 
+
+
+  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+currentAbsEncoder);
+
+  if(Turret.turretTurnLowerLimit < currentAbsEncoder && currentAbsEncoder < Turret.turretTurnLowerLimit){
+    turretMotorController.setSelectedSensorPosition(relativePosition);
+  } else {
+    
+  turretMotorController.setSelectedSensorPosition(relativePositionIfNotLeft);
+
+  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+currentAbsEncoder);
+  }
+
+  /*double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimitLeft) ?
+    (Turret.turretLeftLimit - getAbsEncoder()) :
+    (Turret.turretAbsoluteZeroRollover-getAbsEncoder()+Turret.turretLeftLimit); 
   turretMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+getAbsEncoder());
+ }
+
+ public void calibrateRelativeEncoderOnNegativeTurn(){
+  double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimitRight) ?
+    (Turret.turretRightLimit - getAbsEncoder()) :
+    (Turret.turretAbsoluteZeroRollover-getAbsEncoder()+Turret.turretRightLimit); 
+  turretMotorController.setSelectedSensorPosition(relativePosition);
+  System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+getAbsEncoder());
+  */
  }
 
  public void moveToPosition(double endingPosition) {
