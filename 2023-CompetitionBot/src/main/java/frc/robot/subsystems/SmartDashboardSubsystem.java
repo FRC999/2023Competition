@@ -49,6 +49,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   public void updateElevatorTelemetry() {
     SmartDashboard.putNumber("Elevator Relative Encoder Value", RobotContainer.elevatorSubsystem.getEncoder());
     SmartDashboard.putNumber("Elevator Absolute Encoder Value", RobotContainer.elevatorSubsystem.getAbsEncoder());
+    SmartDashboard.putNumber("Elevator Height", RobotContainer.elevatorSubsystem.getHeight());
     SmartDashboard.putNumber("Elevator Speed", RobotContainer.elevatorSubsystem.getSpeed());
     SmartDashboard.putNumber("Elevator PID Error", RobotContainer.elevatorSubsystem.getError());
   }
@@ -56,6 +57,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   public void updateArmTelemetry() {
     SmartDashboard.putNumber("Arm Relative Encoder Value", RobotContainer.armSubsystem.getEncoder());
     SmartDashboard.putNumber("Arm Absolute Encoder Value", RobotContainer.armSubsystem.getAbsEncoder());
+    SmartDashboard.putNumber("Arm Length", RobotContainer.armSubsystem.getLength());
     SmartDashboard.putNumber("Arm Speed", RobotContainer.armSubsystem.getSpeed());
     SmartDashboard.putNumber("Arm PID Error", RobotContainer.armSubsystem.getError());
   }
@@ -67,7 +69,6 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("IMU Heading", RobotContainer.pigeonIMUSubsystem.getHeading());
     SmartDashboard.putNumber("IMU TurnRate", RobotContainer.pigeonIMUSubsystem.getTurnRate());
   }
-
 
   public void updateAllDisplays() {
 
