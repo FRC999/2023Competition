@@ -114,6 +114,8 @@ public class CANdleSubsystem extends SubsystemBase {
    * @param direction - negative - scroll left; otherwise - scroll right
    */
   public void prepareToScroll(byte[][] image, int direction) {
+
+    System.out.println("=== Preparing to scroll..");
     // Image for scrolling must be the same or bigger than the LED matrix and have the same number of rows
     if (image.length != CANdleConstants.ledMatrixRows || image[0].length < CANdleConstants.ledMatrixColumns) {
       System.out.println("==== Image is unsuitable for scrolling");
@@ -121,9 +123,12 @@ public class CANdleSubsystem extends SubsystemBase {
     }
     setLEDOff(); // turn off all LEDs
     ledMatrix = new byte[CANdleConstants.ledMatrixRows][CANdleConstants.ledMatrixColumns];
-    scrollImage = image;
+    scrollImage = image.clone();
     scrollDirection = direction;
     origImage = scrollImage.clone(); // save a copy of the original image - just in case; came remove if the RAM becomes an issue
+
+    System.out.println("===== ***** P r:"+scrollImage.length);
+
   }
 
   /**
@@ -134,8 +139,8 @@ public class CANdleSubsystem extends SubsystemBase {
 
     // Current image to LED matrix
     for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
-      for (int j=0;i<CANdleConstants.ledMatrixColumns;i++) {
-        ledMatrix[i][j] = scrollImage[i][j] ;
+      for (int j=0;j<CANdleConstants.ledMatrixColumns;j++) {
+        ledMatrix[i][j] = scrollImage[i][j];
       }
     }
     // Display LED matrix

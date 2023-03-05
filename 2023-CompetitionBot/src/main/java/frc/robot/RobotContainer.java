@@ -16,6 +16,7 @@ import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
+import frc.robot.commands.ScrollingLEDCommand;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
@@ -55,7 +56,7 @@ public class RobotContainer {
 
   // ***** Initialize Subsystems *******
 
-  public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
+  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = new PigeonIMUSubsystem();
 
   //public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
@@ -78,7 +79,7 @@ public class RobotContainer {
 
   // ***** Dummy subsystems so the code will compile, use for testing
   //  !!!!!!! Make sure to comment it out for thre real competition
-  //public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
+  public static final PigeonIMUSubsystem pigeonIMUSubsystem = null;
 
   // GPM
   public static final DriveSubsystem driveSubsystem = null;
@@ -117,14 +118,14 @@ public class RobotContainer {
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
     //driveSubsystem.setDefaultCommand(
-    driveSubsystem.setDefaultCommand(
+    //driveSubsystem.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
          //new RunCommand(() ->
      //    driveSubsystem.arcadeDrive(turnStick.getLeftY(),
     //   driveStick.getRightX()), driveSubsystem));
      //   new DriveManuallyCommand());
-        new DriveManuallyCommand());
+        //new DriveManuallyCommand());
         
   }
 
@@ -198,7 +199,7 @@ public class RobotContainer {
     */
 
     // Manual GPM motor operation commands
-    
+    /*
     new JoystickButton(gpmStick, 5)
         .onTrue(new DriveElevatorManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
@@ -210,10 +211,11 @@ public class RobotContainer {
     new JoystickButton(gpmStick, 7)
         .onTrue(new DriveTurretManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
-        
+      */
 
 
     // Manual Pneumatics operations commands
+    /*
     new JoystickButton(turnStick, 11)
         .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem))
         .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
@@ -225,7 +227,7 @@ public class RobotContainer {
     new JoystickButton(turnStick, 10)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
-  
+       */
     // SYSID Test
     
     //new JoystickButton(driveStick, 9)
@@ -259,9 +261,13 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    new JoystickButton(driveStick, 11)
+    new JoystickButton(driveStick, 12)
       .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
       .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
+
+    new JoystickButton(driveStick, 11)
+      .onTrue(new ScrollingLEDCommand())
+      .onFalse(new InstantCommand(RobotContainer.candleSubsystem::setLEDOff, RobotContainer.candleSubsystem));
 
     //new JoystickButton(turnStick, 12)
     //  .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
