@@ -346,7 +346,7 @@ public final class Constants {
       public static final double arm_NeutralDeadband = 0.001;
       public static final int arm_closedLoopPeriodMs = 30;
 
-      public static final double armAbsoluteZero = 400;
+      public static final double armAbsoluteZero = 460;
       //TO CHANGE - PID values copied from turret constants
       public static final int arm_SLOT_0 = 0;
       public static final double arm_kP = 1.5;

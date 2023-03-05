@@ -6,12 +6,14 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveTurretManuallyCommand;
+import frc.robot.commands.ElevatorToPredefinedHeight;
 import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
@@ -33,6 +35,7 @@ import frc.robot.subsystems.TurretSubsystem;
 import java.io.PrintStream;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.event.EventLoop;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -266,6 +269,9 @@ public class RobotContainer {
     //new JoystickButton(turnStick, 12)
     //  .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
     //  .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
+
+    // Competition navigation
+    //gpmStick.povDown(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone));
   }
 
 
