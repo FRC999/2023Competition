@@ -123,10 +123,23 @@ public class ElevatorSubsystem extends SubsystemBase {
   System.out.println("*** Set relative encoder for elevator motor to " + relativePosition);
  }
 
+ /**
+  * Move the elevator to position indicated by the relative encoder
+  * @param endingPosition - ticks
+  */
  public void moveToPosition(double endingPosition) {
   elevatorMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
   System.out.println("Elevator going to " + endingPosition);
  }
+
+  /**
+  * Move the elevator to position indicated by the relative encoder
+  * @param endingPositionMeters - meters
+  */
+  public void moveToPositionMeters(double endingPositionMeters) {
+    moveToPosition(endingPositionMeters * Constants.GamepieceManipulator.Elevator.elevatorTicksPerMeter);
+    System.out.println("Elevator going to " + endingPositionMeters);
+   }
   
  public void manualDrive() {
   elevatorMotorController.set(TalonSRXControlMode.PercentOutput, Elevator.EdefaultPowerManual);

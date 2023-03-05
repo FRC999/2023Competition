@@ -95,6 +95,8 @@ public class RobotContainer {
   public static final NavigationSubsystem navigationSubsystem = null;
   public static final CANdleSubsystem candleSubsystem = null;
 
+  // END of NULLS for the subsystems
+
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem(); 
 
 

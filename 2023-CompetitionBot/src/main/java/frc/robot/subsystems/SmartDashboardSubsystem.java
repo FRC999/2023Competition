@@ -41,6 +41,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   public void updateTurretTelemetry() {
     SmartDashboard.putNumber("Turret Relative Encoder Value", RobotContainer.turretSubsystem.getEncoder());
     SmartDashboard.putNumber("Turret Absolute Encoder Value", RobotContainer.turretSubsystem.getAbsEncoder());
+    SmartDashboard.putNumber("Turret Degrees Turn", RobotContainer.turretSubsystem.getDegrees());
     SmartDashboard.putNumber("Turret Speed", RobotContainer.turretSubsystem.getSpeed());
     SmartDashboard.putNumber("Turret PID Error", RobotContainer.turretSubsystem.getError());
   }

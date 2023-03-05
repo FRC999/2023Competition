@@ -39,7 +39,7 @@ public class TurretSubsystem extends SubsystemBase {
   public TurretSubsystem() {
     initializeTurret();
     brakeMode();
-    calibrateRelativeEncoder();
+    calibrateRelativeEncoderWhenTurnedTo180Angle();
   }
 
   private void initializeTurret() {
@@ -129,7 +129,11 @@ public class TurretSubsystem extends SubsystemBase {
   return turretMotorController.getSelectedSensorVelocity();
  }
 
- public void calibrateRelativeEncoder() {
+ public double getDegrees() {
+  return getEncoder() / Turret.turretDegreesPerTick ;
+ }
+
+ public void calibrateRelativeEncoderWhenTurnedToZeroAngle() {
   double currentAbsEncoder = getAbsEncoder();
   double relativePosition = (getAbsEncoder() < Turret.turretAbsoluteZeroClockwisePositionLimit) ?
     (Turret.turretAbsoluteZero - getAbsEncoder()) :
@@ -138,19 +142,21 @@ public class TurretSubsystem extends SubsystemBase {
   System.out.println("*** Set relative encoder for Turret motor to " + relativePosition + " Abs:"+currentAbsEncoder);
  }
 
- public void calibrateRelativeEncoderTurning(){
+ public void calibrateRelativeEncoderWhenTurnedTo180Angle(){
   double currentAbsEncoder = getAbsEncoder();
 
   if(Turret.turretTurnLowerLimit < currentAbsEncoder && currentAbsEncoder < Turret.turretTurnUpperLimit){
+
+    System.out.println("****==> Turret rotated to the right for calibration");
     turretMotorController.setSelectedSensorPosition(
-      Turret.turretLeftAbsolute180 - (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder)
+      Turret.turretRightRelative180 - (Turret.turretAbsoluteZeroClockwisePositionLimitRight-currentAbsEncoder)
     );
   } else {
-    
+    System.out.println("****<== Turret rotated to the left for calibration");
     turretMotorController.setSelectedSensorPosition(
       (currentAbsEncoder<=Turret.turretAbsoluteZeroRollover) ?
-        Turret.turretRightAbsolute180 - (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder) :
-        Turret.turretRightAbsolute180 - (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitRight+currentAbsEncoder)
+        Turret.turretLeftRelative180 - (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder) :
+        Turret.turretLeftRelative180 - (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitLeft+currentAbsEncoder)
     );
   
   }
@@ -173,11 +179,19 @@ public class TurretSubsystem extends SubsystemBase {
   */
  }
 
+ /**
+  * Turn the turret to the relative encoder position specific
+  * @param endingPosition - in ticks
+  */
  public void moveToPosition(double endingPosition) {
   turretMotorController.set(TalonSRXControlMode.Position,endingPosition);
   System.out.println("Turret PID turn to "+ endingPosition);
  }
 
+ /**
+  * Turn the turret to angle based on relative encoder; posotive angle = counterclockwise
+  * @param angle - degrees
+  */
  public void turnTurretToAngle(double angle) {
   System.out.println("Turn to angle "+angle);
   moveToPosition(angle * Turret.ticksPerDegree);

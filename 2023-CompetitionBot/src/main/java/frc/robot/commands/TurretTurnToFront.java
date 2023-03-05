@@ -7,9 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class TurnWheelToPosition extends CommandBase {
+public class TurretTurnToFront extends CommandBase {
+
+  private double degreeTolerance = 1.0;
+
   /** Creates a new TurnWheelToPosition. */
-  public TurnWheelToPosition() {
+  public TurretTurnToFront() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.turretSubsystem);
   }
@@ -22,15 +25,19 @@ public class TurnWheelToPosition extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    RobotContainer.turretSubsystem.moveToPosition(0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("Turret turned to front. I:"+interrupted);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Math.abs(RobotContainer.turretSubsystem.getDegrees()) < degreeTolerance; // end command when we're close to 0
   }
 }

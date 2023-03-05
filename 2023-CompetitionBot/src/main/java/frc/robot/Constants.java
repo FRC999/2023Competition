@@ -215,12 +215,15 @@ public final class Constants {
       public static final double ticksPerDegree = 85.36 ; // Encoder ticks per 1 degree of rotation
 
       // Rotation limits each direction in Encoder units
-      public static final double turretLeftLimit = -16150;
-      public static final double turretRightLimit = 16150;
-      public static final double turretRightAbsolute180 = -15396;
-      public static final double turretLeftAbsolute180 = 15396;
+      public static final double turretLeftLimit = 16150;
+      public static final double turretRightLimit = -16150;
+      public static final double turretRightRelative180 = -15396;
+      public static final double turretLeftRelative180 = 15396;
       public static final double turretTurnLowerLimit = 903;
       public static final double turretTurnUpperLimit = 2951;
+
+      public static final double turretTicksPerDegree = turretLeftRelative180 / 180.0;
+      public static final double turretDegreesPerTick = 1.0/turretTicksPerDegree;
 
 
       // *** PID ***
@@ -228,8 +231,8 @@ public final class Constants {
       public static final double turretAbsoluteZero = 857.0;
       public static final double turretAbsoluteZeroRollover = 4096;
       public static final double turretAbsoluteZeroClockwisePositionLimit = 3000;
-      public static final double turretAbsoluteZeroClockwisePositionLimitLeft = 1911;
-      public static final double turretAbsoluteZeroClockwisePositionLimitRight = 3991;
+      public static final double turretAbsoluteZeroClockwisePositionLimitLeft = 3991;
+      public static final double turretAbsoluteZeroClockwisePositionLimitRight = 1911;
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
       public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms
@@ -266,6 +269,11 @@ public final class Constants {
       public static final boolean elevatorSensorPhase = false;
 
       public static final double elevatorMaxLimit = 36200;
+
+      public static final double elevatorTicksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
+      public static final double elevatorMetersPerTick = 1.0 / elevatorTicksPerMeter ; // Encoder ticks per 1 meter of extension
+
+      public static final double elevatorOffTheGroundAtZero = 0.2; //meters
 
       // PID
       public static int PID_Elevator_Idx = 0; // 0 - closed loop; 1 - open loop
@@ -320,7 +328,8 @@ public final class Constants {
       public static final double armMaxLimit = 10300; // 11578
       public static final double armHoldingPower = -0.031; // power to hold the arm without goinf forward
 
-      public static final double ticksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
+      public static final double armTicksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
+      public static final double armMetersPerTick = 1.0 / armTicksPerMeter ; // Encoder ticks per 1 meter of extension
       public static final double maximumExtension = 2.5; // meters
 
       // PID

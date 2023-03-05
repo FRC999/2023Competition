@@ -122,7 +122,7 @@ public class ArmSubsystem extends SubsystemBase {
 
  public void extendArmToLength(double toLength) {
   System.out.println("Extend to length "+toLength);
-  moveToPosition(toLength * Arm.ticksPerMeter);
+  moveToPosition(toLength * Arm.armTicksPerMeter);
  }
 
  public void manualDrive() {
