@@ -62,6 +62,8 @@ public class CANdleSubsystem extends SubsystemBase {
     candle.modulateVBatOutput(0);
   }
 
+//we need to figure out what object type this is set equal to/what should be 
+//the return type if this were regualr java bc the syntax 4 the rest of it is fine
   public void stringToMap(String s) {
     String ledS = (s.length()>4)?s.substring(0, 4):s;
     ledMatrix = new byte[8][32];
@@ -75,6 +77,7 @@ public class CANdleSubsystem extends SubsystemBase {
     }
   }
 
+  //Converts LED matrix values to the actual LED
   public void matrixToLed() {
     for (int i=0; i<32; i++) {
       for (int j=0;j<8;j++) {
@@ -99,6 +102,7 @@ public class CANdleSubsystem extends SubsystemBase {
     }
   }
 
+  //lights up string message to the LED
   public void printMsg(String s) {
     stringToMap(s);
     matrixToLed();
