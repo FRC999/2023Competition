@@ -129,9 +129,14 @@ public class ArmSubsystem extends SubsystemBase {
   System.out.println("Extending to "+endingPosition);
  }
 
- public void extendArmToLength(double toLength) {
+ /**
+  * Extend arm to specific length from the center of the turret (meters)
+  * will account for the arm length when fully folded
+  * @param toLength
+  */
+ public void extendArmToLengthMeters(double toLength) {
   System.out.println("Extend to length "+toLength);
-  moveToPosition(toLength * Arm.armTicksPerMeter);
+  moveToPosition( (toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
  }
 
  public void manualDrive() {

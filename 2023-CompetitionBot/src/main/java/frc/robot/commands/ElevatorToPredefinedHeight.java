@@ -5,18 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.GamepieceManipulator.Elevator.gamepieceHeights;
 
-public class MoveElevatorToPredefinedHeight extends CommandBase {
+public class ElevatorToPredefinedHeight extends CommandBase {
 
   private static double heightTolerance = 0.02; // meters
+  private gamepieceHeights targetHeight;
 
-  /** Creates a new LowConeHeight. */
-  gamepieceHeights targetHeight;
-
-  public MoveElevatorToPredefinedHeight(gamepieceHeights goToHeight) {
+  /** Set elevator to a predefined height defined in the gamepieceHeights enum */
+  public ElevatorToPredefinedHeight(gamepieceHeights goToHeight) {
     addRequirements(RobotContainer.elevatorSubsystem);
     targetHeight = goToHeight;
   }

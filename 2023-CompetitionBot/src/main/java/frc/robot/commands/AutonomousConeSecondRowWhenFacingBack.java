@@ -4,7 +4,11 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.RobotContainer;
+import frc.robot.Constants.GamepieceManipulator.Arm;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -16,7 +20,14 @@ public class AutonomousConeSecondRowWhenFacingBack extends SequentialCommandGrou
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new MoveElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone)
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone),
+      new ArmToLength(1.05),
+      new InstantCommand(RobotContainer.clawSubsystem::flipperDown),
+      new WaitCommand(0.1),
+      new InstantCommand(RobotContainer.clawSubsystem::openClaw),
+      new WaitCommand(0.2),
+      new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
+      new ArmToLength(Arm.armLengthWhenFullyFolded)
     );
   }
 }
