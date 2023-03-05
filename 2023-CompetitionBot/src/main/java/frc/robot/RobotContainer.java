@@ -259,9 +259,9 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    //new JoystickButton(turnStick, 11)
-    //  .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
-    //  .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
+    new JoystickButton(driveStick, 11)
+      .whileTrue(new InstantCommand(()->candleSubsystem.setAllLEDToColor(new int[]{200,10,100}), candleSubsystem ))
+      .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
 
     //new JoystickButton(turnStick, 12)
     //  .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
