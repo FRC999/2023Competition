@@ -335,6 +335,8 @@ public final class Constants {
       public static final double armMetersPerTick = 1.0 / armTicksPerMeter ; // Encoder ticks per 1 meter of extension
       public static final double armLengthWhenFullyFolded = 0.4; // meters - from the center of the turret to the middle of the claw
       
+      public static final double armSlopAngleDegrees = 3 ; // Our arm slops down, so this is a degree down from horisontal
+
       public static final double maximumExtension = 1.15; // meters. from the center of the turret
 
       // PID

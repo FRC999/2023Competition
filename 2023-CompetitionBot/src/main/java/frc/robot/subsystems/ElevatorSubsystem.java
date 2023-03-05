@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.GamepieceManipulator.Arm;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 
 public class ElevatorSubsystem extends SubsystemBase {
@@ -150,6 +151,18 @@ public class ElevatorSubsystem extends SubsystemBase {
     System.out.println("Elevator going to " + endingPositionMeters);
    }
   
+  /**
+  * Move the elevator to Height indicated by the relative encoder
+  * Takes into consideration the height of the evevator of the ground when the elevator all the way down
+  * Also account for slopping arm when it extends
+  * @param endingPositionMeters - meters
+  * @param armLengthMeters - meters
+  */
+  public void moveToPositionMeters(double endingPositionMeters, double armLengthMeters) {
+    moveToPosition((endingPositionMeters - Elevator.elevatorOffTheGroundAtZero + Math.sin(Arm.armSlopAngleDegrees)*armLengthMeters) * Constants.GamepieceManipulator.Elevator.elevatorTicksPerMeter);
+    System.out.println("Elevator going to " + endingPositionMeters + " with slop "+Math.sin(Arm.armSlopAngleDegrees)*armLengthMeters);
+   }
+
  public void manualDrive() {
   elevatorMotorController.set(TalonSRXControlMode.PercentOutput, Elevator.EdefaultPowerManual);
  }

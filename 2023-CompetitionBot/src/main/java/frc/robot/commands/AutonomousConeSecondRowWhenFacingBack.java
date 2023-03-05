@@ -27,7 +27,8 @@ public class AutonomousConeSecondRowWhenFacingBack extends SequentialCommandGrou
       new InstantCommand(RobotContainer.clawSubsystem::openClaw),
       new WaitCommand(0.2),
       new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
-      new ArmToLength(Arm.armLengthWhenFullyFolded)
+      new ArmToLength(Arm.armLengthWhenFullyFolded),
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising)
     );
   }
 }
