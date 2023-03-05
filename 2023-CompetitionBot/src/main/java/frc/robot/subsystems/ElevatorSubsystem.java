@@ -108,6 +108,14 @@ public class ElevatorSubsystem extends SubsystemBase {
   return elevatorMotorController.getSelectedSensorVelocity();
  }
 
+ /**
+  * Get the height of the elevator from the ground
+  * @return - meters
+  */
+ public double getHeight() {
+  return getEncoder() * Elevator.elevatorMetersPerTick + Elevator.elevatorOffTheGroundAtZero;
+ }
+
  public void brakeMode() {
   elevatorMotorController.setNeutralMode(NeutralMode.Brake);
  }
@@ -133,11 +141,12 @@ public class ElevatorSubsystem extends SubsystemBase {
  }
 
   /**
-  * Move the elevator to position indicated by the relative encoder
+  * Move the elevator to Height indicated by the relative encoder
+  * Takes into consideration the height of the evevator of the ground when the elevator all the way down
   * @param endingPositionMeters - meters
   */
   public void moveToPositionMeters(double endingPositionMeters) {
-    moveToPosition(endingPositionMeters * Constants.GamepieceManipulator.Elevator.elevatorTicksPerMeter);
+    moveToPosition((endingPositionMeters - Elevator.elevatorOffTheGroundAtZero) * Constants.GamepieceManipulator.Elevator.elevatorTicksPerMeter);
     System.out.println("Elevator going to " + endingPositionMeters);
    }
   
