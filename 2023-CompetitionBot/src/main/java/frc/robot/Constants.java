@@ -270,7 +270,7 @@ public final class Constants {
 
       public static final double elevatorMaxLimit = 36200;
 
-      public static final double elevatorTicksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
+      public static final double elevatorTicksPerMeter = 40150 ; // Encoder ticks per 1 meter of extension
       public static final double elevatorMetersPerTick = 1.0 / elevatorTicksPerMeter ; // Encoder ticks per 1 meter of extension
 
       public static final double elevatorOffTheGroundAtZero = 0.2; //meters
@@ -282,7 +282,7 @@ public final class Constants {
       public static final double elevator_NeutralDeadband = 0.001;
       public static final int elevator_closedLoopPeriodMs = 30;
       
-      public static final double elevatorAbsoluteZero = 3015;
+      public static final double elevatorAbsoluteZero = 400;
       //TO CHANGE - PID values copied from turret constants
       public static final int elevator_SLOT_0 = 0;
       public static final double elevator_kP = 1.5;
@@ -331,13 +331,13 @@ public final class Constants {
       public static final double armMaxLimit = 10300; // 11578
       public static final double armHoldingPower = -0.031; // power to hold the arm without goinf forward
 
-      public static final double armTicksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
+      public static final double armTicksPerMeter = 13298.0 / 0.8 ; // Encoder ticks per 1 meter of extension
       public static final double armMetersPerTick = 1.0 / armTicksPerMeter ; // Encoder ticks per 1 meter of extension
-      public static final double armLengthWhenFullyFolded = 0.4; // meters - from the center of the turret to the middle of the claw
+      public static final double armLengthWhenFullyFolded = 0.4 + 0.13; // meters - from the center of the turret to the middle of the claw
       
       public static final double armSlopAngleDegrees = 3 ; // Our arm slops down, so this is a degree down from horisontal
 
-      public static final double maximumExtension = 1.15; // meters. from the center of the turret
+      public static final double maximumExtension = 1.20 + 0.13; // meters. from the center of the turret
 
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop
