@@ -108,6 +108,15 @@ public class ArmSubsystem extends SubsystemBase {
     return armMotorController.getSelectedSensorVelocity();
   }
 
+   /**
+  * Get the height of the Arm from the ground
+  * @return - meters
+  */
+ public double getLength() {
+  return getEncoder() * Arm.armMetersPerTick + Arm.armLengthWhenFullyFolded;
+ }
+
+
  public void calibrateRelativeEncoder() {
   double relativePosition = getAbsEncoder() - Arm.armAbsoluteZero;
   relativePosition = (Arm.armMotorInverted^Arm.armSensorPhase)?-relativePosition:relativePosition; 

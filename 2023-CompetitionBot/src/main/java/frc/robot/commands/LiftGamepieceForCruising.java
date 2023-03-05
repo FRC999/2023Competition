@@ -23,7 +23,7 @@ public class LiftGamepieceForCruising extends SequentialCommandGroup {
     addCommands(
       Commands.parallel(
         new InstantCommand(RobotContainer.clawSubsystem::flipperUp,RobotContainer.clawSubsystem),  // Raise flipper UP
-        new MoveElevatorToPredefinedHeight(Elevator.coneHeights.Cruising),  // Raise the elevator to the cruising height
+        new MoveElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising),  // Raise the elevator to the cruising height
         new InstantCommand(() -> RobotContainer.armSubsystem.moveToPosition(Arm.armCruisingPosition), RobotContainer.armSubsystem ) // Retract Arm to a cruising position
       )
       .andThen(new InstantCommand(() -> RobotContainer.turretSubsystem.moveToPosition(Turret.turretCruisingPosition)

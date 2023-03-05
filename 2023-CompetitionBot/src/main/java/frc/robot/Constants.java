@@ -304,17 +304,20 @@ public final class Constants {
       
 
       //will set them in encoder ticks later on
-      public static enum coneHeights{
-        LowCone(1000),  //TODO: Set manualy to the encoder value for hight
-        MidCone(2000),
-        HighCone(3000),
-        Cruising(1200); // Cruising height - when we transport the gamepiece
-        private double encoderSetting;
-        coneHeights(int height) {
-          this.encoderSetting = height;
+      public static enum gamepieceHeights{ // meters off the ground for the piece placement
+        LowCone(0.2),  //TODO: Set manualy to the encoder value for hight
+        MidCone(0.9),
+        HighCone(1.18),
+        LowCube(0.2),
+        MidCube(0.7),
+        HighCube(1.0),
+        Cruising(0.25); // Cruising height - when we transport the gamepiece
+        private double armHeightForGamepiecePlacement;
+        gamepieceHeights(double height) {
+          this.armHeightForGamepiecePlacement = height;
         }
         public double getHeight() {
-          return encoderSetting;
+          return armHeightForGamepiecePlacement;
         }
       }
 
@@ -330,7 +333,9 @@ public final class Constants {
 
       public static final double armTicksPerMeter = 300 ; // Encoder ticks per 1 meter of extension
       public static final double armMetersPerTick = 1.0 / armTicksPerMeter ; // Encoder ticks per 1 meter of extension
-      public static final double maximumExtension = 2.5; // meters
+      public static final double armLengthWhenFullyFolded = 0.4; // meters - from the center of the turret to the middle of the claw
+      
+      public static final double maximumExtension = 1.15; // meters. from the center of the turret
 
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop
