@@ -204,7 +204,7 @@ public class RobotContainer {
     
     new JoystickButton(gpmStick, 5)
         .onTrue(new DriveElevatorManuallyCommand())
-        .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem));
+        .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
 
     new JoystickButton(gpmStick, 6)
         .onTrue(new DriveArmManuallyCommand())

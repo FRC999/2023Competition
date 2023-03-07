@@ -131,7 +131,7 @@ public class ElevatorSubsystem extends SubsystemBase {
  }
 
  public void calibrateRelativeEncoder() {
-  double relativePosition = getAbsEncoder() - Elevator.elevatorAbsoluteZero;
+  double relativePosition = (getAbsEncoder() - Elevator.elevatorAbsoluteZero);
   relativePosition = (Elevator.elevatorMotorInverted)?-relativePosition:relativePosition; 
   elevatorMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for elevator motor to " + relativePosition);

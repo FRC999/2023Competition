@@ -37,10 +37,20 @@ public class DriveElevatorManuallyCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double power = -RobotContainer.gpmStick.getY();
+    double power = -RobotContainer.gpmStick.getY()*0.5;
     System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
     //System.out.print("power: " + power);
-    if (power<0) {
+    double multiplier = 1.0;
+
+
+    if (power<Elevator.elevatorHoldingPower) {
+
+      if (RobotContainer.elevatorSubsystem.getEncoder()<=Elevator.elevatorSlowDownStart && RobotContainer.elevatorSubsystem.getEncoder()>=0) {
+        multiplier = RobotContainer.elevatorSubsystem.getEncoder()/Elevator.elevatorSlowDownStart;
+        if(multiplier>1.0){multiplier=1.0;}
+        power = power * multiplier;
+      }
+
       if (RobotContainer.elevatorSubsystem.getEncoder()<=0) {
         power=0;
       }
@@ -49,12 +59,17 @@ public class DriveElevatorManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.elevatorSubsystem.manualDrive(power);
+    RobotContainer.elevatorSubsystem.manualDrive(power+ Elevator.elevatorHoldingPower);
+
+    System.out.println("EP:"+power+ " h:"+Elevator.elevatorHoldingPower+" m:"+multiplier);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("End manual elevator drive I:"+interrupted);
+    RobotContainer.elevatorSubsystem.elevatorForceFeed();
+  }
 
   // Returns true when the command should end.
   @Override

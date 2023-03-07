@@ -268,7 +268,8 @@ public final class Constants {
       public static final boolean elevatorMotorInverted = true;
       public static final boolean elevatorSensorPhase = false;
 
-      public static final double elevatorHoldingPower = -0.11; // power to hold the arm without goinf forward
+      public static final double elevatorHoldingPower = 0.04; // power to hold the arm without goinf forward
+      public static final double elevatorSlowDownStart = 15000; // encoder ticks
       public static final double elevatorMaxLimit = 36200;
 
       public static final double elevatorTicksPerMeter = 40150 ; // Encoder ticks per 1 meter of extension
@@ -283,7 +284,7 @@ public final class Constants {
       public static final double elevator_NeutralDeadband = 0.001;
       public static final int elevator_closedLoopPeriodMs = 30;
       
-      public static final double elevatorAbsoluteZero = 400;
+      public static final double elevatorAbsoluteZero = 2800;
       //TO CHANGE - PID values copied from turret constants
       public static final int elevator_SLOT_0 = 0;
       public static final double elevator_kP = 1.5;
