@@ -117,7 +117,7 @@ public class CANdleSubsystem extends SubsystemBase {
     }
     setLEDOff(); // turn off all LEDs
     ledMatrix = new byte[CANdleConstants.ledMatrixRows][CANdleConstants.ledMatrixColumns];
-    scrollImage = image;
+    scrollImage = image.clone();
     scrollDirection = direction;
     origImage = scrollImage.clone(); // save a copy of the original image - just in case; came remove if the RAM becomes an issue
   }
@@ -130,7 +130,7 @@ public class CANdleSubsystem extends SubsystemBase {
 
     // Current image to LED matrix
     for (int i=0;i<CANdleConstants.ledMatrixRows;i++) {
-      for (int j=0;i<CANdleConstants.ledMatrixColumns;i++) {
+      for (int j=0;i<CANdleConstants.ledMatrixColumns;j++) {
         ledMatrix[i][j] = scrollImage[i][j] ;
       }
     }
