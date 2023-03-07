@@ -142,7 +142,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   * @param endingPosition - ticks
   */
  public void moveToPosition(double endingPosition) {
-  elevatorMotorController.set(TalonSRXControlMode.Position,endingPosition);
+  // TEST - uncomment for the elevator to actually move
+  // elevatorMotorController.set(TalonSRXControlMode.Position,endingPosition);
   System.out.println("Elevator going to " + endingPosition);
  }
 

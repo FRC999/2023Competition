@@ -313,7 +313,8 @@ public final class Constants {
         LowCube(0.2),
         MidCube(0.7),
         HighCube(1.0),
-        Cruising(0.25); // Cruising height - when we transport the gamepiece
+        Cruising(0.25), // Cruising height - when we transport the gamepiece
+        GrabFromShelf(0.9);
         private double armHeightForGamepiecePlacement;
         gamepieceHeights(double height) {
           this.armHeightForGamepiecePlacement = height;

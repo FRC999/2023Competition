@@ -214,7 +214,20 @@ public class RobotContainer {
         .onTrue(new DriveTurretManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
         
+    new Trigger(() -> getPOVLeft()) // Elevator to MIDDLE if POV Left is pressed
+          .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone))
+          .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
+    new Trigger(() -> getPOVUP()) // Elevator to HIGH if POV UP is pressed
+          .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone))
+          .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
+    new Trigger(() -> getPOVUP()) // Elevator to HIGH if POV UP is pressed
+          .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCone))
+          .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
+    new Trigger(() -> getPOVLeft()) // Elevator to HIGH if POV UP is pressed
+          .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCone))
+          .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
 
+    //  ====
 
     // Manual Pneumatics operations commands
     new JoystickButton(turnStick, 11)
@@ -284,6 +297,21 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+
+  public boolean getPOVDown() {
+    return gpmStick.getPOV() == 180;
+  }
+  public boolean getPOVLeft() {
+    return gpmStick.getPOV() == 270;
+  }
+  public boolean getPOVRight() {
+    return gpmStick.getPOV() == 270;
+  }
+  public boolean getPOVUP() {
+    return gpmStick.getPOV() == 0;
+  }
+
+
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
 

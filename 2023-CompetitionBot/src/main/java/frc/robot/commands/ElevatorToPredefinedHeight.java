@@ -23,6 +23,7 @@ public class ElevatorToPredefinedHeight extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.elevatorSubsystem.moveToPositionMeters(targetHeight.getHeight());
+    System.out.println("Elevator moving to height "+targetHeight.getHeight())
   }
 
   // Called every time the scheduler runs while the command is scheduled.
