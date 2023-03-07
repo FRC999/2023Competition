@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
@@ -47,7 +48,7 @@ public class DriveElevatorManuallyCommand extends CommandBase {
 
       if (RobotContainer.elevatorSubsystem.getEncoder()<=Elevator.elevatorSlowDownStart && RobotContainer.elevatorSubsystem.getEncoder()>=0) {
         multiplier = RobotContainer.elevatorSubsystem.getEncoder()/Elevator.elevatorSlowDownStart;
-        if(multiplier>1.0){multiplier=1.0;}
+        multiplier = MathUtil.clamp(multiplier,0,1.0);
         power = power * multiplier;
       }
 
