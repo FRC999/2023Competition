@@ -230,8 +230,8 @@ public class RobotContainer {
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
 
       new JoystickButton(turnStick, 7)
-        .onTrue(new InstantCommand(() -> RobotContainer.armSubsystem.extendArmToLengthMeters(0.5), RobotContainer.armSubsystem))
-        .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
+        .onTrue(new InstantCommand(() -> RobotContainer.armSubsystem.extendArmToLengthMeters(0.9), RobotContainer.armSubsystem))
+        .onFalse(new InstantCommand(RobotContainer.armSubsystem::armForceFeed, RobotContainer.armSubsystem));
   
     // SYSID Test
     

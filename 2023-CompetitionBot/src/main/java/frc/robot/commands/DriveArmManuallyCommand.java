@@ -36,7 +36,7 @@ public class DriveArmManuallyCommand extends CommandBase {
   public void execute() {
     double power = -RobotContainer.gpmStick.getRawAxis(3);
 
-    System.out.println("R3:"+RobotContainer.gpmStick.getRawAxis(3));
+    //System.out.println("R3:"+RobotContainer.gpmStick.getRawAxis(3));
 
     //System.out.println("Z:"+power);
 

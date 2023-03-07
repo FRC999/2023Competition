@@ -268,6 +268,7 @@ public final class Constants {
       public static final boolean elevatorMotorInverted = true;
       public static final boolean elevatorSensorPhase = false;
 
+      public static final double elevatorHoldingPower = -0.11; // power to hold the arm without goinf forward
       public static final double elevatorMaxLimit = 36200;
 
       public static final double elevatorTicksPerMeter = 40150 ; // Encoder ticks per 1 meter of extension
@@ -350,11 +351,11 @@ public final class Constants {
       //TO CHANGE - PID values copied from turret constants
       public static final int arm_SLOT_0 = 0;
       public static final double arm_kP = 1.5;
-      public static final double arm_kI = 0.0002;
-      public static final double arm_kD = 15;
+      public static final double arm_kI = 0.0;
+      public static final double arm_kD = 0;
       public static final double arm_kF = 0;
-      public static final double arm_Acceleration = 50; // raw sensor units per 100 ms per second
-      public static final double arm_CruiseVelocity = 50; // raw sensor units per 100 ms
+      public static final double arm_Acceleration = 250; // raw sensor units per 100 ms per second
+      public static final double arm_CruiseVelocity = 500; // raw sensor units per 100 ms
       public static final int arm_Smoothing = 3; // CurveStrength. 0 to use Trapezoidal Motion Profile. [1,8] for S-Curve (greater value yields greater smoothing).
       public static final double arm_DefaultAcceptableError = 1; // Sensor units
       public static final double arm_Izone = 500;

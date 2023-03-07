@@ -49,8 +49,8 @@ public class ArmSubsystem extends SubsystemBase {
         10,
         Arm.arm_configureTimeoutMs);
 
-    armMotorController.configPeakOutputForward(+1.0, Arm.arm_configureTimeoutMs);
-    armMotorController.configPeakOutputReverse(-1.0, Arm.arm_configureTimeoutMs);
+    armMotorController.configPeakOutputForward(+0.5, Arm.arm_configureTimeoutMs);
+    armMotorController.configPeakOutputReverse(-0.5, Arm.arm_configureTimeoutMs);
     armMotorController.configNominalOutputForward(0, Arm.arm_configureTimeoutMs);
     armMotorController.configNominalOutputReverse(0, Arm.arm_configureTimeoutMs);
 
@@ -132,7 +132,7 @@ public class ArmSubsystem extends SubsystemBase {
   * @param endingPosition - encoder ticks
   */
  public void moveToPosition(double endingPosition) {
-  armMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
+  armMotorController.set(TalonSRXControlMode.Position,endingPosition);
   System.out.println("Extending to "+endingPosition);
  }
 
@@ -144,11 +144,15 @@ public class ArmSubsystem extends SubsystemBase {
  public void extendArmToLengthMeters(double toLength) {
 
   if (toLength > Arm.maximumExtension) {
-    System.out.println("Trying to extend to "+toLength + " beoynd maximum " + Arm.maximumExtension);
+    System.out.println("Trying to extend arm to "+toLength + " beoynd limit " + Arm.maximumExtension);
+    return;
+  }
+  if (toLength < Arm.armLengthWhenFullyFolded) {
+    System.out.println("Trying to fold arm to "+toLength + " beoynd limit " + Arm.armLengthWhenFullyFolded);
     return;
   }
   System.out.println("Extend to length "+toLength);
-  //moveToPosition( (toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
+  moveToPosition( (toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
   System.out.println("Extend to ticks "+(toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
  }
 

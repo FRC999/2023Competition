@@ -19,6 +19,9 @@ public class DriveElevatorManuallyCommand extends CommandBase {
   @Override
   public void initialize() {
     double power = -RobotContainer.gpmStick.getY();
+
+    System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
+
     if (power<0) {
       if (RobotContainer.elevatorSubsystem.getEncoder()<=Elevator.elevatorAbsoluteZero) {
         power=0;
@@ -35,7 +38,8 @@ public class DriveElevatorManuallyCommand extends CommandBase {
   @Override
   public void execute() {
     double power = -RobotContainer.gpmStick.getY();
-    System.out.print("power: " + power);
+    System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
+    //System.out.print("power: " + power);
     if (power<0) {
       if (RobotContainer.elevatorSubsystem.getEncoder()<=0) {
         power=0;
