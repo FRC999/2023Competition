@@ -36,7 +36,7 @@ public class DriveArmManuallyCommand extends CommandBase {
   public void execute() {
     double power = -RobotContainer.gpmStick.getRawAxis(3);
 
-    //System.out.println("R3:"+RobotContainer.gpmStick.getRawAxis(3));
+    System.out.println("R3:"+RobotContainer.gpmStick.getRawAxis(3));
 
     //System.out.println("Z:"+power);
 
@@ -50,12 +50,15 @@ public class DriveArmManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.armSubsystem.manualDrive(power);
+    RobotContainer.armSubsystem.manualDrive(power + Arm.armHoldingPower);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("End manual arm drive I:"+interrupted);
+    RobotContainer.armSubsystem.armForceFeed();
+  }
 
   // Returns true when the command should end.
   @Override

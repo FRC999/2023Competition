@@ -92,6 +92,10 @@ public class ArmSubsystem extends SubsystemBase {
     armMotorController.set(TalonSRXControlMode.PercentOutput, 0);
   }
 
+  public void armForceFeed() {
+    armMotorController.set(TalonSRXControlMode.PercentOutput, Arm.armHoldingPower);
+  }
+
   public int getEncoder() {
     return (int) armMotorController.getSelectedSensorPosition();
   }
@@ -116,7 +120,6 @@ public class ArmSubsystem extends SubsystemBase {
   return getEncoder() * Arm.armMetersPerTick + Arm.armLengthWhenFullyFolded;
  }
 
-
  public void calibrateRelativeEncoder() {
   double relativePosition = getAbsEncoder() - Arm.armAbsoluteZero;
   relativePosition = (Arm.armMotorInverted^Arm.armSensorPhase)?-relativePosition:relativePosition; 
@@ -124,6 +127,10 @@ public class ArmSubsystem extends SubsystemBase {
   System.out.println("*** Set relative encoder for Arm motor to " + relativePosition);
  }
 
+ /**
+  * Set arm to position using MotionMagic with encoder ticks
+  * @param endingPosition - encoder ticks
+  */
  public void moveToPosition(double endingPosition) {
   armMotorController.set(TalonSRXControlMode.MotionMagic,endingPosition);
   System.out.println("Extending to "+endingPosition);
@@ -135,8 +142,14 @@ public class ArmSubsystem extends SubsystemBase {
   * @param toLength
   */
  public void extendArmToLengthMeters(double toLength) {
+
+  if (toLength > Arm.maximumExtension) {
+    System.out.println("Trying to extend to "+toLength + " beoynd maximum " + Arm.maximumExtension);
+    return;
+  }
   System.out.println("Extend to length "+toLength);
-  moveToPosition( (toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
+  //moveToPosition( (toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
+  System.out.println("Extend to ticks "+(toLength - Arm.armLengthWhenFullyFolded) * Arm.armTicksPerMeter);
  }
 
  public void manualDrive() {

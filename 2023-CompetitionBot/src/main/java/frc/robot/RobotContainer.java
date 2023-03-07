@@ -208,7 +208,7 @@ public class RobotContainer {
 
     new JoystickButton(gpmStick, 6)
         .onTrue(new DriveArmManuallyCommand())
-        .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
+        .onFalse(new InstantCommand(RobotContainer.armSubsystem::armForceFeed, RobotContainer.armSubsystem));
     
     new JoystickButton(gpmStick, 7)
         .onTrue(new DriveTurretManuallyCommand())
@@ -228,6 +228,10 @@ public class RobotContainer {
     new JoystickButton(turnStick, 10)
         .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
         .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+
+      new JoystickButton(turnStick, 7)
+        .onTrue(new InstantCommand(() -> RobotContainer.armSubsystem.extendArmToLengthMeters(0.5), RobotContainer.armSubsystem))
+        .onFalse(new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem));
   
     // SYSID Test
     

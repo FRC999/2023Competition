@@ -91,6 +91,7 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public void stopElevator() {
     elevatorMotorController.set(TalonSRXControlMode.PercentOutput, 0);
+    System.out.println("Arm Stopped");
   }
 
   public int getEncoder() {

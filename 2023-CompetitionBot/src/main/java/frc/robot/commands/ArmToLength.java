@@ -9,7 +9,8 @@ import frc.robot.RobotContainer;
 
 public class ArmToLength extends CommandBase {
 
-  double armLength; // extended arm length - from the center of the turret
+  private double armLength; // extended arm length - from the center of the turret
+  private double lengthTolerance = 0.02; // meters 
 
   /** Extend arm to specific length (meters) */
   public ArmToLength(double aLength) {
@@ -20,7 +21,9 @@ public class ArmToLength extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    RobotContainer.armSubsystem.extendArmToLengthMeters(armLength);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -28,11 +31,13 @@ public class ArmToLength extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("Arm extended to "+armLength);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Math.abs(armLength - RobotContainer.armSubsystem.getLength()) <= armLength;
   }
 }

@@ -102,5 +102,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     updateAllDisplays();
+
+    //System.out.println("POV:"+RobotContainer.gpmStick.getPOV());
   }
 }

@@ -329,7 +329,7 @@ public final class Constants {
       public static final boolean armSensorPhase = true;
 
       public static final double armMaxLimit = 10300; // 11578
-      public static final double armHoldingPower = -0.031; // power to hold the arm without goinf forward
+      public static final double armHoldingPower = -0.11; // power to hold the arm without goinf forward
 
       public static final double armTicksPerMeter = 13298.0 / 0.8 ; // Encoder ticks per 1 meter of extension
       public static final double armMetersPerTick = 1.0 / armTicksPerMeter ; // Encoder ticks per 1 meter of extension
