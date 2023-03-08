@@ -9,7 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
-import frc.robot.commands.AutonomousConeThirdRowWhenFacingBack;
+import frc.robot.commands.AutonomousGamepieceThirdRowWhenFacingBack;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
@@ -140,8 +140,8 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("Third Row Gamepiece When Back To Target", new AutonomousConeThirdRowWhenFacingBack());
-    autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousConeThirdRowWhenFacingBack());
+    autoChooser.setDefaultOption("Third Row Gamepiece When Back To Target", new AutonomousGamepieceThirdRowWhenFacingBack());
+    autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousGamepieceThirdRowWhenFacingBack());
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
   }
@@ -265,7 +265,7 @@ public class RobotContainer {
 
     //  ==== autonomous testing
     new JoystickButton(turnStick, 11)
-      .onTrue(new AutonomousConeThirdRowWhenFacingBack())
+      .onTrue(new AutonomousGamepieceThirdRowWhenFacingBack())
       .onFalse(new GPMStop());
 
     // Manual Pneumatics operations commands - testing
