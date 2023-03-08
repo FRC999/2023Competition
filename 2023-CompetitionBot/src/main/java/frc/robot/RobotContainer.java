@@ -278,6 +278,27 @@ public class RobotContainer {
     new JoystickButton(driveStick, 7)
         .onTrue(new GPMManualRecalibration());
 
+    // ==== Trajectory tests
+
+    // Upper-row trajectory
+    new JoystickButton(bbr, 3)
+      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward"))
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+    // Middle-row trajectory
+    new JoystickButton(bbr, 4)
+      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger"))
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+    // Lower-row trajectory
+    new JoystickButton(bbr, 5)
+      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("BottomRowToBottomGFForward"))
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+    // ==== Self-Balance tests
+
+    // 
+
     // Manual Pneumatics operations commands - testing
 
     /* 
@@ -338,8 +359,6 @@ public class RobotContainer {
     //  .whileTrue(new InstantCommand(()->candleSubsystem.printMsg("SAM"), candleSubsystem ))
     //  .whileFalse(new InstantCommand(candleSubsystem::setLEDOff, candleSubsystem));
 
-    // Competition navigation
-    //gpmStick.povDown(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone));
   }
 
 
