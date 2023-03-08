@@ -40,6 +40,7 @@ import java.io.PrintStream;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.event.EventLoop;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
@@ -111,6 +112,8 @@ public class RobotContainer {
 
   public static Joystick gpmStick;
 
+  public static SendableChooser<Command> autoChooser = new SendableChooser<>();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
@@ -132,6 +135,15 @@ public class RobotContainer {
      //   new DriveManuallyCommand());
         new DriveManuallyCommand());
         
+  }
+
+  public void AutonomousConfigure() {
+    //port autonomous routines as commands
+    //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
+    autoChooser.setDefaultOption("Third Row Gamepiece When Back To Target", new AutonomousConeThirdRowWhenFacingBack());
+    autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousConeThirdRowWhenFacingBack());
+    //port SendableChooser data to the SmartDashboard
+    SmartDashboard.putData(autoChooser);
   }
 
     /**

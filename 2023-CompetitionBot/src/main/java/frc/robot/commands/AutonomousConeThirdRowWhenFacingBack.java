@@ -29,7 +29,8 @@ public class AutonomousConeThirdRowWhenFacingBack extends SequentialCommandGroup
       new WaitCommand(0.1),
       new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
       new ArmToLength(Arm.armLengthWhenFullyFolded),
-      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising)
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising),
+      new TurretTurnToFront()
     );
   }
 }
