@@ -14,18 +14,19 @@ import frc.robot.Constants.GamepieceManipulator.Elevator;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousConeSecondRowWhenFacingBack extends SequentialCommandGroup {
+public class AutonomousConeThirdRowWhenFacingBack extends SequentialCommandGroup {
   /** Creates a new AutonomousConeSecondRowWhenFacingBack. */
-  public AutonomousConeSecondRowWhenFacingBack() {
+  public AutonomousConeThirdRowWhenFacingBack() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone),
-      new ArmToLength(1.05),
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone),
+      new ArmToLength(1.2),
+      new WaitCommand(0.5),
       new InstantCommand(RobotContainer.clawSubsystem::flipperDown),
-      new WaitCommand(0.1),
+      new WaitCommand(0.5),
       new InstantCommand(RobotContainer.clawSubsystem::openClaw),
-      new WaitCommand(0.2),
+      new WaitCommand(0.1),
       new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
       new ArmToLength(Arm.armLengthWhenFullyFolded),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising)

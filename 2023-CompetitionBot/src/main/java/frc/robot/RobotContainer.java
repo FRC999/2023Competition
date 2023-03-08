@@ -9,11 +9,14 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousCommandPlaceholder;
+import frc.robot.commands.AutonomousConeThirdRowWhenFacingBack;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveTurretManuallyCommand;
 import frc.robot.commands.ElevatorToPredefinedHeight;
+import frc.robot.commands.GPMManualRecalibration;
+import frc.robot.commands.GPMStop;
 import frc.robot.commands.LeftSetVoltageDrive;
 import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
@@ -201,6 +204,10 @@ public class RobotContainer {
     */
 
     // Manual GPM motor operation commands
+
+    // Manual calibratrion reset
+    new JoystickButton(driveStick, 7)
+        .onTrue(new GPMManualRecalibration());
     
     new JoystickButton(gpmStick, 5)
         .onTrue(new DriveElevatorManuallyCommand())
@@ -244,9 +251,14 @@ public class RobotContainer {
     new JoystickButton(turnStick, 4)      
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
 
-    //  ====
+    //  ==== autonomous testing
+    new JoystickButton(turnStick, 11)
+      .onTrue(new AutonomousConeThirdRowWhenFacingBack())
+      .onFalse(new GPMStop());
 
-    // Manual Pneumatics operations commands
+    // Manual Pneumatics operations commands - testing
+
+    /* 
     new JoystickButton(turnStick, 11)
         .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem))
         .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
@@ -262,7 +274,7 @@ public class RobotContainer {
       new JoystickButton(turnStick, 7)
         .onTrue(new InstantCommand(() -> RobotContainer.armSubsystem.extendArmToLengthMeters(0.9), RobotContainer.armSubsystem))
         .onFalse(new InstantCommand(RobotContainer.armSubsystem::armForceFeed, RobotContainer.armSubsystem));
-  
+    */
     // SYSID Test
     
     //new JoystickButton(driveStick, 9)

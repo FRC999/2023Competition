@@ -19,7 +19,7 @@ public class ClawSubsystem extends SubsystemBase {
     clawSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
     flipperSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
     flipperUp();
-    openClaw();
+    closeClaw();
   }
 
   public void closeClaw() {
