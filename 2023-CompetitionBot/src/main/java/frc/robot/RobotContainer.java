@@ -109,8 +109,11 @@ public class RobotContainer {
 
   public static Joystick driveStick;
   public static Joystick turnStick;
-
   public static Joystick gpmStick;
+
+  // ButtonBox
+  public static Joystick bbl; // button box left side
+  public static Joystick bbr; // button box right side
 
   public static SendableChooser<Command> autoChooser = new SendableChooser<>();
 
@@ -153,8 +156,11 @@ public class RobotContainer {
   private void configureDriverInterface() {
     turnStick = new Joystick(OIConstants.turnControllerPort);
     driveStick = new Joystick(OIConstants.driverControllerPort);
-
     gpmStick = new Joystick(OIConstants.gpmControllerPort);
+
+    // ButtonBox
+    bbl =  new Joystick(OIConstants.bbLeftPort);
+    bbr =  new Joystick(OIConstants.bbRightPort);    
 
     System.out.println("Driver interface configured");
   }
@@ -217,19 +223,17 @@ public class RobotContainer {
 
     // Manual GPM motor operation commands
 
-    // Manual calibratrion reset
-    new JoystickButton(driveStick, 7)
-        .onTrue(new GPMManualRecalibration());
+
     
-    new JoystickButton(gpmStick, 5)
+    new JoystickButton(gpmStick, OIConstants.gpmElevatorButton)
         .onTrue(new DriveElevatorManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
 
-    new JoystickButton(gpmStick, 6)
+    new JoystickButton(gpmStick, OIConstants.gpmArmButton)
         .onTrue(new DriveArmManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.armSubsystem::armForceFeed, RobotContainer.armSubsystem));
     
-    new JoystickButton(gpmStick, 7)
+    new JoystickButton(gpmStick, OIConstants.gpmTurretButton)
         .onTrue(new DriveTurretManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem));
         
@@ -246,27 +250,33 @@ public class RobotContainer {
           .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCone))
           .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
 
-    new JoystickButton(gpmStick, 1)
+    new JoystickButton(gpmStick, OIConstants.gpmFlipperDown)
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
-    new JoystickButton(gpmStick, 4)      
+    new JoystickButton(gpmStick, OIConstants.gpmFlipperUP)
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
-    new JoystickButton(driveStick, 4)
+    new JoystickButton(driveStick, OIConstants.driveFlipperDown)
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
-    new JoystickButton(driveStick, 3)      
+    new JoystickButton(driveStick, OIConstants.driveFlipperUP)      
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
-    new JoystickButton(gpmStick, 2)
+    new JoystickButton(gpmStick, OIConstants.gpmClawOpen)
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
-    new JoystickButton(gpmStick, 3)      
+    new JoystickButton(gpmStick, OIConstants.gpmClawClose)      
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));
-    new JoystickButton(turnStick, 3)
+    new JoystickButton(turnStick, OIConstants.turnClawOpen)
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
-    new JoystickButton(turnStick, 4)      
+    new JoystickButton(turnStick, OIConstants.turnClawClose)      
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
 
     //  ==== autonomous testing
     new JoystickButton(turnStick, 11)
       .onTrue(new AutonomousGamepieceThirdRowWhenFacingBack())
       .onFalse(new GPMStop());
+
+    // ============== TEST commands
+
+    // Manual calibratrion reset
+    new JoystickButton(driveStick, 7)
+        .onTrue(new GPMManualRecalibration());
 
     // Manual Pneumatics operations commands - testing
 

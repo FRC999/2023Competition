@@ -172,6 +172,13 @@ public class DriveSubsystem extends SubsystemBase {
     return turn;
   }
 
+  /**
+   * Call arcadeDrive with the move and turn
+   * Can adjust the driving to include deadbands
+   * Right now deadbands are NOT enabled
+   * @param move
+   * @param turn
+   */
   public void manualDrive(double move, double turn) {
     
     // If joysticks will prove to be too sensitive near the center, turn on the deadband driving

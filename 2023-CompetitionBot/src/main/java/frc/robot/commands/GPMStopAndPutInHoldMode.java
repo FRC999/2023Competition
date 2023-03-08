@@ -11,20 +11,20 @@ import frc.robot.RobotContainer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class GPMStop extends SequentialCommandGroup {
-  /** Creates a new GPMStop.
-   * Stop GPM components without forcefeed
+public class GPMStopAndPutInHoldMode extends SequentialCommandGroup {
+  /** Creates a new GPMStopAndPutInHoldMode.
+   * Stop GPM components and apply ForceFeed to Elevator and Arm
    */
-  public GPMStop() {
+  public GPMStopAndPutInHoldMode() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         // Stop Turret
         new InstantCommand(RobotContainer.turretSubsystem::stopTurret, RobotContainer.turretSubsystem),
         // Stop Elevator
-        new InstantCommand(RobotContainer.elevatorSubsystem::stopElevator, RobotContainer.elevatorSubsystem),
+        new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem),
         // Stop Arm
-        new InstantCommand(RobotContainer.armSubsystem::stopArm, RobotContainer.armSubsystem)
+        new InstantCommand(RobotContainer.armSubsystem::armForceFeed, RobotContainer.armSubsystem)
     );
   }
 }

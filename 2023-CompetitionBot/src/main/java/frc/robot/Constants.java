@@ -57,8 +57,32 @@ public final class Constants {
   public static final class OIConstants {
     public static final int driverControllerPort = 1;
     public static final int turnControllerPort = 0;
-
     public static final int gpmControllerPort = 2;
+    
+    // ButtonBox
+    public static final int bbLeftPort = 4;
+    public static final int bbRightPort = 4;
+
+    // *******************
+    // Button Assignments
+    // *******************
+
+    // GameController
+    public static final int gpmTurretButton = 7;
+    public static final int gpmElevatorButton = 5;
+    public static final int gpmArmButton = 6;
+
+    public static final int gpmClawOpen = 2;
+    public static final int gpmClawClose = 3;
+    public static final int turnClawOpen = 3;
+    public static final int turnClawClose = 4;
+
+    public static final int gpmFlipperUP = 1;
+    public static final int gpmFlipperDown = 4;
+    public static final int driveFlipperUP = 3;
+    public static final int driveFlipperDown = 4;
+
+
   }
 
   public static final class DriveConstants {
