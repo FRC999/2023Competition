@@ -22,13 +22,14 @@ public class RunTrajectorySequenceRobotAtStartPoint extends SequentialCommandGro
   /** Creates a new RunTrajectorySequenceRobotAtStartPoint. */
 
   PathPlannerTrajectory trajectoryPath;
+  boolean isReversed = false;
 
-  public RunTrajectorySequenceRobotAtStartPoint(String trajectory, double maxVelocity, double maxAcceleration) {
+  public RunTrajectorySequenceRobotAtStartPoint(String trajectory, double maxVelocity, double maxAcceleration, boolean reversed) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
 
     // Read the trajectory from a file
-    trajectoryPath = PathPlanner.loadPath(trajectory, new PathConstraints(maxVelocity, maxAcceleration));
+    trajectoryPath = PathPlanner.loadPath(trajectory, new PathConstraints(maxVelocity, maxAcceleration), reversed);
 
     addCommands(
       //new InstantCommand(RobotContainer.driveSubsystem::zeroDriveEncoders),
@@ -46,8 +47,14 @@ public class RunTrajectorySequenceRobotAtStartPoint extends SequentialCommandGro
 
   public RunTrajectorySequenceRobotAtStartPoint(String trajectory) {
 
-    this(trajectory, DriveConstants.maxVelocityDefault, DriveConstants.maxAccelerationDefault);
-    System.out.println("*** Run trajectory "+ trajectory);
+    this(trajectory, false);
+    System.out.println("*** Run trajectory non-reversed"+ trajectory);
+  }
+
+  public RunTrajectorySequenceRobotAtStartPoint(String trajectory, boolean reversed) {
+
+    this(trajectory, DriveConstants.maxVelocityDefault, DriveConstants.maxAccelerationDefault, reversed);
+    System.out.println("*** Run trajectory "+ trajectory+" reversed:"+reversed);
   }
 
 }

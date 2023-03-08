@@ -281,20 +281,45 @@ public class RobotContainer {
 
     // ==== Trajectory tests
 
+    // == Forward trajectories
+
     // Upper-row trajectory
     new JoystickButton(bbr, 3)
-      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward"))
-      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+        .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward"))
+        .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
+            RobotContainer.pigeonIMUSubsystem));
 
     // Middle-row trajectory
     new JoystickButton(bbr, 4)
-      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger"))
-      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+        .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger"))
+        .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
+            RobotContainer.pigeonIMUSubsystem));
 
     // Lower-row trajectory
     new JoystickButton(bbr, 5)
-      .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("BottomRowToBottomGFForward"))
-      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+        .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("BottomRowToBottomGFForward"))
+        .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
+            RobotContainer.pigeonIMUSubsystem));
+
+    // Reversed trajectories
+
+    // Upper-row trajectory
+    new JoystickButton(bbr, 8)
+        .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward", true))
+        .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
+            RobotContainer.pigeonIMUSubsystem));
+
+    // Middle-row trajectory
+    new JoystickButton(bbr, 9)
+        .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger", true))
+        .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
+            RobotContainer.pigeonIMUSubsystem));
+
+    // Lower-row trajectory
+    new JoystickButton(bbr, 10)
+        .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("BottomRowToBottomGFForward", true))
+        .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
+            RobotContainer.pigeonIMUSubsystem));
 
     // ==== Self-Balance tests
 
