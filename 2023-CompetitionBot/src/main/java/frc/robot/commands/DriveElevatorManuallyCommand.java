@@ -21,7 +21,7 @@ public class DriveElevatorManuallyCommand extends CommandBase {
   public void initialize() {
     double power = -RobotContainer.gpmStick.getY();
 
-    System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
+    // System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
 
     if (power<0) {
       if (RobotContainer.elevatorSubsystem.getEncoder()<=Elevator.elevatorAbsoluteZero) {
@@ -39,7 +39,7 @@ public class DriveElevatorManuallyCommand extends CommandBase {
   @Override
   public void execute() {
     double power = -RobotContainer.gpmStick.getY()*0.5;
-    System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
+    //System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
     //System.out.print("power: " + power);
     double multiplier = 1.0;
 
@@ -62,7 +62,7 @@ public class DriveElevatorManuallyCommand extends CommandBase {
     }
     RobotContainer.elevatorSubsystem.manualDrive(power+ Elevator.elevatorHoldingPower);
 
-    System.out.println("EP:"+power+ " h:"+Elevator.elevatorHoldingPower+" m:"+multiplier);
+    //System.out.println("EP:"+power+ " h:"+Elevator.elevatorHoldingPower+" m:"+multiplier);
   }
 
   // Called once the command ends or is interrupted.

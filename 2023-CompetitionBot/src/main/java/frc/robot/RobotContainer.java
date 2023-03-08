@@ -98,6 +98,7 @@ public class RobotContainer {
   //public static final ClawSubsystem clawSubsystem = null;
   //public static final BigFootSubsystem bigFootSubsystem = null;
 
+  // Vision/Navigation
   public static final NetworkTablesSubsystem networkTablesSubsystem = null;
   public static final NavigationSubsystem navigationSubsystem = null;
   public static final CANdleSubsystem candleSubsystem = null;

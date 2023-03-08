@@ -81,7 +81,7 @@ public class CANdleSubsystem extends SubsystemBase {
         // Every even column is right direction
         // Every odd column - in reverse
 
-        System.out.println("I:"+i+" J:"+j);
+        //System.out.println("I:"+i+" J:"+j);
         if(i%2==0) {
           if (ledMatrix[j][i] == 0x01) {
             setOneLEDToColor(new int[]{200,10,10},i*8+j+LEDOFFSET);
