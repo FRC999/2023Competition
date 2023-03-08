@@ -82,6 +82,8 @@ public final class Constants {
     public static final int driveFlipperUP = 3;
     public static final int driveFlipperDown = 4;
 
+    public static final int driverBFDown = 5;
+    public static final int driverBFUP = 6;
 
   }
 

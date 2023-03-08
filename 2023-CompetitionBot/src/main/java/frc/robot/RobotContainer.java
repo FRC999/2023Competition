@@ -224,8 +224,6 @@ public class RobotContainer {
 
     // Manual GPM motor operation commands
 
-
-    
     new JoystickButton(gpmStick, OIConstants.gpmElevatorButton)
         .onTrue(new DriveElevatorManuallyCommand())
         .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
@@ -268,6 +266,13 @@ public class RobotContainer {
     new JoystickButton(turnStick, OIConstants.turnClawClose)      
           .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
 
+    // BigFoot for the endgame (or so we cannot be pushed)
+    new JoystickButton(driveStick, OIConstants.driverBFDown)      
+          .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem));
+    new JoystickButton(driveStick, OIConstants.driverBFUP)      
+          .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
+
+        
     //  ==== autonomous testing
     new JoystickButton(turnStick, 11)
       .onTrue(new AutonomousGamepieceThirdRowWhenFacingBack())
