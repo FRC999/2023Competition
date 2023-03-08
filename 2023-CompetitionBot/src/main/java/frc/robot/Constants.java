@@ -272,10 +272,10 @@ public final class Constants {
       public static final double elevatorSlowDownStart = 15000; // encoder ticks
       public static final double elevatorMaxLimit = 36200;
 
-      public static final double elevatorTicksPerMeter = 40150 ; // Encoder ticks per 1 meter of extension
+      public static final double elevatorTicksPerMeter = 39621 ; // Encoder ticks per 1 meter of extension
       public static final double elevatorMetersPerTick = 1.0 / elevatorTicksPerMeter ; // Encoder ticks per 1 meter of extension
 
-      public static final double elevatorOffTheGroundAtZero = 0.2; //meters
+      public static final double elevatorOffTheGroundAtZero = 0.24; //meters
 
       // PID
       public static int PID_Elevator_Idx = 0; // 0 - closed loop; 1 - open loop
@@ -288,15 +288,15 @@ public final class Constants {
       //TO CHANGE - PID values copied from turret constants
       public static final int elevator_SLOT_0 = 0;
       public static final double elevator_kP = 1.5;
-      public static final double elevator_kI = 0.0002;
-      public static final double elevator_kD = 15;
+      public static final double elevator_kI = 0.0;
+      public static final double elevator_kD = 0;
       public static final double elevator_kF = 0;
-      public static final double elevator_Acceleration = 50; // raw sensor units per 100 ms per second
-      public static final double elevator_CruiseVelocity = 50; // raw sensor units per 100 ms
+      public static final double elevator_Acceleration = 500; // raw sensor units per 100 ms per second
+      public static final double elevator_CruiseVelocity = 1000; // raw sensor units per 100 ms
       public static final int elevator_Smoothing = 3; // CurveStrength. 0 to use Trapezoidal Motion Profile. [1,8] for S-Curve (greater value yields greater smoothing).
       public static final double elevator_DefaultAcceptableError = 1; // Sensor units
       public static final double elevator_Izone = 500;
-      public static final double elevator_PeakOutput = 1; // Closed Loop peak output
+      public static final double elevator_PeakOutput = 0.7; // Closed Loop peak output
       public static final double elevator_PIDTolerance = 100;
 
       //manual drive constant
@@ -307,9 +307,9 @@ public final class Constants {
 
       //will set them in encoder ticks later on
       public static enum gamepieceHeights{ // meters off the ground for the piece placement
-        LowCone(0.2),  //TODO: Set manualy to the encoder value for hight
-        MidCone(0.9),
-        HighCone(1.18),
+        LowCone(0.25),  //TODO: Set manualy to the encoder value for hight
+        MidCone(0.92),
+        HighCone(1.16),
         LowCube(0.2),
         MidCube(0.7),
         HighCube(1.0),

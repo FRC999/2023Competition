@@ -50,8 +50,8 @@ public class ElevatorSubsystem extends SubsystemBase {
         10,
         Elevator.elevator_configureTimeoutMs);
 
-    elevatorMotorController.configPeakOutputForward(+1.0, Elevator.elevator_configureTimeoutMs);
-    elevatorMotorController.configPeakOutputReverse(-1.0, Elevator.elevator_configureTimeoutMs);
+    elevatorMotorController.configPeakOutputForward(Elevator.elevator_PeakOutput, Elevator.elevator_configureTimeoutMs);
+    elevatorMotorController.configPeakOutputReverse(-Elevator.elevator_PeakOutput, Elevator.elevator_configureTimeoutMs);
     elevatorMotorController.configNominalOutputForward(0, Elevator.elevator_configureTimeoutMs);
     elevatorMotorController.configNominalOutputReverse(0, Elevator.elevator_configureTimeoutMs);
 
@@ -143,7 +143,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   */
  public void moveToPosition(double endingPosition) {
   // TEST - uncomment for the elevator to actually move
-  // elevatorMotorController.set(TalonSRXControlMode.Position,endingPosition);
+  elevatorMotorController.set(TalonSRXControlMode.Position,endingPosition);
   System.out.println("Elevator going to " + endingPosition);
  }
 

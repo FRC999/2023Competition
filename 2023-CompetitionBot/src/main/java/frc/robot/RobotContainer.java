@@ -220,12 +220,29 @@ public class RobotContainer {
     new Trigger(() -> getPOVUP()) // Elevator to HIGH if POV UP is pressed
           .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone))
           .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
-    new Trigger(() -> getPOVUP()) // Elevator to HIGH if POV UP is pressed
+    new Trigger(() -> getPOVDown()) // Elevator to HIGH if POV UP is pressed
           .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCone))
           .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
-    new Trigger(() -> getPOVLeft()) // Elevator to HIGH if POV UP is pressed
+    new Trigger(() -> getPOVRight()) // Elevator to HIGH if POV UP is pressed
           .onTrue(new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCone))
           .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
+
+    new JoystickButton(gpmStick, 1)
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
+    new JoystickButton(gpmStick, 4)      
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
+    new JoystickButton(driveStick, 4)
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
+    new JoystickButton(driveStick, 3)      
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
+    new JoystickButton(gpmStick, 2)
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+    new JoystickButton(gpmStick, 3)      
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));
+    new JoystickButton(turnStick, 3)
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+    new JoystickButton(turnStick, 4)      
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
 
     //  ====
 
@@ -305,7 +322,7 @@ public class RobotContainer {
     return gpmStick.getPOV() == 270;
   }
   public boolean getPOVRight() {
-    return gpmStick.getPOV() == 270;
+    return gpmStick.getPOV() == 90;
   }
   public boolean getPOVUP() {
     return gpmStick.getPOV() == 0;

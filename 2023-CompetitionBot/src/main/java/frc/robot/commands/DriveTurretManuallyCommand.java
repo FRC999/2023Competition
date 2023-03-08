@@ -28,7 +28,7 @@ public class DriveTurretManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.turretSubsystem.manualDrive(power*0.5);
+    RobotContainer.turretSubsystem.manualDrive(power*0.3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,7 +46,7 @@ public class DriveTurretManuallyCommand extends CommandBase {
         //System.out.println("PL L");
       }
     }
-    RobotContainer.turretSubsystem.manualDrive(power*0.5);
+    RobotContainer.turretSubsystem.manualDrive(power*0.3);
 
     //System.out.println("TP:"+power+" X:"+RobotContainer.gpmStick.getX());
   }
