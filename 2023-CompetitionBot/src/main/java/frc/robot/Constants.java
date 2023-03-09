@@ -61,7 +61,7 @@ public final class Constants {
     
     // ButtonBox
     public static final int bbLeftPort = 4;
-    public static final int bbRightPort = 4;
+    public static final int bbRightPort = 3;
 
     // *******************
     // Button Assignments
@@ -222,9 +222,9 @@ public final class Constants {
 
     public static final class SelfBalance {
       public static final double balancePitch = 0;  // target pitch to self-balance on a charger
-      public static final double poorMaxClimbingPower = 0.12; //once I know I am on ramp (Phase-1), use that power to climb further (Phase-2)
+      public static final double poorMaxClimbingPower = 0.18; //once I know I am on ramp (Phase-1), use that power to climb further (Phase-2)
       public static final double poorMaxClimbingPitch = 15; // Pitch from which we start to reduce the motor power (Phase-2)
-      public static final double angleTolerance = 12.5; // Pitch where we stop the robot when the charger starts to balance (Phase-2)
+      public static final double angleTolerance = 5; // Pitch where we stop the robot when the charger starts to balance (Phase-2)
       public static final double rampReachedPitch = 14.0; // Pitch indicating that I reached the ramp and ending Phase-1
     }
 
@@ -243,8 +243,8 @@ public final class Constants {
       // Rotation limits each direction in Encoder units
       public static final double turretLeftLimit = 16150;
       public static final double turretRightLimit = -16150;
-      public static final double turretRightRelative180 = -15396;
-      public static final double turretLeftRelative180 = 15396;
+      public static final double turretRightRelative180 = -14438; // old 15396
+      public static final double turretLeftRelative180 = 14438;
       public static final double turretTurnLowerLimit = 903;
       public static final double turretTurnUpperLimit = 2951;
 
@@ -357,16 +357,16 @@ public final class Constants {
       public static final boolean armMotorInverted = false;
       public static final boolean armSensorPhase = true;
 
-      public static final double armMaxLimit = 10300; // 11578
+      public static final double armMaxLimit = 12323; // 11578
       public static final double armHoldingPower = -0.11; // power to hold the arm without goinf forward
 
-      public static final double armTicksPerMeter = 13298.0 / 0.8 ; // Encoder ticks per 1 meter of extension
+      public static final double armTicksPerMeter = armMaxLimit / 0.65 ; // Encoder ticks per 1 meter of extension
       public static final double armMetersPerTick = 1.0 / armTicksPerMeter ; // Encoder ticks per 1 meter of extension
-      public static final double armLengthWhenFullyFolded = 0.4 + 0.13; // meters - from the center of the turret to the middle of the claw
+      public static final double armLengthWhenFullyFolded = 0.45 + 0.15; // meters - from the center of the turret to the middle of the claw
       
       public static final double armSlopAngleDegrees = 3 ; // Our arm slops down, so this is a degree down from horisontal
 
-      public static final double maximumExtension = 1.20 + 0.13; // meters. from the center of the turret
+      public static final double maximumExtension = 1.10 + 0.15; // meters. from the center of the turret
 
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop
@@ -375,7 +375,7 @@ public final class Constants {
       public static final double arm_NeutralDeadband = 0.001;
       public static final int arm_closedLoopPeriodMs = 30;
 
-      public static final double armAbsoluteZero = 4060;
+      public static final double armAbsoluteZero = 1260;
       //TO CHANGE - PID values copied from turret constants
       public static final int arm_SLOT_0 = 0;
       public static final double arm_kP = 1.5;

@@ -357,10 +357,14 @@ public class RobotContainer {
           
 
     // Self-Balance test
-    //new JoystickButton(driveStick, 10)
-    //  .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
-    //  .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
-    
+    new JoystickButton(driveStick, 10)
+      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+    new JoystickButton(driveStick, 9)
+      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, false, false))
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
+
+      
     // Turret rotation test
     /*
     new JoystickButton(turnStick, 11)
