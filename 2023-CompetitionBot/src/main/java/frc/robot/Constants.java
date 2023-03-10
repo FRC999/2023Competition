@@ -243,8 +243,8 @@ public final class Constants {
       // Rotation limits each direction in Encoder units
       public static final double turretLeftLimit = 16150;
       public static final double turretRightLimit = -16150;
-      public static final double turretRightRelative180 = -14438; // old 15396
-      public static final double turretLeftRelative180 = 14438;
+      public static final double turretRightRelative180 = -15360; // old 15396
+      public static final double turretLeftRelative180 = 15360;
       public static final double turretTurnLowerLimit = 903;
       public static final double turretTurnUpperLimit = 2951;
 
@@ -258,7 +258,7 @@ public final class Constants {
       public static final double turretAbsoluteZeroRollover = 4096;
       public static final double turretAbsoluteZeroClockwisePositionLimit = 3000;
       public static final double turretAbsoluteZeroClockwisePositionLimitLeft = 3991;
-      public static final double turretAbsoluteZeroClockwisePositionLimitRight = 1911;
+      public static final double turretAbsoluteZeroClockwisePositionLimitRight = 1930;
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
       public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms

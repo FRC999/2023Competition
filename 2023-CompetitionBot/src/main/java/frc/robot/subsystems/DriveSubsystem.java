@@ -331,11 +331,11 @@ public class DriveSubsystem extends SubsystemBase {
       //TranslateDistanceIntoMeters(getRightEncoder())
     );
     
-    System.out.println("UTP1 "+
-    " X:"+p1.getX()+
-    " Y:"+p1.getY()+
-    " FA:"+p1.getRotation().getDegrees()
-    );
+    //System.out.println("UTP1 "+
+    //" X:"+p1.getX()+
+    //" Y:"+p1.getY()+
+    //" FA:"+p1.getRotation().getDegrees()
+    //);
 
   }
 

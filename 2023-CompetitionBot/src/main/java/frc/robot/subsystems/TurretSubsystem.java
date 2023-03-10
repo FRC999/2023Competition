@@ -130,7 +130,7 @@ public class TurretSubsystem extends SubsystemBase {
  }
 
  public double getDegrees() {
-  return getEncoder() / Turret.turretDegreesPerTick ;
+  return getEncoder() * Turret.turretDegreesPerTick ;
  }
 
  public void calibrateRelativeEncoderWhenTurnedToZeroAngle() {
@@ -149,14 +149,14 @@ public class TurretSubsystem extends SubsystemBase {
 
     System.out.println("****==> Turret rotated to the right for calibration");
     turretMotorController.setSelectedSensorPosition(
-      Turret.turretRightRelative180 - (Turret.turretAbsoluteZeroClockwisePositionLimitRight-currentAbsEncoder)
+      Turret.turretRightRelative180 + (Turret.turretAbsoluteZeroClockwisePositionLimitRight-currentAbsEncoder)
     );
   } else {
     System.out.println("****<== Turret rotated to the left for calibration");
     turretMotorController.setSelectedSensorPosition(
       (currentAbsEncoder<=Turret.turretAbsoluteZeroRollover) ?
-        Turret.turretLeftRelative180 - (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder) :
-        Turret.turretLeftRelative180 - (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitLeft+currentAbsEncoder)
+        Turret.turretLeftRelative180 + (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder) :
+        Turret.turretLeftRelative180 + (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitLeft+currentAbsEncoder)
     );
   
   }
@@ -185,7 +185,7 @@ public class TurretSubsystem extends SubsystemBase {
   */
  public void moveToPosition(double endingPosition) {
   turretMotorController.set(TalonSRXControlMode.Position,endingPosition);
-  System.out.println("Turret PID turn to "+ endingPosition);
+  //System.out.println("Turret PID turn to "+ endingPosition);
  }
 
  /**

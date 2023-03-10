@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
@@ -30,7 +31,19 @@ public class AutonomousGamepieceThirdRowWhenFacingBack extends SequentialCommand
       new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
       new ArmToLength(Arm.armLengthWhenFullyFolded),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising),
-      new TurretTurnToFront()
+      //new TurretTurnToFront(),
+      new TurretToAngle(-3),
+      // add trajectory
+      new PrintCommand("Starting Trajectory.."),
+      new RunTrajectorySequenceRobotAtStartPoint("BottomRowToBottomGFForward"),
+      new PrintCommand("Trajectory Done"),
+      new ArmToLength(0.7),
+      new WaitCommand(0.3),
+      new InstantCommand(RobotContainer.clawSubsystem::flipperDown),
+      new WaitCommand(0.2),
+      new InstantCommand(RobotContainer.clawSubsystem::closeClaw),
+      new WaitCommand(0.1),
+      new InstantCommand(RobotContainer.clawSubsystem::flipperUp)
     );
   }
 }
