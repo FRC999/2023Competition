@@ -74,7 +74,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
     if (RobotContainer.driveSubsystem != null) {
       updateDriveSubsystemTelemetry();
-      updateOdometryTelemetry();
+      // Only use for troubleshooting
+      // updateOdometryTelemetry();
     }
     
     if (RobotContainer.pigeonIMUSubsystem != null) {
