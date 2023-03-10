@@ -280,7 +280,7 @@ public class RobotContainer {
         
     //  ==== autonomous testing
     new JoystickButton(turnStick, 11)
-      .onTrue(new AutonomousGamepieceThirdRowWhenFacingBack())
+      .onTrue(new AutonomousBottomRow())
       .onFalse(new GPMStop());
 
     // ============== TEST commands
