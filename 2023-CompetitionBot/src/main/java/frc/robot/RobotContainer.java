@@ -8,8 +8,11 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPosition;
+import frc.robot.commands.AutonomousBottomRow;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceThirdRowWhenFacingBack;
+import frc.robot.commands.AutonomousMiddleRow;
+import frc.robot.commands.AutonomousTopRow;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
@@ -144,8 +147,10 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("Third Row Gamepiece When Back To Target", new AutonomousGamepieceThirdRowWhenFacingBack());
-    autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousGamepieceThirdRowWhenFacingBack());
+    autoChooser.setDefaultOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
+    autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
+    autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
+    autoChooser.addOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
   }
