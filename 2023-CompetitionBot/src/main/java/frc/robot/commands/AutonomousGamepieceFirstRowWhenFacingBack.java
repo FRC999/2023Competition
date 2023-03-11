@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.GamepieceManipulator.Elevator;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,8 +19,10 @@ public class AutonomousGamepieceFirstRowWhenFacingBack extends SequentialCommand
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone),
       new InstantCommand(RobotContainer.clawSubsystem::openClaw),
-      new WaitCommand(0.1)
+      new WaitCommand(0.3),
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising)
     );
   }
 }

@@ -133,6 +133,8 @@ public class RobotContainer {
     // Configure the trigger/button bindings for commands
     configureButtonBindings();
 
+    AutonomousConfigure();
+
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
     //driveSubsystem.setDefaultCommand(
@@ -150,7 +152,7 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
+    autoChooser.setDefaultOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
     autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
     autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
     autoChooser.addOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
@@ -445,6 +447,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
 
-    return new AutonomousCommandPlaceholder();
+    //return new AutonomousBottomRow();
+    return autoChooser.getSelected();
   }
 }
