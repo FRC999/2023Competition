@@ -222,9 +222,9 @@ public final class Constants {
 
     public static final class SelfBalance {
       public static final double balancePitch = 0;  // target pitch to self-balance on a charger
-      public static final double poorMaxClimbingPower = 0.18; //once I know I am on ramp (Phase-1), use that power to climb further (Phase-2)
+      public static final double poorMaxClimbingPower = 0.16; //once I know I am on ramp (Phase-1), use that power to climb further (Phase-2)
       public static final double poorMaxClimbingPitch = 15; // Pitch from which we start to reduce the motor power (Phase-2)
-      public static final double angleTolerance = 5; // Pitch where we stop the robot when the charger starts to balance (Phase-2)
+      public static final double angleTolerance = 12; // Pitch where we stop the robot when the charger starts to balance (Phase-2)
       public static final double rampReachedPitch = 14.0; // Pitch indicating that I reached the ramp and ending Phase-1
     }
 
