@@ -10,9 +10,10 @@ import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPosition;
 import frc.robot.commands.AutonomousBottomRow;
 import frc.robot.commands.AutonomousCommandPlaceholder;
-import frc.robot.commands.AutonomousGamepieceThirdRowWhenFacingBack;
+import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
 import frc.robot.commands.AutonomousTopRow;
+import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
@@ -257,27 +258,31 @@ public class RobotContainer {
     new JoystickButton(gpmStick, OIConstants.gpmFlipperDown)
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmFlipperUP)
-          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(driveStick, OIConstants.driveFlipperDown)
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
     new JoystickButton(driveStick, OIConstants.driveFlipperUP)      
-          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmClawOpen)
-          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmClawClose)      
-          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));
     new JoystickButton(turnStick, OIConstants.turnClawOpen)
-          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
     new JoystickButton(turnStick, OIConstants.turnClawClose)      
-          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
 
     // BigFoot for the endgame (or so we cannot be pushed)
     new JoystickButton(driveStick, OIConstants.driverBFDown)      
-          .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footDown, RobotContainer.bigFootSubsystem));
     new JoystickButton(driveStick, OIConstants.driverBFUP)      
-          .onFalse(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.bigFootSubsystem::footUp, RobotContainer.bigFootSubsystem));
 
-        
+    // Command interruptor - interrupt interruptable commands that use motors - in case they get stuck
+    new JoystickButton(bbl, Constants.OIConstants.bblCommandInterruptorSwitch) // 3
+        .onTrue(new CommandInterruptor());
+          
+
     //  ==== autonomous testing
     new JoystickButton(turnStick, 11)
       .onTrue(new AutonomousBottomRow())
@@ -291,6 +296,7 @@ public class RobotContainer {
 
     // ==== Trajectory tests
 
+    /*
     // == Forward trajectories
 
     // Upper-row trajectory
@@ -330,7 +336,7 @@ public class RobotContainer {
         .whileTrue(new RunTrajectorySequenceRobotAtStartPoint("BottomRowToBottomGFForward", true))
         .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem,
             RobotContainer.pigeonIMUSubsystem));
-
+    */
     // ==== Self-Balance tests
 
     // 

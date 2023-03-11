@@ -85,6 +85,8 @@ public final class Constants {
     public static final int driverBFDown = 5;
     public static final int driverBFUP = 6;
 
+    public static final int bblCommandInterruptorSwitch = 3;
+
   }
 
   public static final class DriveConstants {

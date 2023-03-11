@@ -19,7 +19,7 @@ public class AutonomousBottomRow extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new AutonomousGamepieceThirdRowWhenFacingBack(),
+      new AutonomousGamepieceSecondRowWhenFacingBack(),
       new TurretToAngle(-3),
       // add trajectory
       new PrintCommand("Starting Trajectory.."),
