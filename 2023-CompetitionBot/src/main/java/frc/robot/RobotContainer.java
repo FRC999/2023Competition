@@ -260,11 +260,13 @@ public class RobotContainer {
           .onFalse(new InstantCommand(RobotContainer.elevatorSubsystem::elevatorForceFeed, RobotContainer.elevatorSubsystem));
 
     new JoystickButton(gpmStick, OIConstants.gpmFlipperDown)
-          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem))
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmFlipperUP)
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(driveStick, OIConstants.driveFlipperDown)
-          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperDown, RobotContainer.clawSubsystem))
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(driveStick, OIConstants.driveFlipperUP)      
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmClawOpen)
