@@ -21,7 +21,7 @@ public class AutonomousMiddleRow extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new AutonomousGamepieceSecondRowWhenFacingBack(),
-      new TurretToAngle(-3),
+      new TurretToAngle(0),
       // add trajectory
       new PrintCommand("Starting Trajectory.."),
       new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger"),
@@ -34,7 +34,10 @@ public class AutonomousMiddleRow extends SequentialCommandGroup {
       new WaitCommand(0.2),
       new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
       new WaitCommand(0.2),
-      new SelfBalanceWhenFacingTheCharger(0.5, 0, false, false)
+      raceWith( // 10 seconds max to self-balance
+        new SelfBalanceWhenFacingTheCharger(0.5, 0, false, false),
+        new WaitCommand(10.0)
+        )
       );
   }
 }
