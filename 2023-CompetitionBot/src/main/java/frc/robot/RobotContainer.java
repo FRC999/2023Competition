@@ -286,8 +286,8 @@ public class RobotContainer {
     // ============== TEST commands
 
     // Manual calibratrion reset
-    new JoystickButton(driveStick, 7)
-        .onTrue(new GPMManualRecalibration());
+    //new JoystickButton(driveStick, 7)
+    //    .onTrue(new GPMManualRecalibration());
 
     // ==== Trajectory tests
 
@@ -369,7 +369,15 @@ public class RobotContainer {
       .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, false, false))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
-      
+    new JoystickButton(driveStick, 8)
+      .whileTrue(new AutonomousMiddleRow())
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));  
+
+    new JoystickButton(driveStick, 7)
+      .whileTrue(new AutonomousBottomRow())
+      .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));  
+
+
     // Turret rotation test
     /*
     new JoystickButton(turnStick, 11)
