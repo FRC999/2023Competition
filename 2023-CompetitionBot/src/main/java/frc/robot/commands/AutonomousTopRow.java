@@ -25,16 +25,16 @@ public class AutonomousTopRow extends SequentialCommandGroup {
       // add trajectory
       new PrintCommand("Starting Trajectory.."),
       new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward"),
-      new PrintCommand("Trajectory Done"),
-      new ArmToLength(0.7),
-      new WaitCommand(0.3),
-      new InstantCommand(RobotContainer.clawSubsystem::flipperDown),
-      new WaitCommand(0.2),
-      new InstantCommand(RobotContainer.clawSubsystem::closeClaw),
-      new WaitCommand(0.2),
-      new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
-      new WaitCommand(0.2),
-      new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward",true) // go backwards to the original location
+      new PrintCommand("Trajectory Done")
+      //new ArmToLength(0.7),
+      //new WaitCommand(0.3),
+      //new InstantCommand(RobotContainer.clawSubsystem::flipperDown),
+      //new WaitCommand(0.2),
+      //new InstantCommand(RobotContainer.clawSubsystem::closeClaw),
+      //new WaitCommand(0.2),
+      //new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
+      //new WaitCommand(0.2),
+      //new RunTrajectorySequenceRobotAtStartPoint("TopRowToTopGPForward",true) // go backwards to the original location
     );
   }
 }
