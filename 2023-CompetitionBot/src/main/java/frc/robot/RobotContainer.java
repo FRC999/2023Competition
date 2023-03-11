@@ -13,6 +13,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
 import frc.robot.commands.AutonomousTopRow;
+import frc.robot.commands.ClearLimitOverrides;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveArmManuallyCommand;
 import frc.robot.commands.DriveElevatorManuallyCommand;
@@ -26,6 +27,7 @@ import frc.robot.commands.OperateTurret;
 import frc.robot.commands.RightSetVoltageDrive;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
+import frc.robot.commands.SetLimitOverrides;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
 import frc.robot.subsystems.CANdleSubsystem;
@@ -281,7 +283,11 @@ public class RobotContainer {
     // Command interruptor - interrupt interruptable commands that use motors - in case they get stuck
     new JoystickButton(bbl, Constants.OIConstants.bblCommandInterruptorSwitch) // 3
         .onTrue(new CommandInterruptor());
-          
+
+    // Limit  overrride
+    new JoystickButton(bbl, 1) // 3
+        .onTrue(new SetLimitOverrides())
+        .onFalse(new ClearLimitOverrides());
 
     //  ==== autonomous testing
     new JoystickButton(turnStick, 11)

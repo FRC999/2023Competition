@@ -18,6 +18,8 @@ public class ArmSubsystem extends SubsystemBase {
   /** Creates a new ArmSubsystem. */
   private WPI_TalonSRX armMotorController;
   public static final int clicksPerFullRotationSRX = 4096;
+
+  public boolean limitOverride = false;
   
   public ArmSubsystem() {
     initializeArm();
@@ -172,6 +174,15 @@ public class ArmSubsystem extends SubsystemBase {
   armMotorController.setNeutralMode(NeutralMode.Coast);
  }
 
+ public void setLimitOverride() {
+  limitOverride = true;
+ }
+ public void clearLimitOverride() {
+  limitOverride = false;
+ }
+ public boolean getLimitOverride() {
+  return limitOverride;
+ }
 
   @Override
   public void periodic() {

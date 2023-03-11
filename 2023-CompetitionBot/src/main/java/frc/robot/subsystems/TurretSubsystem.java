@@ -21,6 +21,8 @@ public class TurretSubsystem extends SubsystemBase {
 
   private WPI_TalonSRX turretMotorController;
   final int clicksPerFullRotationSRX = 4096;
+
+  public boolean limitOverride = false;
   
   //some filler variables that will be based on limelight measurements
   //public double deltaX = 5; //this variable stores the "x" offset of the limelight relative to the turret
@@ -203,6 +205,16 @@ public class TurretSubsystem extends SubsystemBase {
 
  public void manualDrive(double power) {
   turretMotorController.set(TalonSRXControlMode.PercentOutput, power);
+ }
+
+ public void setLimitOverride() {
+  limitOverride = true;
+ }
+ public void clearLimitOverride() {
+  limitOverride = false;
+ }
+ public boolean getLimitOverride() {
+  return limitOverride;
  }
 
   @Override

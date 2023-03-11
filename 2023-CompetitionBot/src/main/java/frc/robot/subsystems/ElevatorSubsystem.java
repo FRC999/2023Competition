@@ -19,6 +19,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   /** Creates a new ElevatorSubsystem. */
   private WPI_TalonSRX elevatorMotorController;
   public final int clicksPerFullRotationSRX = 4096;
+
+  public boolean limitOverride = false;
   
   public ElevatorSubsystem() {
     initializeElevator();
@@ -176,6 +178,17 @@ public class ElevatorSubsystem extends SubsystemBase {
  public void manualDrive(double power) {
   elevatorMotorController.set(TalonSRXControlMode.PercentOutput, power);
  }
+
+ public void setLimitOverride() {
+  limitOverride = true;
+ }
+ public void clearLimitOverride() {
+  limitOverride = false;
+ }
+ public boolean getLimitOverride() {
+  return limitOverride;
+ }
+
 
   @Override
   public void periodic() {
