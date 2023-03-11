@@ -46,7 +46,7 @@ public class DriveArmManuallyCommand extends CommandBase {
         power=Arm.armHoldingPower;  // apply constant force when reached 0 to avoid pulsing
       }
     } else {
-      if (RobotContainer.armSubsystem.getEncoder()>=Arm.armMaxLimit) {
+      if (RobotContainer.armSubsystem.getEncoder()>=Arm.armMaxLimit  && ! RobotContainer.armSubsystem.getLimitOverride()) {
         power=0;
       }
     }

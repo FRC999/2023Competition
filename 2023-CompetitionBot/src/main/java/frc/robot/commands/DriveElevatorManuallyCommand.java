@@ -56,7 +56,7 @@ public class DriveElevatorManuallyCommand extends CommandBase {
         power=0;
       }
     } else {
-      if (RobotContainer.elevatorSubsystem.getEncoder()>=Elevator.elevatorMaxLimit) {
+      if (RobotContainer.elevatorSubsystem.getEncoder()>=Elevator.elevatorMaxLimit  && ! RobotContainer.elevatorSubsystem.getLimitOverride()) {
         power=0;
       }
     }

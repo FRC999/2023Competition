@@ -36,12 +36,12 @@ public class DriveTurretManuallyCommand extends CommandBase {
   public void execute() {
     double power = -RobotContainer.gpmStick.getX();
     if (power<0) {
-      if (RobotContainer.turretSubsystem.getEncoder()<=Turret.turretRightLimit) {
+      if (RobotContainer.turretSubsystem.getEncoder()<=Turret.turretRightLimit && ! RobotContainer.turretSubsystem.getLimitOverride()) {
         power=0;
         //System.out.println("PL R");
       }
     } else {
-      if (RobotContainer.turretSubsystem.getEncoder()>=Turret.turretLeftLimit) {
+      if (RobotContainer.turretSubsystem.getEncoder()>=Turret.turretLeftLimit && ! RobotContainer.turretSubsystem.getLimitOverride() ) {
         power=0;
         //System.out.println("PL L");
       }
