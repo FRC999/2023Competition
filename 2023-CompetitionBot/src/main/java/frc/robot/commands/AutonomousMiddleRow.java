@@ -33,7 +33,7 @@ public class AutonomousMiddleRow extends SequentialCommandGroup {
       new InstantCommand(RobotContainer.clawSubsystem::closeClaw),
       new WaitCommand(0.2),
       new InstantCommand(RobotContainer.clawSubsystem::flipperUp),
-      new WaitCommand(0.2),
+      new WaitCommand(1.2),
       //raceWith( // 10 seconds max to self-balance
         new SelfBalanceWhenFacingTheCharger(0.5, 0, false, false)
         //new WaitCommand(10.0)
