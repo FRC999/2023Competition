@@ -53,7 +53,8 @@ public class RunTrajectorySequenceRobotAtStartPoint extends SequentialCommandGro
 
   public RunTrajectorySequenceRobotAtStartPoint(String trajectory, boolean reversed) {
 
-    this(trajectory, DriveConstants.maxVelocityDefault, DriveConstants.maxAccelerationDefault, reversed);
+    this(trajectory, 2.0, 1.5, reversed);
+    //this(trajectory, DriveConstants.maxVelocityDefault, DriveConstants.maxAccelerationDefault, reversed);
     System.out.println("*** Run trajectory "+ trajectory+" reversed:"+reversed);
   }
 
