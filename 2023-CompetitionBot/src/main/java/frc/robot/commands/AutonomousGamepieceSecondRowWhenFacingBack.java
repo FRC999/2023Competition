@@ -20,6 +20,7 @@ public class AutonomousGamepieceSecondRowWhenFacingBack extends SequentialComman
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new InstantCommand(RobotContainer.bigFootSubsystem::footUp),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone),
       new ArmToLength(1.2),
       new WaitCommand(0.5),
