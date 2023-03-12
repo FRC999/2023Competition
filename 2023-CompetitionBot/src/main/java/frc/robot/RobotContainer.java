@@ -12,6 +12,7 @@ import frc.robot.commands.AutonomousBottomRow;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
+import frc.robot.commands.AutonomousMiddleRowRed;
 import frc.robot.commands.AutonomousTopRow;
 import frc.robot.commands.ClearLimitOverrides;
 import frc.robot.commands.CommandInterruptor;
@@ -153,6 +154,7 @@ public class RobotContainer {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
     autoChooser.setDefaultOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
+    autoChooser.addOption("RED Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRowRed());
     autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
     autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
     autoChooser.addOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
