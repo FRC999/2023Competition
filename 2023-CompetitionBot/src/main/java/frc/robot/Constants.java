@@ -245,10 +245,10 @@ public final class Constants {
       // Rotation limits each direction in Encoder units
       public static final double turretLeftLimit = 16150;
       public static final double turretRightLimit = -16150;
-      public static final double turretRightRelative180 = -15360; // old 15396
-      public static final double turretLeftRelative180 = 15360;
-      public static final double turretTurnLowerLimit = 903;
-      public static final double turretTurnUpperLimit = 2951;
+      public static final double turretRightRelative180 = -15356; // older 15396, old -15360
+      public static final double turretLeftRelative180 = 15356;
+      public static final double turretTurnLowerLimit = 891; //older 903
+      public static final double turretTurnUpperLimit = 2939; //older 2951
 
       public static final double turretTicksPerDegree = turretLeftRelative180 / 180.0;
       public static final double turretDegreesPerTick = 1.0/turretTicksPerDegree;
@@ -259,8 +259,8 @@ public final class Constants {
       public static final double turretAbsoluteZero = 857.0;
       public static final double turretAbsoluteZeroRollover = 4096;
       public static final double turretAbsoluteZeroClockwisePositionLimit = 3000;
-      public static final double turretAbsoluteZeroClockwisePositionLimitLeft = 3991;
-      public static final double turretAbsoluteZeroClockwisePositionLimitRight = 1930;
+      public static final double turretAbsoluteZeroClockwisePositionLimitLeft = 3968; //old 3991
+      public static final double turretAbsoluteZeroClockwisePositionLimitRight = 1910; //old 1930
       public static final int PID_Turret_Idx = 0; // 0 - closed loop; 1 - open loop
       public static final int turret_configureTimeoutMs = 30;
       public static final int turret_closedLoopPeriodMs = 30; // For loop on the talon with local sensor - 1ms
@@ -416,7 +416,7 @@ public final class Constants {
 
   }
 
-  public static final class NavigationConstants {
+  public static final class NavigationConstants { 
 
     public static final int numberOfMeasurements = 10; // Number of robot pose measurements to collect in order to make robot pose determination
     public static final int numberOfMaxPoseMeasurements = 50; // Max number of pose measurements - in case we do not see anything
@@ -424,7 +424,7 @@ public final class Constants {
 
     // Camera poses relative to the Turret/Arm
     public static final Pose2d leftCameraPose = new Pose2d(0.05,0.1,new Rotation2d(Units.degreesToRadians(30)));
-    public static final Pose2d rightCameraPose = new Pose2d(0.05,0.1,new Rotation2d(Units.degreesToRadians(-30)));
+    public static final Pose2d rightCameraPose = new Pose2d(0.05,0.1,new Rotation2d(Units.degreesToRadians(-21.2)));
 
     public static final double BLUE_X_ERROR = -0.45604;
     public static final double BLUE_Y_ERROR = -0.06521;

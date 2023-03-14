@@ -151,14 +151,14 @@ public class TurretSubsystem extends SubsystemBase {
 
     System.out.println("****==> Turret rotated to the right for calibration");
     turretMotorController.setSelectedSensorPosition(
-      Turret.turretRightRelative180 + (Turret.turretAbsoluteZeroClockwisePositionLimitRight-currentAbsEncoder)
+      Turret.turretRightRelative180 - (currentAbsEncoder - Turret.turretAbsoluteZeroClockwisePositionLimitRight)
     );
   } else {
     System.out.println("****<== Turret rotated to the left for calibration");
     turretMotorController.setSelectedSensorPosition(
-      (currentAbsEncoder<=Turret.turretAbsoluteZeroRollover) ?
-        Turret.turretLeftRelative180 + (Turret.turretAbsoluteZeroClockwisePositionLimitLeft-currentAbsEncoder) :
-        Turret.turretLeftRelative180 + (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitLeft+currentAbsEncoder)
+      ( Turret.turretTurnUpperLimit <= currentAbsEncoder && currentAbsEncoder<=Turret.turretAbsoluteZeroRollover) ?
+        Turret.turretLeftRelative180 - (currentAbsEncoder - Turret.turretAbsoluteZeroClockwisePositionLimitLeft) :
+        Turret.turretLeftRelative180 - (Turret.turretAbsoluteZeroRollover-Turret.turretAbsoluteZeroClockwisePositionLimitLeft+currentAbsEncoder)
     );
   
   }

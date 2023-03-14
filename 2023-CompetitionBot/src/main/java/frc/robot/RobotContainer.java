@@ -83,8 +83,8 @@ public class RobotContainer {
   public static final ClawSubsystem clawSubsystem = new ClawSubsystem();
   public static final BigFootSubsystem bigFootSubsystem = new BigFootSubsystem();   // Foot that stops us when balanced
 
-  //public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
-  //public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
+  public static final NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
+  public static final NavigationSubsystem navigationSubsystem = new NavigationSubsystem();
 
   //public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
 
@@ -106,8 +106,8 @@ public class RobotContainer {
   //public static final BigFootSubsystem bigFootSubsystem = null;
 
   // Vision/Navigation
-  public static final NetworkTablesSubsystem networkTablesSubsystem = null;
-  public static final NavigationSubsystem navigationSubsystem = null;
+  //public static final NetworkTablesSubsystem networkTablesSubsystem = null;
+  //public static final NavigationSubsystem navigationSubsystem = null;
   public static final CANdleSubsystem candleSubsystem = null;
 
   // END of NULLS for the subsystems
@@ -229,9 +229,7 @@ public class RobotContainer {
     new JoystickButton(driveStick, 11)
           .whileTrue(new InstantCommand(driveSubsystem::zeroDriveEncoders));
 
-    // Test pose acquisition
-    new JoystickButton(driveStick, 3)
-          .onTrue(new AcquireRobotPosition());
+
     */
 
     // Manual GPM motor operation commands
@@ -301,6 +299,12 @@ public class RobotContainer {
       .onFalse(new GPMStop());
 
     // ============== TEST commands
+
+    // Navigation testing
+
+    // Test pose acquisition
+    new JoystickButton(bbr, 3)
+          .onTrue(new AcquireRobotPosition());
 
     // Manual calibratrion reset
     //new JoystickButton(driveStick, 7)
