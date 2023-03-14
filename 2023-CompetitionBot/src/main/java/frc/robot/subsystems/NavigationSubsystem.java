@@ -9,6 +9,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.GPMHelper;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.NavigationConstants;
@@ -133,6 +134,43 @@ public class NavigationSubsystem extends SubsystemBase {
     return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(trueAngle)));
     
   }
+
+  public static Pose2d calculateTurretPosition(Pose2d pose) {
+    double Xoffset = Constants.NavigationConstants.leftCameraPose.getX();
+    double Yoffset = Constants.NavigationConstants.leftCameraPose.getX();
+    double angleCamera = pose.getRotation().getDegrees();
+    double cameraX = pose.getTranslation().getX();
+    double cameraY = pose.getTranslation().getY();
+
+    double turretX = 0, turretY = 0;
+
+    if (angleCamera == 0) { //facing right
+        turretX = cameraX - Xoffset;
+        turretY = cameraY - Yoffset;
+    } else if (angleCamera == 90) { // facing up/north
+        turretX = cameraX + Yoffset;
+        turretY = cameraY - Xoffset;
+    } else if (angleCamera == 180) { // facing left
+        turretX = cameraX + Xoffset;
+        turretY = cameraY + Yoffset;
+    } else if (angleCamera == 270) { // facing down
+        turretX = cameraX - Yoffset;
+        turretY = cameraY + Xoffset;
+    } else { //calculate the turret position relative to the camera position
+
+      //calculates the length of the adjacent side of the right triangle, 
+      //which is the horizontal distance between the camera and the turret
+        turretX = cameraX - Xoffset*Math.cos(angleCamera)
+         + Yoffset*Math.sin(angleCamera);
+
+      //calculates the length of the opposite side of the right triangle, 
+      //which is the vertical distance between the camera and the turret
+        turretY = cameraY - Xoffset*Math.sin(angleCamera)
+         - Yoffset*Math.cos(angleCamera);
+    }
+
+    return new Pose2d(turretX, turretY, pose.getRotation());
+}
 
   @Override
   public void periodic() {
