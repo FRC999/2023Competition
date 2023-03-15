@@ -135,6 +135,7 @@ public class NavigationSubsystem extends SubsystemBase {
     
   }
 
+  /* 
   public static Pose2d calculateTurretPosition(Pose2d pose) {
     double Xoffset = Constants.NavigationConstants.leftCameraPose.getX();
     double Yoffset = Constants.NavigationConstants.leftCameraPose.getY();
@@ -171,6 +172,7 @@ public class NavigationSubsystem extends SubsystemBase {
 
     return new Pose2d(turretX, turretY, pose.getRotation());
 }
+*/
 
   @Override
   public void periodic() {
