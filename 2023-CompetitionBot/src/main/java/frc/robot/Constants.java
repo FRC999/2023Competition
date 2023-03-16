@@ -423,8 +423,8 @@ public final class Constants {
     public static final Pose2d dummyPose = new Pose2d(-1,-1, new Rotation2d(Units.degreesToRadians(-1)));
 
     // Camera poses relative to the Turret/Arm
-    public static final Pose2d leftCameraPose = new Pose2d(0.05,0.1,new Rotation2d(Units.degreesToRadians(30)));
-    public static final Pose2d rightCameraPose = new Pose2d(0.05,0.1,new Rotation2d(Units.degreesToRadians(-21.2)));
+    public static final Pose2d leftCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
+    public static final Pose2d rightCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
     
     public static final double BLUE_X_ERROR = -0.45604;
     public static final double BLUE_Y_ERROR = -0.06521;
