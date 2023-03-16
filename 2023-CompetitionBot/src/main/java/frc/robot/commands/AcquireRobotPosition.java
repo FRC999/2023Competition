@@ -32,10 +32,9 @@ public class AcquireRobotPosition extends CommandBase {
   public void end(boolean interrupted) {
     System.out.println("*** Robot pose samples acquired. I:"+interrupted);
 
-
     // TEST - print robot pose
     System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().toString());
-    
+
     // TEST - print turret center pose
     Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
     System.out.println("=== TPoseL:"+lt.toString());
