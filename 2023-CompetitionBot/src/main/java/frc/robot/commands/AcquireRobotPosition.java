@@ -33,26 +33,28 @@ public class AcquireRobotPosition extends CommandBase {
     System.out.println("*** Robot pose samples acquired. I:"+interrupted);
 
     // TEST - print robot pose
-    System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().toString());
+    System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfLL().toString());
 
     // TEST - print turret center pose
-    Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
+    Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfLLLeft(),NavigationConstants.leftCameraPose);
     System.out.println("=== TPoseL:"+lt.toString());
-    Pose2d rt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotRight(),NavigationConstants.rightCameraPose);
+    Pose2d rt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight(),NavigationConstants.rightCameraPose);
     System.out.println("=== TPoseR: "+rt.toString());
+    System.out.println("== P LL-Left" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLLeft().toString());
+    System.out.println("== P LL-Right" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight().toString());
 
     // Nearest AprilTag
-    Pose2d pNAT = GPMHelper.identifyNearestTarget(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot());
-    System.out.println("NearestAT: "+pNAT.toString());
+    Pose2d poseOfNearestAprilTag = GPMHelper.identifyNearestTarget(RobotContainer.navigationSubsystem.getCurrentPoseOfLL());
+    System.out.println("NearestAT: "+poseOfNearestAprilTag.toString());
 
     // Poses in nearest lane
-    Pose2d[] targetPoses = GPMHelper.getTargetPoseFromLaneRecognition(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot(),pNAT);
+    Pose2d[] targetPoses = GPMHelper.getTargetPoseFromLaneRecognition(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),poseOfNearestAprilTag);
     System.out.println("GP0: "+targetPoses[0].toString());
     System.out.println("GP1: "+targetPoses[1].toString());
     System.out.println("GP2: "+targetPoses[2].toString());
 
     // Test GPM positioning
-    double[] gpmEX = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot(),targetPoses[2]);
+    double[] gpmEX = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),targetPoses[2]);
     System.out.println("T Angle:"+gpmEX[0]+" Arm:"+gpmEX[1]);
   }
 

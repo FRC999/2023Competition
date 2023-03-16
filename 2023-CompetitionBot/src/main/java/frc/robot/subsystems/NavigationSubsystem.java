@@ -28,7 +28,7 @@ public class NavigationSubsystem extends SubsystemBase {
   Pose2d currentAngleFromPose;
 
   public NavigationSubsystem() {
-    currentAngleFromPose = getCurrentPoseOfRobot();
+    currentAngleFromPose = getCurrentPoseOfLL();
     GPMHelper.populateListsOfTargetPoses();
   }
 
@@ -67,7 +67,7 @@ public class NavigationSubsystem extends SubsystemBase {
    * If the same number of samples, use left camera
    * @return - pose of the camera
    */
-  public Pose2d getCurrentPoseOfRobot() {
+  public Pose2d getCurrentPoseOfLL() {
     if (! isCollectingPoses) {
       if (limelightPoseManagerLeft.numberOfPoses()>=limelightPoseManagerRight.numberOfPoses()) {
         return limelightPoseManagerLeft.getPose();
@@ -79,14 +79,14 @@ public class NavigationSubsystem extends SubsystemBase {
   }
 
   // In case we only want the pose calculated for left camera
-  public Pose2d getCurrentPoseOfRobotLeft() {
+  public Pose2d getCurrentPoseOfLLLeft() {
     if (! isCollectingPoses) {
         return limelightPoseManagerLeft.getPose();
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
   }
   // In case we only want the pose calculated for right camera
-  public Pose2d getCurrentPoseOfRobotRight() {
+  public Pose2d getCurrentPoseOfLLRight() {
     if (! isCollectingPoses) {
         return limelightPoseManagerRight.getPose();
     }
@@ -134,45 +134,6 @@ public class NavigationSubsystem extends SubsystemBase {
     return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(trueAngle)));
     
   }
-
-  /* 
-  public static Pose2d calculateTurretPosition(Pose2d pose) {
-    double Xoffset = Constants.NavigationConstants.leftCameraPose.getX();
-    double Yoffset = Constants.NavigationConstants.leftCameraPose.getY();
-    double angleCamera = pose.getRotation().getDegrees();
-    double cameraX = pose.getTranslation().getX();
-    double cameraY = pose.getTranslation().getY();
-
-    double turretX = 0, turretY = 0;
-
-    if (angleCamera == 0) { //facing right
-        turretX = cameraX - Xoffset;
-        turretY = cameraY - Yoffset;
-    } else if (angleCamera == 90) { // facing up/north
-        turretX = cameraX + Yoffset;
-        turretY = cameraY - Xoffset;
-    } else if (angleCamera == 180) { // facing left
-        turretX = cameraX + Xoffset;
-        turretY = cameraY + Yoffset;
-    } else if (angleCamera == 270) { // facing down
-        turretX = cameraX - Yoffset;
-        turretY = cameraY + Xoffset;
-    } else { //calculate the turret position relative to the camera position
-
-      //calculates the length of the adjacent side of the right triangle, 
-      //which is the horizontal distance between the camera and the turret
-        turretX = cameraX - Xoffset*Math.cos(angleCamera)
-         + Yoffset*Math.sin(angleCamera);
-
-      //calculates the length of the opposite side of the right triangle, 
-      //which is the vertical distance between the camera and the turret
-        turretY = cameraY - Xoffset*Math.sin(angleCamera)
-         - Yoffset*Math.cos(angleCamera);
-    }
-
-    return new Pose2d(turretX, turretY, pose.getRotation());
-}
-*/
 
   @Override
   public void periodic() {
