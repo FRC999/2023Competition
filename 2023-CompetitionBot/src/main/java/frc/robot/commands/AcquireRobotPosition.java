@@ -36,12 +36,6 @@ public class AcquireRobotPosition extends CommandBase {
     // TEST - print robot pose
     System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfRobot().toString());
     
-    //Turret Center X Y
-    Pose2d turretPose = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot(), NavigationConstants.leftCameraPose);
-    double turretX = turretPose.getTranslation().getX() - NavigationConstants.cameraXOffset;
-    double turretY = turretPose.getTranslation().getY() - NavigationConstants.cameraYOffset;
-    System.out.println("=== Turret center: X=" + turretX + ", Y=" + turretY);
-
     // TEST - print turret center pose
     Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfRobotLeft(),NavigationConstants.leftCameraPose);
     System.out.println("=== TPoseL:"+lt.toString());
@@ -61,15 +55,6 @@ public class AcquireRobotPosition extends CommandBase {
     // Test GPM positioning
     double[] gpmEX = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfRobot(),targetPoses[2]);
     System.out.println("T Angle:"+gpmEX[0]+" Arm:"+gpmEX[1]);
-
-    //By how much should I turn my turret in angle degrees
-    double turretAngleInDegrees = Math.toDegrees(gpmEX[0]);
-    if (turretAngleInDegrees > 190) {
-      turretAngleInDegrees -= 360;//reference angles
-    } else if (turretAngleInDegrees < -190) {
-      turretAngleInDegrees += 360;//reference angles
-    }
-    System.out.println("T Angle:" + turretAngleInDegrees + " Arm:" + gpmEX[1]);
   }
 
   // Returns true when the command should end.
