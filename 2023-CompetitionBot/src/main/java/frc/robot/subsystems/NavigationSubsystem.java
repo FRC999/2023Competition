@@ -131,7 +131,7 @@ public class NavigationSubsystem extends SubsystemBase {
 
     double turretLookingAtCameraAngle = turretAngle + new Rotation2d(zeroPoseofCamera.getX(), zeroPoseofCamera.getY()).getDegrees();
 
-    // System.out.println("TA:"+trueAngle);
+    System.out.println("TA:"+turretAngle + " T-LA:"+turretLookingAtCameraAngle);
   
     double currentTurretX = locationOfCamera.getX()
       - Math.cos(Units.degreesToRadians(turretLookingAtCameraAngle)) *
