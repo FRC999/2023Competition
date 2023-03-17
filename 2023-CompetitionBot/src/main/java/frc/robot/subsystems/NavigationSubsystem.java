@@ -101,7 +101,7 @@ public class NavigationSubsystem extends SubsystemBase {
    */
   public double recalculateAngle(double zeroAngle, double rawPoseAngle){
 
-    // System.out.println("ZA:"+zeroAngle+" RA:"+rawPoseAngle);
+    System.out.println("ZA:"+zeroAngle+" RA:"+rawPoseAngle+" TA:"+((rawPoseAngle - zeroAngle  + 360)%360));
 
     return ((rawPoseAngle - zeroAngle  + 360)%360);
    }
@@ -124,11 +124,11 @@ public class NavigationSubsystem extends SubsystemBase {
     // System.out.println("TA:"+trueAngle);
   
     double currentTurretX = locationOfCamera.getX()
-      - Math.cos(trueAngle) *
+      - Math.cos(Units.degreesToRadians(trueAngle)) *
       turretDistFromCenterToCameraLens;
   
     double currentTurretY = locationOfCamera.getY()
-      - Math.sin(trueAngle) *
+      - Math.sin(Units.degreesToRadians(trueAngle)) *
       turretDistFromCenterToCameraLens;
   
     return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(trueAngle)));

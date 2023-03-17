@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.GamepieceManipulator.Arm;
@@ -167,8 +168,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   * @param armLengthMeters - meters
   */
   public void moveToPositionMeters(double endingPositionMeters, double armLengthMeters) {
-    moveToPosition((endingPositionMeters - Elevator.elevatorOffTheGroundAtZero + Math.sin(Arm.armSlopAngleDegrees)*armLengthMeters) * Constants.GamepieceManipulator.Elevator.elevatorTicksPerMeter);
-    System.out.println("Elevator going to " + endingPositionMeters + " with slop "+Math.sin(Arm.armSlopAngleDegrees)*armLengthMeters);
+    moveToPosition((endingPositionMeters - Elevator.elevatorOffTheGroundAtZero + Math.sin(Units.degreesToRadians(Arm.armSlopAngleDegrees))*armLengthMeters) * Constants.GamepieceManipulator.Elevator.elevatorTicksPerMeter);
+    System.out.println("Elevator going to " + endingPositionMeters + " with slop "+Math.sin(Units.degreesToRadians(Arm.armSlopAngleDegrees))*armLengthMeters);
    }
 
  public void manualDrive() {
