@@ -32,14 +32,14 @@ public class AcquireRobotPosition extends CommandBase {
   public void end(boolean interrupted) {
     System.out.println("*** Robot pose samples acquired. I:"+interrupted);
 
-    // TEST - print robot pose
-    System.out.println("=== RPose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfLL().toString());
+    // TEST - print best LL pose considering both LL
+    System.out.println("=== Best LL Pose:"+RobotContainer.navigationSubsystem.getCurrentPoseOfLL().toString());
 
     // TEST - print turret center pose
     Pose2d lt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfLLLeft(),NavigationConstants.leftCameraPose);
-    System.out.println("=== TPoseL:"+lt.toString());
+    System.out.println("=== TurretCenterUsingLL Left:"+lt.toString());
     Pose2d rt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight(),NavigationConstants.rightCameraPose);
-    System.out.println("=== TPoseR: "+rt.toString());
+    System.out.println("=== TurretCenterUsingLL Right: "+rt.toString());
     System.out.println("== P LL-Left" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLLeft().toString());
     System.out.println("== P LL-Right" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight().toString());
 
