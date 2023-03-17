@@ -76,6 +76,10 @@ public class CANdleSubsystem extends SubsystemBase {
   }
 
   public void matrixToLed() {
+    matrixToLed(CANdleConstants.LED_DEFAULT_RGB);
+  }
+
+  public void matrixToLed(int[] rgbArray) {
     for (int i=0; i<32; i++) {
       for (int j=0;j<8;j++) {
         // Every even column is right direction
@@ -84,15 +88,15 @@ public class CANdleSubsystem extends SubsystemBase {
         //System.out.println("I:"+i+" J:"+j);
         if(i%2==0) {
           if (ledMatrix[j][i] == 0x01) {
-            setOneLEDToColor(new int[]{200,10,10},i*8+j+LEDOFFSET);
+            setOneLEDToColor(rgbArray,i*8+j+LEDOFFSET);
           } else {
-            setOneLEDToColor(new int[]{0,0,0},i*8+j+LEDOFFSET);
+            setOneLEDToColor(CANdleConstants.LED_OFF_RGB,i*8+j+LEDOFFSET);
           }
         } else {
           if (ledMatrix[j][i] == 0x01) {
-            setOneLEDToColor(new int[]{200,10,10},i*8+(7-j)+LEDOFFSET);
+            setOneLEDToColor(rgbArray,i*8+(7-j)+LEDOFFSET);
           } else {
-            setOneLEDToColor(new int[]{0,0,0},i*8+j+LEDOFFSET);
+            setOneLEDToColor(CANdleConstants.LED_OFF_RGB,i*8+j+LEDOFFSET);
           }
         }
       }

@@ -477,6 +477,9 @@ public final class Constants {
     public static final int ledMatrixColumns = 32; // number of columns in the matrix
     public static final int ledMatrixRows = 8; // number of columns in the matrix
 
+    public static final int[] LED_DEFAULT_RGB = {200, 0, 0};
+    public static final int[] LED_OFF_RGB = {0, 0, 0};
+
 }
 
 }
