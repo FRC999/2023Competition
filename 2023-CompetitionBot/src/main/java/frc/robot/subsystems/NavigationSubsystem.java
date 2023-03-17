@@ -24,6 +24,13 @@ public class NavigationSubsystem extends SubsystemBase {
   private PoseManager limelightPoseManagerLeft = new PoseManager();
   private PoseManager limelightPoseManagerRight = new PoseManager();
 
+  // false - left camera; true - right camera
+  private final Rotation2d turretToCameraAngleLeft = 
+    new Rotation2d(NavigationConstants.leftCameraPose.getX(), NavigationConstants.leftCameraPose.getY());
+
+  private final Rotation2d turretToCameraAngleRight = 
+    new Rotation2d(NavigationConstants.rightCameraPose.getX(), NavigationConstants.rightCameraPose.getY());
+
   /** Creates a new NavigationSubsystem. */
   Pose2d currentAngleFromPose;
 
@@ -117,21 +124,24 @@ public class NavigationSubsystem extends SubsystemBase {
 
     double turretDistFromCenterToCameraLens = 
        Math.sqrt(Math.pow(zeroPoseofCamera.getX(), 2) + Math.pow(zeroPoseofCamera.getY(), 2));
-  
-    double trueAngle = recalculateAngle(zeroPoseofCamera.getRotation().getDegrees(), 
+
+    // Angle from 0-direction of the turret to the camera
+    double turretAngle = recalculateAngle(zeroPoseofCamera.getRotation().getDegrees(), 
       locationOfCamera.getRotation().getDegrees());
+
+    double turretLookingAtCameraAngle = turretAngle + new Rotation2d(zeroPoseofCamera.getX(), zeroPoseofCamera.getY()).getDegrees();
 
     // System.out.println("TA:"+trueAngle);
   
     double currentTurretX = locationOfCamera.getX()
-      - Math.cos(Units.degreesToRadians(trueAngle)) *
+      - Math.cos(Units.degreesToRadians(turretLookingAtCameraAngle)) *
       turretDistFromCenterToCameraLens;
   
     double currentTurretY = locationOfCamera.getY()
-      - Math.sin(Units.degreesToRadians(trueAngle)) *
+      - Math.sin(Units.degreesToRadians(turretLookingAtCameraAngle)) *
       turretDistFromCenterToCameraLens;
   
-    return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(trueAngle)));
+    return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(turretAngle)));
     
   }
 
