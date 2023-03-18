@@ -117,15 +117,23 @@ public class GPMHelper {
   /**
    * Get Turret rotation angle and arm extension length for known robot Pose2d and target Pose2d
    * If the target is impossible to reach (arm is not long enough), return -1 for the length
-   * @param currentRobotPose - Pose2d of the robot
+   * The angle is calculated from 0 direction of the robot (front)
+   * @param currentTurretPose - Pose2d of the robot
    * @param targetPose - Pose2d where I want to place a target
    * @return - double[] : 0 - turret rotation angle (degrees); 1 - arm extension (meters)
    */
-  public static double[] getTurretRotationAndArmExtension(Pose2d currentRobotPose, Pose2d targetPose) {
+  public static double[] getTurretRotationAndArmExtension(Pose2d currentTurretPose, Pose2d targetPose) {
+
+    // convert turret into the robot-centric angle
+
+    currentTurretPose = new Pose2d(currentTurretPose.getTranslation(),
+        new Rotation2d(currentTurretPose.getRotation().getRadians() 
+          - Units.degreesToRadians(RobotContainer.turretSubsystem.getDegrees()))
+        );
 
     // This calculates linear distance between two poses
     // Note that simple scalar distances are calculated between Translation2d, hence it's extracted from Pose2d first
-    double armExtension = currentRobotPose.getTranslation().getDistance(targetPose.getTranslation());
+    double armExtension = currentTurretPose.getTranslation().getDistance(targetPose.getTranslation());
 
     // Angle calculcation between two poses
     // May be optimized considering current location of the Arm
@@ -136,10 +144,10 @@ public class GPMHelper {
     //double angleDiff = Units.radiansToDegrees(currentRobotPose.log(targetPose).dtheta);
 
     // This constructs a Rotation2d object based on a vector pointing from acurrentRobotPose to targetPose
-    Rotation2d pointerToTarget = new Rotation2d(targetPose.getX()-currentRobotPose.getX(),targetPose.getY()-currentRobotPose.getY());
+    Rotation2d pointerToTarget = new Rotation2d(targetPose.getX()-currentTurretPose.getX(),targetPose.getY()-currentTurretPose.getY());
 
     // The difference between two rotations gives you an angle
-    double angleDiff = pointerToTarget.minus(currentRobotPose.getRotation()).getDegrees();
+    double angleDiff = pointerToTarget.minus(currentTurretPose.getRotation()).getDegrees();
 
     // If angleDiff is positive, calculate correspponding negative angle, and vice versa
 

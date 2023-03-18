@@ -40,12 +40,12 @@ public class AcquireRobotPosition extends CommandBase {
     System.out.println("=== TurretCenterUsingLL Left:"+lt.toString());
     Pose2d rt = RobotContainer.navigationSubsystem.calculatePoseOfTurret(RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight(),NavigationConstants.rightCameraPose);
     System.out.println("=== TurretCenterUsingLL Right: "+rt.toString());
-    System.out.println("== P LL-Left" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLLeft().toString());
-    System.out.println("== P LL-Right" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight().toString());
+    System.out.println("== Pose of LL-Left" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLLeft().toString());
+    System.out.println("== Pose of LL-Right" + RobotContainer.navigationSubsystem.getCurrentPoseOfLLRight().toString());
 
     // Nearest AprilTag
     Pose2d poseOfNearestAprilTag = GPMHelper.identifyNearestTarget(RobotContainer.navigationSubsystem.getCurrentPoseOfLL());
-    System.out.println("NearestAT: "+poseOfNearestAprilTag.toString());
+    System.out.println("NearestAprilTagPose: "+poseOfNearestAprilTag.toString());
 
     // Poses in nearest lane
     Pose2d[] targetPoses = GPMHelper.getTargetPoseFromLaneRecognition(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),poseOfNearestAprilTag);
@@ -54,8 +54,12 @@ public class AcquireRobotPosition extends CommandBase {
     System.out.println("GP2: "+targetPoses[2].toString());
 
     // Test GPM positioning
-    double[] gpmEX = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),targetPoses[2]);
-    System.out.println("T Angle:"+gpmEX[0]+" Arm:"+gpmEX[1]);
+    double[] gpmEX0 = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),targetPoses[0]);
+    double[] gpmEX1 = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),targetPoses[1]);
+    double[] gpmEX2 = GPMHelper.getTurretRotationAndArmExtension(RobotContainer.navigationSubsystem.getCurrentPoseOfLL(),targetPoses[2]);
+    System.out.println("T0 Angle:"+gpmEX0[0]+" Arm:"+gpmEX0[1]);
+    System.out.println("T1 Angle:"+gpmEX1[0]+" Arm:"+gpmEX0[1]);
+    System.out.println("T2 Angle:"+gpmEX2[0]+" Arm:"+gpmEX0[1]);
   }
 
   // Returns true when the command should end.
