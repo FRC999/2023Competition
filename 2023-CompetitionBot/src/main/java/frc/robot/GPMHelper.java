@@ -160,7 +160,7 @@ public class GPMHelper {
 
     return new double[] {
       (Math.abs(angleDiff)<Math.abs(secondAngleDiff))?angleDiff:secondAngleDiff,
-      (armExtension > Arm.maximumExtension)?(-1):armExtension // If arm extension exceeeds maximum possible, return -1
+      (armExtension > Arm.maximumExtension)?(Double.NaN):armExtension // If arm extension exceeeds maximum possible, return -1
     };
 
   }

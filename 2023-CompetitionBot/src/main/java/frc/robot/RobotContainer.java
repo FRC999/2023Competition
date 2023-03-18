@@ -7,7 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
-import frc.robot.commands.AcquireRobotPosition;
+import frc.robot.commands.AcquireRobotPositionUsingLL;
 import frc.robot.commands.AutonomousBottomRow;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
@@ -300,11 +300,15 @@ public class RobotContainer {
 
     // ============== TEST commands
 
+    Trigger isElevatorBelowMidCone = new Trigger(
+            () -> (elevatorSubsystem.getHeight() < Elevator.gamepieceHeights.MidCone.getHeight() )
+      );
+
     // Navigation testing
 
     // Test pose acquisition
     new JoystickButton(bbr, 3)
-          .onTrue(new AcquireRobotPosition());
+          .onTrue(new AcquireRobotPositionUsingLL());
 
     // Manual calibratrion reset
     //new JoystickButton(driveStick, 7)

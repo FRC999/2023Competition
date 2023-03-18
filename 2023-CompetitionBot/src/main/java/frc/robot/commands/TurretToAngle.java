@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.GamepieceManipulator.Turret;
@@ -11,6 +13,7 @@ import frc.robot.Constants.GamepieceManipulator.Turret;
 public class TurretToAngle extends CommandBase {
 
   double angle=0;
+  DoubleSupplier angleDynamic;
 
   private double degreeTolerance = 1.0;
 
@@ -23,9 +26,21 @@ public class TurretToAngle extends CommandBase {
     this.angle=angle;
   }
 
+  public TurretToAngle(DoubleSupplier angleDynamicP) {
+    // Use addRequirements() here to declare subsystem dependencies.
+
+    addRequirements(RobotContainer.turretSubsystem);
+
+    this.angleDynamic=angleDynamicP;
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    if (angleDynamic != null) {
+      angle = angleDynamic.getAsDouble();
+    }
     RobotContainer.turretSubsystem.moveToPosition(angle * Turret.ticksPerDegree);
   }
 

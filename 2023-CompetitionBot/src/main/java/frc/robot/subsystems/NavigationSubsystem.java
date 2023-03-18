@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
@@ -144,6 +145,36 @@ public class NavigationSubsystem extends SubsystemBase {
     return new Pose2d(currentTurretX, currentTurretY, new Rotation2d(Units.degreesToRadians(turretAngle)));
     
   }
+
+  /**
+   * After getting LL position from cameras, calculate robot-centric turret angle to place a gamepiece 
+   * @param position 0-low, 1-mid, 2-high
+   * @param movement 0-turret angle, 1-arm length
+   * @return
+   */
+  public double getTurretArmToTarget(int position, int movement) {
+
+    if (MathUtil.clamp(position,0,2) != position) {
+      return Double.NaN;
+    }
+
+    if (MathUtil.clamp(movement,0,1) != movement) {
+      return Double.NaN;
+    }
+
+    // Current LL pose
+    Pose2d llPose = RobotContainer.navigationSubsystem.getCurrentPoseOfLL() ;
+
+    // Nearest AprilTag pose
+    // Pose2d poseOfNearestAprilTag = GPMHelper.identifyNearestTarget(llPose);
+
+    // Poses of targets in the lane neares to me
+    Pose2d[] targetPoses = GPMHelper.getTargetPoseFromLaneRecognition(llPose,GPMHelper.identifyNearestTarget(llPose));
+
+    // 0-element - rotation angle, 1-element - length
+    return ( GPMHelper.getTurretRotationAndArmExtension(llPose,targetPoses[position]) )[movement];
+
+  } 
 
   @Override
   public void periodic() {
