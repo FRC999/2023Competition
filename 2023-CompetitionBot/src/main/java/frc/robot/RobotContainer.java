@@ -319,7 +319,7 @@ public class RobotContainer {
             .onFalse(new GPMAutoPlacementStop());
 
     new JoystickButton(bbr, 4)
-      .and(isElevatorBelowMidCone)
+      .and(isElevatorAboveMidCone)
             .onTrue(new GPMAutoPlaceElementMiddleHigh() )
             .onFalse(new GPMAutoPlacementStop());
 
