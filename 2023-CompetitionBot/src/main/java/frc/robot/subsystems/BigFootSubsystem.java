@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.Constants.DriveConstants.BigFoot;
 
 public class BigFootSubsystem extends SubsystemBase {
@@ -16,7 +17,7 @@ public class BigFootSubsystem extends SubsystemBase {
   private static DoubleSolenoid footSolenoid;
 
   public BigFootSubsystem() {
-    footSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
+    footSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
     footUp();
   }
 

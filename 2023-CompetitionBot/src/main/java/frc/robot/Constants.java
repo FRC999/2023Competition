@@ -9,6 +9,7 @@ import java.util.List;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 
@@ -413,6 +414,8 @@ public final class Constants {
   public static final class PneumaticsConstants {
 
     public static final int compressorCANID = 0;
+
+    public static final PneumaticsModuleType pneumaticsModuleType = PneumaticsModuleType.REVPH;
 
   }
 

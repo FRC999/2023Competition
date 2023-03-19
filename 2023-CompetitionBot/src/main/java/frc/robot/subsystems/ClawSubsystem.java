@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.Constants.GamepieceManipulator.Claw;
 
 public class ClawSubsystem extends SubsystemBase {
@@ -16,8 +17,8 @@ public class ClawSubsystem extends SubsystemBase {
 
   /** Creates a new ClawSubsystem. */
   public ClawSubsystem() {
-    clawSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
-    flipperSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
+    clawSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
+    flipperSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
     flipperUp();
     closeClaw();
   }

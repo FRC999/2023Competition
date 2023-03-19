@@ -14,7 +14,7 @@ public class PneumaticsSubsystem extends SubsystemBase {
   private Compressor compressor;
 
   public PneumaticsSubsystem() {
-    compressor = new Compressor(PneumaticsConstants.compressorCANID, PneumaticsModuleType.CTREPCM);
+    compressor = new Compressor(PneumaticsConstants.compressorCANID, PneumaticsConstants.pneumaticsModuleType);
 
 
     System.out.println("**** Activating compressor");
