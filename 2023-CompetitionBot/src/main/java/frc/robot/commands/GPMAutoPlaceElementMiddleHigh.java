@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
@@ -22,6 +23,7 @@ public class GPMAutoPlaceElementMiddleHigh extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new AcquireRobotPositionUsingLL(),
+      new InstantCommand(RobotContainer.elevatorSubsystem::setMiddleCommandStarted),
       new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) ),
       new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,0) ),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone),

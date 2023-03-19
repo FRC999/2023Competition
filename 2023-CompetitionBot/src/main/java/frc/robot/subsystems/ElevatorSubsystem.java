@@ -22,6 +22,9 @@ public class ElevatorSubsystem extends SubsystemBase {
   public final int clicksPerFullRotationSRX = 4096;
 
   public boolean limitOverride = false;
+
+  private boolean isMiddleCommandStarted = false;
+  private boolean isHeightHigherThanMiddle = false;
   
   public ElevatorSubsystem() {
     initializeElevator();
@@ -188,6 +191,21 @@ public class ElevatorSubsystem extends SubsystemBase {
  }
  public boolean getLimitOverride() {
   return limitOverride;
+ }
+
+ public void setMiddleCommandStarted() {
+  isMiddleCommandStarted = true;
+ }
+ 
+ public void clearMiddleCommandStarted() {
+  isMiddleCommandStarted = false;
+ }
+
+ public boolean middlePlacementTriggerCondition() {
+  if (! isMiddleCommandStarted) {
+    isHeightHigherThanMiddle = getHeight() < Elevator.gamepieceHeights.MidCone.getHeight() ;
+  }
+  return isHeightHigherThanMiddle ;
  }
 
 

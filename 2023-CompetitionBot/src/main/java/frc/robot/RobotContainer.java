@@ -21,6 +21,11 @@ import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveTurretManuallyCommand;
 import frc.robot.commands.ElevatorToPredefinedHeight;
+import frc.robot.commands.GPMAutoPlaceElementHigh;
+import frc.robot.commands.GPMAutoPlaceElementLow;
+import frc.robot.commands.GPMAutoPlaceElementMiddleHigh;
+import frc.robot.commands.GPMAutoPlaceElementMiddleLow;
+import frc.robot.commands.GPMAutoPlacementStop;
 import frc.robot.commands.GPMManualRecalibration;
 import frc.robot.commands.GPMStop;
 import frc.robot.commands.LeftSetVoltageDrive;
@@ -301,13 +306,34 @@ public class RobotContainer {
     // ============== TEST commands
 
     Trigger isElevatorBelowMidCone = new Trigger(
-            () -> (elevatorSubsystem.getHeight() < Elevator.gamepieceHeights.MidCone.getHeight() )
+            () -> elevatorSubsystem.middlePlacementTriggerCondition() 
       );
+
+    Trigger isElevatorAboveMidCone = new Trigger(
+            () -> ( ! elevatorSubsystem.middlePlacementTriggerCondition() ) 
+      );
+
+    new JoystickButton(bbr, 4)
+      .and(isElevatorBelowMidCone)
+            .onTrue(new GPMAutoPlaceElementMiddleLow() )
+            .onFalse(new GPMAutoPlacementStop());
+
+    new JoystickButton(bbr, 4)
+      .and(isElevatorBelowMidCone)
+            .onTrue(new GPMAutoPlaceElementMiddleHigh() )
+            .onFalse(new GPMAutoPlacementStop());
+
+    new JoystickButton(bbr, 3)
+            .onTrue(new GPMAutoPlaceElementHigh())
+            .onFalse(new GPMAutoPlacementStop());
+    new JoystickButton(bbr, 5)
+            .onTrue(new GPMAutoPlaceElementLow())
+            .onFalse(new GPMAutoPlacementStop());
 
     // Navigation testing
 
     // Test pose acquisition
-    new JoystickButton(bbr, 3)
+    new JoystickButton(bbr, 1)
           .onTrue(new AcquireRobotPositionUsingLL());
 
     // Manual calibratrion reset
