@@ -47,6 +47,11 @@ public class ArmToLength extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("Arm extended to "+armLength);
+
+    // For GPM Auto gamepiece placement
+    if (interrupted) {
+      RobotContainer.elevatorSubsystem.clearMiddleCommandStarted();
+    }
   }
 
   // Returns true when the command should end.

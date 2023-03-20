@@ -23,7 +23,11 @@ public class GPMAutoPlaceElementMiddleLow extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new AcquireRobotPositionUsingLL(),
+
+      // The end() in the T E A commands was modified to clear that flag if the command is interrupted
+      // The reason - if a command is interrupted, the sequence is interrupted as well
       new InstantCommand(RobotContainer.elevatorSubsystem::setMiddleCommandStarted),
+      
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone),
       new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) ),
       new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,0) ),

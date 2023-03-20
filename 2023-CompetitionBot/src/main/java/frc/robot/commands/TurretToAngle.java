@@ -52,6 +52,11 @@ public class TurretToAngle extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("Turret turned to angle "+ angle+". I:"+interrupted);
+
+    // For GPM Auto gamepiece placement
+    if (interrupted) {
+      RobotContainer.elevatorSubsystem.clearMiddleCommandStarted();
+    }
   }
 
   // Returns true when the command should end.

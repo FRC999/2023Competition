@@ -34,6 +34,11 @@ public class ElevatorToPredefinedHeight extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("Reached target height "+targetHeight.name()+" I:"+interrupted);
+
+    // For GPM Auto gamepiece placement
+    if (interrupted) {
+      RobotContainer.elevatorSubsystem.clearMiddleCommandStarted();
+    }
   }
 
   // Returns true when the command should end.
