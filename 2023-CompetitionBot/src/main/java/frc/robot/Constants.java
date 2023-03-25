@@ -429,11 +429,13 @@ public final class Constants {
     public static final Pose2d leftCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
     public static final Pose2d rightCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
     
-    public static final double BLUE_X_ERROR = -0.45604;
+    //public static final double BLUE_X_ERROR = -0.45604;
+    public static final double BLUE_X_ERROR = 0;
     public static final double BLUE_Y_ERROR = -0.06521;
-    public static final double RED_X_ERROR = 0.46169;
+    //public static final double RED_X_ERROR = 0.46169;
+    public static final double RED_X_ERROR = 0;
     public static final double RED_Y_ERROR = 0.03884;
-    public static final double[] fieldCenter = {8.725, 4.043};
+    public static final double[] fieldCenter =  {8.27, 4.043} ; //{8.725, 4.043};
     // X,Y coordinates of the tags from 0,0 in the blue/lower-left
     public static final double tags[][] = {
       {}, // 0
@@ -452,9 +454,9 @@ public final class Constants {
     public static final double yTargetOffset = tags[8][1] - 0.512;
 
     public static final double xTargetOffset[] = {
-      1.1055-tags[8][0], // front/bottom offset
-      0.653-tags[8][0], // middle offset
-      0.238-tags[8][0] // top offset
+      1.1255-tags[8][0], // front/bottom offset
+      0.723-tags[8][0], // middle offset
+      0.258-tags[8][0] // top offset
     };
 
     public static final int POSE_QUEUE_MAXSIZE = 10;
