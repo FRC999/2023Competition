@@ -150,17 +150,22 @@ public class NavigationSubsystem extends SubsystemBase {
    * After getting LL position from cameras, calculate robot-centric turret angle to place a gamepiece 
    * @param position 0-low, 1-mid, 2-high
    * @param movement 0-turret angle, 1-arm length
-   * @return
+   * @return {turret_angle_degrees,arm_length_meters}
    */
   public double getTurretArmToTarget(int position, int movement) {
 
     if (MathUtil.clamp(position,0,2) != position) {
+      System.out.println("P-F"+MathUtil.clamp(position,0,2));
       return Double.NaN;
     }
 
     if (MathUtil.clamp(movement,0,1) != movement) {
+      System.out.println("M-F"+MathUtil.clamp(movement,0,1));
       return Double.NaN;
     }
+
+    // test - comment out
+    System.out.println("Clamp passed");
 
     // Current LL pose
     Pose2d llPose = RobotContainer.navigationSubsystem.getCurrentPoseOfLL() ;
@@ -174,7 +179,14 @@ public class NavigationSubsystem extends SubsystemBase {
     // 0-element - rotation angle, 1-element - length
     return ( GPMHelper.getTurretRotationAndArmExtension(llPose,targetPoses[position]) )[movement];
 
-  } 
+  }
+
+  public void printTurretArmToTarget(int position) {
+    System.out.println("TurretAngle:"+ getTurretArmToTarget(position, 0));
+    System.out.println("ArmLength:"+getTurretArmToTarget(position, 1));
+  }
+
+
 
   @Override
   public void periodic() {
