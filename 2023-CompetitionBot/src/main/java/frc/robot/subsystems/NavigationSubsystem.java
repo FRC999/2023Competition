@@ -170,11 +170,18 @@ public class NavigationSubsystem extends SubsystemBase {
     // Current LL pose
     Pose2d llPose = RobotContainer.navigationSubsystem.getCurrentPoseOfLL() ;
 
-    // Nearest AprilTag pose
-    // Pose2d poseOfNearestAprilTag = GPMHelper.identifyNearestTarget(llPose);
+    //test - remove
+    System.out.println("Best LL pose:"+llPose.toString());
+
+    //test Nearest AprilTag pose
+    Pose2d poseOfNearestAprilTag = GPMHelper.identifyNearestTarget(llPose);
+    System.out.println("Nearest AprT pose:"+poseOfNearestAprilTag.toString());
 
     // Poses of targets in the lane neares to me
     Pose2d[] targetPoses = GPMHelper.getTargetPoseFromLaneRecognition(llPose,GPMHelper.identifyNearestTarget(llPose));
+
+    //test - remove
+    System.out.println("Pose of the target:"+targetPoses[position].toString());
 
     // 0-element - rotation angle, 1-element - length
     return ( GPMHelper.getTurretRotationAndArmExtension(llPose,targetPoses[position]) )[movement];

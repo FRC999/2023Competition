@@ -158,6 +158,10 @@ public class GPMHelper {
     // and will never exceed the turret limit, providing that the limit is above +-180
     // For the turret the angle will mean relative rotation from 0 that is in front of the robot
 
+    //test remove
+    System.out.println("C Turret:"+((Math.abs(angleDiff)<Math.abs(secondAngleDiff))?angleDiff:secondAngleDiff));
+    System.out.println("C Arm:"+armExtension);
+
     return new double[] {
       (Math.abs(angleDiff)<Math.abs(secondAngleDiff))?angleDiff:secondAngleDiff,
       (armExtension > Arm.maximumExtension)?(Double.NaN):armExtension // If arm extension exceeeds maximum possible, return -1
