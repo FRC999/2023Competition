@@ -418,7 +418,7 @@ public class RobotContainer {
       .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, true, true))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
     new JoystickButton(driveStick, 9)
-      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.5, 0, false, false))
+      .whileTrue(new SelfBalanceWhenFacingTheCharger(0.3, 0, false, false))
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));
 
     new JoystickButton(driveStick, 8)

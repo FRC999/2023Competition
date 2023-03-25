@@ -297,7 +297,7 @@ public final class Constants {
       public static final boolean elevatorMotorInverted = true;
       public static final boolean elevatorSensorPhase = false;
 
-      public static final double elevatorHoldingPower = 0.04; // power to hold the arm without goinf forward
+      public static final double elevatorHoldingPower = 0.08; //old was 0.04, power to hold the arm without goinf forward
       public static final double elevatorSlowDownStart = 15000; // encoder ticks
       public static final double elevatorMaxLimit = 36200;
 
@@ -413,7 +413,7 @@ public final class Constants {
 
   public static final class PneumaticsConstants {
 
-    public static final int compressorCANID = 0;
+    public static final int compressorCANID = 15;
 
     public static final PneumaticsModuleType pneumaticsModuleType = PneumaticsModuleType.REVPH;
 
