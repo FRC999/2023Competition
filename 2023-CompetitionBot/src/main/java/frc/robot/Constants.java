@@ -360,7 +360,7 @@ public final class Constants {
       public static final boolean armMotorInverted = false;
       public static final boolean armSensorPhase = true;
 
-      public static final double armMaxLimit = 12323; // 11578
+      public static final double armMaxLimit = 15277; // 11578 12323
       public static final double armHoldingPower = -0.11; // power to hold the arm without goinf forward
 
       public static final double armTicksPerMeter = armMaxLimit / 0.65 ; // Encoder ticks per 1 meter of extension
@@ -369,7 +369,7 @@ public final class Constants {
       
       public static final double armSlopAngleDegrees = 3 ; // Our arm slops down, so this is a degree down from horisontal
 
-      public static final double maximumExtension = 1.10 + 0.15; // meters. from the center of the turret
+      public static final double maximumExtension = 1.256 + 0.15; // meters. from the center of the turret
 
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop
@@ -426,8 +426,9 @@ public final class Constants {
     public static final Pose2d dummyPose = new Pose2d(-1,-1, new Rotation2d(Units.degreesToRadians(-1)));
 
     // Camera poses relative to the Turret/Arm
-    public static final Pose2d leftCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
-    public static final Pose2d rightCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
+    //public static final Pose2d leftCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-21.2)));
+    public static final Pose2d leftCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(-24.5)));
+    public static final Pose2d rightCameraPose = new Pose2d(0.07,0.135,new Rotation2d(Units.degreesToRadians(21.9)));
     
     //public static final double BLUE_X_ERROR = -0.45604;
     public static final double BLUE_X_ERROR = 0;
@@ -454,9 +455,9 @@ public final class Constants {
     public static final double yTargetOffset = tags[8][1] - 0.512;
 
     public static final double xTargetOffset[] = {
-      1.1255-tags[8][0], // front/bottom offset
-      0.723-tags[8][0], // middle offset
-      0.258-tags[8][0] // top offset
+      1.1955-tags[8][0], // front/bottom offset
+      0.773-tags[8][0], // middle offset
+      0.358-tags[8][0] // top offset
     };
 
     public static final int POSE_QUEUE_MAXSIZE = 10;

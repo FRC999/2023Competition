@@ -25,6 +25,8 @@ public class NavigationSubsystem extends SubsystemBase {
   private PoseManager limelightPoseManagerLeft = new PoseManager();
   private PoseManager limelightPoseManagerRight = new PoseManager();
 
+  private boolean isLeftLLUsed = false;
+
   // false - left camera; true - right camera
   private final Rotation2d turretToCameraAngleLeft = 
     new Rotation2d(NavigationConstants.leftCameraPose.getX(), NavigationConstants.leftCameraPose.getY());
@@ -78,8 +80,10 @@ public class NavigationSubsystem extends SubsystemBase {
   public Pose2d getCurrentPoseOfLL() {
     if (! isCollectingPoses) {
       if (limelightPoseManagerLeft.numberOfPoses()>=limelightPoseManagerRight.numberOfPoses()) {
+        isLeftLLUsed = true;
         return limelightPoseManagerLeft.getPose();
       } else {
+        isLeftLLUsed = false;
         return limelightPoseManagerRight.getPose();
       }
     }
@@ -89,6 +93,7 @@ public class NavigationSubsystem extends SubsystemBase {
   // In case we only want the pose calculated for left camera
   public Pose2d getCurrentPoseOfLLLeft() {
     if (! isCollectingPoses) {
+      isLeftLLUsed = true;
         return limelightPoseManagerLeft.getPose();
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
@@ -96,6 +101,7 @@ public class NavigationSubsystem extends SubsystemBase {
   // In case we only want the pose calculated for right camera
   public Pose2d getCurrentPoseOfLLRight() {
     if (! isCollectingPoses) {
+      isLeftLLUsed = false;
         return limelightPoseManagerRight.getPose();
     }
     return NavigationConstants.dummyPose; // return dummy pose if collecting poses right now
@@ -123,12 +129,18 @@ public class NavigationSubsystem extends SubsystemBase {
    */
   public Pose2d calculatePoseOfTurret(Pose2d locationOfCamera, Pose2d zeroPoseofCamera){
 
+    // test remove
+    System.out.println("C-L:"+locationOfCamera.toString());
+    System.out.println("Z-C:"+zeroPoseofCamera.toString());
+
     double turretDistFromCenterToCameraLens = 
        Math.sqrt(Math.pow(zeroPoseofCamera.getX(), 2) + Math.pow(zeroPoseofCamera.getY(), 2));
 
     // Angle from 0-direction of the turret to the camera
     double turretAngle = recalculateAngle(zeroPoseofCamera.getRotation().getDegrees(), 
       locationOfCamera.getRotation().getDegrees());
+
+    System.out.println("TurretAngle1:"+turretAngle);
 
     double turretLookingAtCameraAngle = turretAngle + new Rotation2d(zeroPoseofCamera.getX(), zeroPoseofCamera.getY()).getDegrees();
 
@@ -186,6 +198,10 @@ public class NavigationSubsystem extends SubsystemBase {
     // 0-element - rotation angle, 1-element - length
     return ( GPMHelper.getTurretRotationAndArmExtension(llPose,targetPoses[position]) )[movement];
 
+  }
+
+  public boolean getIsLeftLLUsed () {
+    return isLeftLLUsed;
   }
 
   public void printTurretArmToTarget(int position) {
