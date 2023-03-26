@@ -20,7 +20,7 @@ public class GPMFetalPosition extends SequentialCommandGroup {
       new FlipperUp(),
       new ArmToLength(Arm.armLengthWhenFullyFolded),
       new TurretTurnToFront(),
-      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.Cruising)
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCone)
     );
 
 

@@ -23,6 +23,7 @@ public class GPMAutoPlaceElementLow extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new PrintCommand("Auto-place element LOW"),
       new AcquireRobotPositionUsingLL(),
       new ConditionalCommand(
         new PrintCommand("Arm extension checked"),
@@ -36,7 +37,7 @@ public class GPMAutoPlaceElementLow extends SequentialCommandGroup {
       ),
       new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) ),
       new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,0) ),
-      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCube),
+      //new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCube),
       new WaitCommand(0.4),
       new FlipperDown(),
       new ClawOpen(),

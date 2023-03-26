@@ -30,25 +30,26 @@ public class GPMAutoPlaceElementMiddleLow extends SequentialCommandGroup {
       new ConditionalCommand(
         new PrintCommand("Arm extension checked"),
         new InstantCommand(RobotContainer.elevatorSubsystem::clearMiddleCommandStarted), 
-        () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) < Arm.maximumExtension
+        () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(1,1) < Arm.maximumExtension
       ),
       new ConditionalCommand(
-        new PrintCommand(""),
+        new PrintCommand("Auto-place Elemeng Middle - Low"),
         new InstantCommand(this::cancel), 
-        () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) < Arm.maximumExtension
+        () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(1,1) < Arm.maximumExtension
       ),
 
       // The end() in the T E A commands was modified to clear that flag if the command is interrupted
       // The reason - if a command is interrupted, the sequence is interrupted as well
       new InstantCommand(RobotContainer.elevatorSubsystem::setMiddleCommandStarted),
       
-      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.MidCone),
-      new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) ),
-      new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,0) ),
+      new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone),
+      new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(1,1) ),
+      new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(1,0) ),
       new WaitCommand(0.4),
       new FlipperDown(),
+      new WaitCommand(1.0),
       new ClawOpen(),
-      new WaitCommand(0.2),
+      new WaitCommand(0.5),
       new FlipperUp()
     );
   }

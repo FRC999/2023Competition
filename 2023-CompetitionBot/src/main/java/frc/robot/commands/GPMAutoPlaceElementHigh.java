@@ -23,20 +23,25 @@ public class GPMAutoPlaceElementHigh extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new PrintCommand("Auto-place element HIGH"),
       new AcquireRobotPositionUsingLL(),
-      new ConditionalCommand(
-        new PrintCommand("Arm extension checked"),
-        new InstantCommand(RobotContainer.elevatorSubsystem::clearMiddleCommandStarted), 
-        () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) < Arm.maximumExtension
-      ),
-      new ConditionalCommand(
-        new PrintCommand(""),
-        new InstantCommand(this::cancel), 
-        () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) < Arm.maximumExtension
-      ),
+      //new ConditionalCommand(
+      //  new PrintCommand("Arm extension checked"),
+      //  new InstantCommand(RobotContainer.elevatorSubsystem::clearMiddleCommandStarted), 
+      //  () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(3,1) < Arm.maximumExtension
+      //),
+      //new ConditionalCommand(
+      //  new PrintCommand(""),
+      //  new InstantCommand(this::cancel), 
+      //  () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(3,1) < Arm.maximumExtension
+      //),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.HighCone),
-      new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,0) ),
-      new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) ),
+      new PrintCommand("Elevator done"),
+      new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(3,0) ),
+      //new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(3,1) ),
+      new PrintCommand("Turret done"),
+      new ArmToLength( () -> Arm.maximumExtension ),
+      new PrintCommand("Arm done"),
       new WaitCommand(0.4),
       new FlipperDown(),
       new ClawOpen(),

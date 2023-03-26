@@ -336,10 +336,10 @@ public final class Constants {
 
       //will set them in encoder ticks later on
       public static enum gamepieceHeights{ // meters off the ground for the piece placement
-        LowCone(0.25),  //TODO: Set manualy to the encoder value for hight
+        LowCone(0.3),  //TODO: Set manualy to the encoder value for hight
         MidCone(0.92),
         HighCone(1.16),
-        LowCube(0.2),
+        LowCube(0.3),
         MidCube(0.7),
         HighCube(1.0),
         Cruising(0.25), // Cruising height - when we transport the gamepiece
@@ -456,7 +456,7 @@ public final class Constants {
 
     public static final double xTargetOffset[] = {
       1.1955-tags[8][0], // front/bottom offset
-      0.773-tags[8][0], // middle offset
+      0.903-tags[8][0], // middle offset
       0.358-tags[8][0] // top offset
     };
 
