@@ -460,6 +460,8 @@ public final class Constants {
       0.358-tags[8][0] // top offset
     };
 
+    public static final double autoMidConeLength = 0.985;
+
     public static final int POSE_QUEUE_MAXSIZE = 10;
     public static final double MEAN_DEV = 0.2;
 
