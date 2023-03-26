@@ -342,8 +342,10 @@ public final class Constants {
         LowCube(0.3),
         MidCube(0.7),
         HighCube(1.0),
-        Cruising(0.25), // Cruising height - when we transport the gamepiece
+        Cruising(0.27), // Cruising height - when we transport the gamepiece
+        AutoCone(1.147),
         GrabFromShelf(0.9);
+
         private double armHeightForGamepiecePlacement;
         gamepieceHeights(double height) {
           this.armHeightForGamepiecePlacement = height;
@@ -460,7 +462,7 @@ public final class Constants {
       0.358-tags[8][0] // top offset
     };
 
-    public static final double autoMidConeLength = 0.985;
+    public static final double autoMidConeLengthBackwards = 1.084;
 
     public static final int POSE_QUEUE_MAXSIZE = 10;
     public static final double MEAN_DEV = 0.2;

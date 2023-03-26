@@ -64,6 +64,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+
+    RobotContainer.bigFootSubsystem.footUp();
   }
 
   /** This function is called periodically during autonomous. */
@@ -79,6 +81,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    RobotContainer.bigFootSubsystem.footUp();
   }
 
   /** This function is called periodically during operator control. */

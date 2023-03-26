@@ -21,6 +21,8 @@ import frc.robot.commands.DriveElevatorManuallyCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveTurretManuallyCommand;
 import frc.robot.commands.ElevatorToPredefinedHeight;
+import frc.robot.commands.GPMAutoFarConeStraightFront;
+import frc.robot.commands.GPMAutoMidConeStraightBack;
 import frc.robot.commands.GPMAutoPlaceElementHigh;
 import frc.robot.commands.GPMAutoPlaceElementHighPrintOnly;
 import frc.robot.commands.GPMAutoPlaceElementLow;
@@ -29,6 +31,7 @@ import frc.robot.commands.GPMAutoPlaceElementMiddleHigh;
 import frc.robot.commands.GPMAutoPlaceElementMiddleLow;
 import frc.robot.commands.GPMAutoPlaceElementMiddlePrintOnly;
 import frc.robot.commands.GPMAutoPlacementStop;
+import frc.robot.commands.GPMFetalPosition;
 import frc.robot.commands.GPMManualRecalibration;
 import frc.robot.commands.GPMStop;
 import frc.robot.commands.LeftSetVoltageDrive;
@@ -331,6 +334,16 @@ public class RobotContainer {
             .onFalse(new GPMAutoPlacementStop());
     new JoystickButton(bbr, 5)
             .onTrue(new GPMAutoPlaceElementLow())
+            .onFalse(new GPMAutoPlacementStop());
+
+    new JoystickButton(bbl, 8)
+            .onTrue(new GPMFetalPosition())
+            .onFalse(new GPMAutoPlacementStop());
+    new JoystickButton(bbl, 7)
+            .onTrue(new GPMAutoMidConeStraightBack())
+            .onFalse(new GPMAutoPlacementStop());
+    new JoystickButton(bbr, 1)
+            .onTrue(new GPMAutoFarConeStraightFront())
             .onFalse(new GPMAutoPlacementStop());
 
     // Navigation testing
