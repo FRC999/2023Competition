@@ -15,7 +15,15 @@ import frc.robot.RobotContainer;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonomousMiddleRowRed extends SequentialCommandGroup {
-  /** Creates a new AutonomousMiddleRowRed. */
+  /** Creates a new AutonomousMiddleRowRed.
+   * Start in the Middle Lane with the back to the target.
+   * Get off the pin.
+   * Open Claw to drop the gamepiece.
+   * Elevator down.
+   * Run over charger.
+   * Turn Turret to front.
+   * Balance backwards.
+   */
   public AutonomousMiddleRowRed() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
