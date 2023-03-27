@@ -164,11 +164,13 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
-    autoChooser.addOption("RED Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRowRed());
+    autoChooser.setDefaultOption("RED Midlane - BackToTarget - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRowRed());
+    autoChooser.addOption("RED Midlane - BackToTarget - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRowRed());
     autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
     autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
-    autoChooser.addOption("Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
+    autoChooser.addOption("Midlane - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
+    autoChooser.addOption("OuterLane - FrontToTarget - Place on TopRow, move out", new AutonomousOuterLaneTopRowFrontToTarget());
+    
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
   }

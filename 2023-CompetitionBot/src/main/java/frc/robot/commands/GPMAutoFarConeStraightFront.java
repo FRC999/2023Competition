@@ -15,12 +15,16 @@ import frc.robot.Constants.GamepieceManipulator.Elevator;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoFarConeStraightFront extends SequentialCommandGroup {
-  /** Creates a new GPMAutoFarConeStraightFront. */
+  /** Creates a new GPMAutoFarConeStraightFront.
+   * Start with front facing the target, turret rotated to the back (starting position)
+   * Rotate the turret to 0 and place the element to the top row (cone or cube)
+   * Retract the arm and lower the elevator
+   */
   public GPMAutoFarConeStraightFront() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PrintCommand("Auto-cone 2nd row"),
+      new PrintCommand("Auto-cone Top row"),
       new TurretTurnToFront(),
       new PrintCommand("Turret Done"),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.AutoCone),
