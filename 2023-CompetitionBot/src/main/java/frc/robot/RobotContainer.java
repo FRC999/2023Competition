@@ -13,6 +13,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
 import frc.robot.commands.AutonomousMiddleRowRed;
+import frc.robot.commands.AutonomousOuterLaneTopRowFrontToTarget;
 import frc.robot.commands.AutonomousTopRow;
 import frc.robot.commands.ClearLimitOverrides;
 import frc.robot.commands.CommandInterruptor;
