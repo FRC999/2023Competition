@@ -31,11 +31,11 @@ public class GPMAutoFarConeStraightFront extends SequentialCommandGroup {
       new PrintCommand("Elevator Done"),
       new ArmToLength( () -> Arm.maximumExtension),
       new PrintCommand("Arm done"),
-      new WaitCommand(0.4),
+      new WaitCommand(0.2),
       new FlipperDown(),
-      new WaitCommand(1.0),
-      new ClawOpen(),
       new WaitCommand(0.5),
+      new ClawOpen(),
+      //new WaitCommand(0.3),
       new FlipperUp(),
       new GPMSemiFetalPosition()
     );

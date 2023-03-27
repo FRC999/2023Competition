@@ -51,8 +51,8 @@ public class ArmSubsystem extends SubsystemBase {
         10,
         Arm.arm_configureTimeoutMs);
 
-    armMotorController.configPeakOutputForward(+0.5, Arm.arm_configureTimeoutMs);
-    armMotorController.configPeakOutputReverse(-0.5, Arm.arm_configureTimeoutMs);
+    armMotorController.configPeakOutputForward(+0.7, Arm.arm_configureTimeoutMs);
+    armMotorController.configPeakOutputReverse(-0.7, Arm.arm_configureTimeoutMs);
     armMotorController.configNominalOutputForward(0, Arm.arm_configureTimeoutMs);
     armMotorController.configNominalOutputReverse(0, Arm.arm_configureTimeoutMs);
 
