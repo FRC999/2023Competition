@@ -38,8 +38,9 @@ public class GPMAutoPlaceElementLow extends SequentialCommandGroup {
       new ArmToLength( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,1) ),
       new TurretToAngle( () -> RobotContainer.navigationSubsystem.getTurretArmToTarget(0,0) ),
       //new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.LowCube),
-      new WaitCommand(0.4),
+      new WaitCommand(0.3),
       new FlipperDown(),
+      new WaitCommand(0.3),
       new ClawOpen(),
       new WaitCommand(0.2),
       new FlipperUp()
