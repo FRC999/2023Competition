@@ -14,7 +14,11 @@ import frc.robot.Constants.GamepieceManipulator.Elevator;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoMidConeStraightBack extends SequentialCommandGroup {
-  /** Creates a new GPMAutoMidConeStraight. */
+  /** Creates a new GPMAutoMidConeStraight.
+   * Start with back to the target.
+   * Place element (cone or cube) in the second position.
+   * Retract to semi-fetal position.
+   */
   public GPMAutoMidConeStraightBack() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -26,9 +30,9 @@ public class GPMAutoMidConeStraightBack extends SequentialCommandGroup {
       new PrintCommand("Elevator Done"),
       new ArmToLength( () -> NavigationConstants.autoMidConeLengthBackwards),
       new PrintCommand("Arm done"),
-      new WaitCommand(0.4),
+      new WaitCommand(0.3),
       new FlipperDown(),
-      new WaitCommand(1.0),
+      new WaitCommand(0.5),
       new ClawOpen(),
       new WaitCommand(0.5),
       new FlipperUp(),
