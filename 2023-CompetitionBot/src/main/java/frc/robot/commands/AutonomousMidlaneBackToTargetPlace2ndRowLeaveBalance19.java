@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance extends SequentialCommandGroup {
+public class AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19 extends SequentialCommandGroup {
   /** Creates a new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance.
    * Start with Back to target.
    * Place Element in 2nd row.
    * Leave home zone
    * Balance by returning
    */
-  public AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance() {
+  public AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

@@ -13,6 +13,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
 import frc.robot.commands.AutonomousMiddleRowRed;
+import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19;
 import frc.robot.commands.AutonomousOuterLaneTopRowFrontToTarget;
 import frc.robot.commands.AutonomousTopRow;
 import frc.robot.commands.ClearLimitOverrides;
@@ -171,7 +172,8 @@ public class RobotContainer {
     autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
     autoChooser.addOption("Midlane - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
     autoChooser.addOption("OuterLane - FrontToTarget - Place on TopRow, move out", new AutonomousOuterLaneTopRowFrontToTarget());
-    
+    autoChooser.addOption("Midlane - BackToTarget 19 points", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
+
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
   }
