@@ -344,6 +344,7 @@ public final class Constants {
         HighCube(1.0),
         Cruising(0.27), // Cruising height - when we transport the gamepiece
         AutoCone(1.147),
+        AutoCubeMid(0.904269),
         GrabFromShelf(0.9);
 
         private double armHeightForGamepiecePlacement;
@@ -462,7 +463,7 @@ public final class Constants {
       0.358-tags[8][0] // top offset
     };
 
-    public static final double autoMidConeLengthBackwards = 1.084;
+    public static final double autoMidConeLengthBackwards = 1.034;
 
     public static final int POSE_QUEUE_MAXSIZE = 10;
     public static final double MEAN_DEV = 0.2;
