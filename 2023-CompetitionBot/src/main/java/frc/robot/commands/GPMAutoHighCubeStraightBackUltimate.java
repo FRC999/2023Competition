@@ -19,7 +19,7 @@ public class GPMAutoHighCubeStraightBackUltimate extends SequentialCommandGroup 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PrintCommand("Auto-cone 2nd row"),
+      new PrintCommand("Auto-cube 3rd row"),
       // new TurretTurnToFront(),
       // new PrintCommand("Turret Done"),
       new GPMAutoParallelHighElevatorArmCube(),

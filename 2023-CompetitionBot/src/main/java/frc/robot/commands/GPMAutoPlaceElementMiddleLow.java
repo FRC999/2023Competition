@@ -19,7 +19,7 @@ import frc.robot.subsystems.NavigationSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoPlaceElementMiddleLow extends SequentialCommandGroup {
   /** Creates a new GPMAutoPlaceElementMiddleShort.
-   * Placing element in a middle low when the elevator is currently lower than needed
+   * Auto-Placing element in a middle low when the elevator is currently lower than needed
    */
   public GPMAutoPlaceElementMiddleLow() {
     // Add your commands in the addCommands() call, e.g.
@@ -50,7 +50,8 @@ public class GPMAutoPlaceElementMiddleLow extends SequentialCommandGroup {
       new WaitCommand(1.0),
       new ClawOpen(),
       new WaitCommand(0.5),
-      new FlipperUp()
+      new FlipperUp(),
+      new GPMSemiFetalPosition()
     );
   }
 }

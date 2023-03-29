@@ -13,22 +13,27 @@ import frc.robot.Constants.GamepieceManipulator.Elevator;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class GPMAutoMidCubeStraightBackV2 extends SequentialCommandGroup {
-  /** Creates a new GPMAutoMidCubeStraightBackV2. */
-  public GPMAutoMidCubeStraightBackV2() {
+public class GPMAutoMidConeStraightBackV2Parallel extends SequentialCommandGroup {
+  /** Creates a new GPMAutoMidConeStraightBackV2.
+   * Start with back to the target.
+   * Place CONE in the second position (mid-row) using Arm/Elevator Parallel routine
+   * Retract to semi-fetal position.
+   */
+  public GPMAutoMidConeStraightBackV2Parallel() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new PrintCommand("Auto-cone 2nd row"),
-        // new TurretTurnToFront(),
-        // new PrintCommand("Turret Done"),
-        new GPMAutoParallelMidElevatorArmCube(),
-        new WaitCommand(0.3),
-        new FlipperDown(),
-        new WaitCommand(0.5),
-        new ClawOpen(),
-        new WaitCommand(0.3),
-        new FlipperUp(),
-        new GPMSemiFetalPosition());
+      new PrintCommand("Auto-cone 2nd row"),
+      // new TurretTurnToFront(),
+      // new PrintCommand("Turret Done"),
+      new GPMAutoParallelMidElevatorArm(),
+      new WaitCommand(0.3),
+      new FlipperDown(),
+      new WaitCommand(0.5),
+      new ClawOpen(),
+      new WaitCommand(0.3),
+      new FlipperUp(),
+      new GPMSemiFetalPosition()
+    );
   }
 }

@@ -14,6 +14,7 @@ import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
 import frc.robot.commands.AutonomousMiddleRowRed;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19;
+import frc.robot.commands.AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimb18;
 import frc.robot.commands.AutonomousOuterLaneTopRowFrontToTarget;
 import frc.robot.commands.AutonomousTopRow;
 import frc.robot.commands.ClearLimitOverrides;
@@ -26,8 +27,8 @@ import frc.robot.commands.ElevatorToPredefinedHeight;
 import frc.robot.commands.GPMAutoFarConeStraightFront;
 import frc.robot.commands.GPMAutoHighCubeStraightBackUltimate;
 import frc.robot.commands.GPMAutoMidConeStraightBack;
-import frc.robot.commands.GPMAutoMidConeStraightBackV2;
-import frc.robot.commands.GPMAutoMidCubeStraightBackV2;
+import frc.robot.commands.GPMAutoMidConeStraightBackV2Parallel;
+import frc.robot.commands.GPMAutoMidCubeStraightBackV2Parallel;
 import frc.robot.commands.GPMAutoPlaceElementHigh;
 import frc.robot.commands.GPMAutoPlaceElementHighPrintOnly;
 import frc.robot.commands.GPMAutoPlaceElementLow;
@@ -169,13 +170,14 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("RED Midlane - BackToTarget - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRowRed());
+    autoChooser.setDefaultOption("Midlane - CUBE MidRow - BackToTarget 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
     autoChooser.addOption("RED Midlane - BackToTarget - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRowRed());
-    autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
-    autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
-    autoChooser.addOption("Midlane - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
-    autoChooser.addOption("OuterLane - FrontToTarget - Place on TopRow, move out", new AutonomousOuterLaneTopRowFrontToTarget());
-    autoChooser.addOption("Midlane - BackToTarget 19 points", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
+    // autoChooser.addOption("Third Row Gamepiece When Back To Target", new AutonomousBottomRow());
+    // autoChooser.addOption("Top-Row Row Gamepiece When Back To Target", new AutonomousTopRow());
+    // autoChooser.addOption("Midlane - Middle Row Gamepiece When Back To Target and balance", new AutonomousMiddleRow());
+    autoChooser.addOption("Midlane - CUBE MidRow - BackToTarget 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
+    autoChooser.addOption("Midlane no leaving - CUBE HighRow - FrontToTarget 18pt", new AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimb18());
+    autoChooser.addOption("OuterLane - FrontToTarget - Place on TopRow, move out 9pt", new AutonomousOuterLaneTopRowFrontToTarget());
 
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
@@ -354,10 +356,10 @@ public class RobotContainer {
             .onTrue(new GPMAutoFarConeStraightFront())
             .onFalse(new GPMAutoPlacementStop());
     new JoystickButton(bbr, 9)
-            .onTrue(new GPMAutoMidConeStraightBackV2())
+            .onTrue(new GPMAutoMidConeStraightBackV2Parallel())
             .onFalse(new GPMAutoPlacementStop());
     new JoystickButton(bbr, 10)
-            .onTrue(new GPMAutoMidCubeStraightBackV2())
+            .onTrue(new GPMAutoMidCubeStraightBackV2Parallel())
             .onFalse(new GPMAutoPlacementStop());
    new JoystickButton(bbr, 6)
             .onTrue(new GPMAutoHighCubeStraightBackUltimate())

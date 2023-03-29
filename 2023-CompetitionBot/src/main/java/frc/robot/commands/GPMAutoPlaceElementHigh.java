@@ -18,7 +18,9 @@ import frc.robot.subsystems.NavigationSubsystem;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoPlaceElementHigh extends SequentialCommandGroup {
-  /** Creates a new GPMAutoPlaceElementHigh. */
+  /** Creates a new GPMAutoPlaceElementHigh.
+   *  Auto-Placing element in a high low
+   */
   public GPMAutoPlaceElementHigh() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -46,7 +48,8 @@ public class GPMAutoPlaceElementHigh extends SequentialCommandGroup {
       new FlipperDown(),
       new ClawOpen(),
       new WaitCommand(0.2),
-      new FlipperUp()
+      new FlipperUp(),
+      new GPMSemiFetalPosition()
     );
   }
 }

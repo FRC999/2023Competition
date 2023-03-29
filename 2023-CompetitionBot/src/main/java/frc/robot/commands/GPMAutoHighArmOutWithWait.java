@@ -13,7 +13,9 @@ import frc.robot.Constants.GamepieceManipulator.Arm;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoHighArmOutWithWait extends SequentialCommandGroup {
-  /** Creates a new GPMAutoMidArmOutWithWait. */
+  /** Creates a new GPMAutoMidArmOutWithWait.
+   * Part of the parallel routine - wait for elevator before extending arm
+   */
   public GPMAutoHighArmOutWithWait() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

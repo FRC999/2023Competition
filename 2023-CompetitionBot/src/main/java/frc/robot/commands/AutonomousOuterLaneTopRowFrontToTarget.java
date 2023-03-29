@@ -22,7 +22,7 @@ public class AutonomousOuterLaneTopRowFrontToTarget extends SequentialCommandGro
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new PrintCommand("AutonomousOuterLaneTopRowFrontToTarget"),
-      new PrintCommand("Placing Game element..."),
+      new PrintCommand("Placing Game element on the top row ..."),
       new GPMAutoFarConeStraightFront(),
       new WaitCommand(0.2),
       new PrintCommand("Moving outside the home zone..."),

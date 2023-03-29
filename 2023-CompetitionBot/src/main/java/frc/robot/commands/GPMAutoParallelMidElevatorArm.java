@@ -12,7 +12,11 @@ import frc.robot.Constants.NavigationConstants;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoParallelMidElevatorArm extends ParallelCommandGroup {
-  /** Creates a new GPMAutoParallelMidElevatorArm. */
+  /** Creates a new GPMAutoParallelMidElevatorArm.
+   * Autonomous Parallel part -
+   * Elevator UP to CONE heights,
+   * Arm out after waiting
+   */
   public GPMAutoParallelMidElevatorArm() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

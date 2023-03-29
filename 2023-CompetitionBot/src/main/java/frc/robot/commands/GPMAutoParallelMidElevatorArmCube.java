@@ -14,7 +14,11 @@ import frc.robot.Constants.GamepieceManipulator.Elevator.gamepieceHeights;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GPMAutoParallelMidElevatorArmCube extends ParallelCommandGroup {
-  /** Creates a new GPMAutoParallelMidElevatorArmCube. */
+  /** Creates a new GPMAutoParallelMidElevatorArmCube.
+   * Autonomous Parallel part -
+   * Elevator UP to CONE heights,
+   * Arm out after waiting
+   */
   public GPMAutoParallelMidElevatorArmCube() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

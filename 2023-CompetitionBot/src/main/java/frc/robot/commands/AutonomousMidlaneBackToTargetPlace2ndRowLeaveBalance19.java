@@ -23,12 +23,12 @@ public class AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19 extends Sequ
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new PrintCommand("AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance"),
-      new PrintCommand("Placing Game element..."),
-      new GPMAutoMidConeStraightBack(), // that will take us off the pin as well
+      new PrintCommand("Placing CUBE..."),
+      new GPMAutoMidCubeStraightBackV2Parallel(), // that will take us off the pin as well
       new PrintCommand("Starting Trajectory.."),
       new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger"),
       new PrintCommand("Trajectory Done"),
-      new WaitCommand(0.5), // wait until the charger quiets down
+      new WaitCommand(1.0), // wait until the charger quiets down
       new SelfBalanceWhenFacingTheCharger(0.3, 0, false, false)
     );
   }
