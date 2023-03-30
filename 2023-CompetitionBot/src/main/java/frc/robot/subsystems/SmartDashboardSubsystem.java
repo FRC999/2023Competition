@@ -72,7 +72,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void updateLLTelemetry() {
     SmartDashboard.putBoolean("LL-Left", RobotContainer.networkTablesSubsystem.isLeftTargetAcquired());
-    SmartDashboard.putBoolean("LL-Right", RobotContainer.networkTablesSubsystem.isLeftTargetAcquired());
+    SmartDashboard.putBoolean("LL-Right", RobotContainer.networkTablesSubsystem.isRightTargetAcquired());
   }
 
   public void updateAllDisplays() {
