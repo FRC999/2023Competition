@@ -319,7 +319,6 @@ public class RobotContainer {
       .onTrue(new AutonomousBottomRow())
       .onFalse(new GPMStop());
 
-    // ============== TEST commands
 
     Trigger isElevatorBelowMidCone = new Trigger(
             () -> elevatorSubsystem.middlePlacementTriggerCondition() 
@@ -346,28 +345,34 @@ public class RobotContainer {
             .onTrue(new GPMAutoPlaceElementLow())
             .onFalse(new GPMAutoPlacementStop());
 
-    new JoystickButton(bbl, 8)
-            .onTrue(new GPMFetalPosition())
-            .onFalse(new GPMAutoPlacementStop());
-    new JoystickButton(bbl, 7)
-            .onTrue(new GPMAutoMidConeStraightBack())
-            .onFalse(new GPMAutoPlacementStop());
-    new JoystickButton(bbr, 1)
-            .onTrue(new GPMAutoFarConeStraightFront())
-            .onFalse(new GPMAutoPlacementStop());
-    new JoystickButton(bbr, 9)
-            .onTrue(new GPMAutoMidConeStraightBackV2Parallel())
-            .onFalse(new GPMAutoPlacementStop());
-    new JoystickButton(bbr, 10)
-            .onTrue(new GPMAutoMidCubeStraightBackV2Parallel())
-            .onFalse(new GPMAutoPlacementStop());
-   new JoystickButton(bbr, 6)
-            .onTrue(new GPMAutoHighCubeStraightBackUltimate())
-            .onFalse(new GPMAutoPlacementStop());
+    // ============== TEST commands
+
+    //new JoystickButton(bbl, 8)
+    //        .onTrue(new GPMFetalPosition())
+    //        .onFalse(new GPMAutoPlacementStop());
       
-    new JoystickButton(bbl, 10)
-            .onTrue(new AutonomousOuterLaneTopRowFrontToTarget())
-            .onFalse(new GPMAutoPlacementStop());
+    //new JoystickButton(bbl, 7)
+    //        .onTrue(new GPMAutoMidConeStraightBack())
+    //        .onFalse(new GPMAutoPlacementStop());
+
+    //new JoystickButton(bbr, 1)
+    //        .onTrue(new GPMAutoFarConeStraightFront())
+    //        .onFalse(new GPMAutoPlacementStop());
+    //new JoystickButton(bbr, 9)
+    //        .onTrue(new GPMAutoMidConeStraightBackV2Parallel())
+    //        .onFalse(new GPMAutoPlacementStop());
+    //new JoystickButton(bbr, 10)
+    //        .onTrue(new GPMAutoMidCubeStraightBackV2Parallel())
+    //        .onFalse(new GPMAutoPlacementStop());
+
+   //TODO: MIGHT TEST FURTHER
+   //new JoystickButton(bbr, 6)
+   //         .onTrue(new GPMAutoHighCubeStraightBackUltimate())
+   //         .onFalse(new GPMAutoPlacementStop());
+      
+   //new JoystickButton(bbl, 10)
+   //         .onTrue(new AutonomousOuterLaneTopRowFrontToTarget())
+   //         .onFalse(new GPMAutoPlacementStop());
       
     // Navigation testing
 
@@ -380,8 +385,8 @@ public class RobotContainer {
 
 
     // Test pose acquisition
-    new JoystickButton(bbr, 1)
-          .onTrue(new AcquireRobotPositionUsingLL());
+    //new JoystickButton(bbr, 1)
+    //      .onTrue(new AcquireRobotPositionUsingLL());
 
     // Manual calibratrion reset
     //new JoystickButton(driveStick, 7)
