@@ -70,6 +70,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("IMU TurnRate", RobotContainer.pigeonIMUSubsystem.getTurnRate());
   }
 
+  public void updateLLTelemetry() {
+    SmartDashboard.putBoolean("LL-Left", RobotContainer.networkTablesSubsystem.isLeftTargetAcquired());
+    SmartDashboard.putBoolean("LL-Right", RobotContainer.networkTablesSubsystem.isLeftTargetAcquired());
+  }
+
   public void updateAllDisplays() {
 
     if (RobotContainer.driveSubsystem != null) {
@@ -95,6 +100,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
     if (RobotContainer.armSubsystem != null) {
       updateArmTelemetry();
+    }
+
+    //LL Telemetry
+    if (RobotContainer.networkTablesSubsystem != null) {
+      updateLLTelemetry();
     }
     
   }
