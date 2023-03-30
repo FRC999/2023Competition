@@ -373,6 +373,7 @@ public final class Constants {
       public static final double armSlopAngleDegrees = 3 ; // Our arm slops down, so this is a degree down from horisontal
 
       public static final double maximumExtension = 1.256 + 0.15; // meters. from the center of the turret
+      public static final double armMaxSpeed = 0.65;  //maximum arm speed out of 1.0
 
       // PID
       public static final int PID_Arm_Idx = 0; // 0 - closed loop; 1 - open loop

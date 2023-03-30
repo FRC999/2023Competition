@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.GamepieceManipulator.Arm;
@@ -28,7 +29,7 @@ public class DriveArmManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.armSubsystem.manualDrive(power);
+    RobotContainer.armSubsystem.manualDrive(MathUtil.clamp(power, -Arm.armMaxSpeed, Arm.armMaxSpeed));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -50,7 +51,7 @@ public class DriveArmManuallyCommand extends CommandBase {
         power=0;
       }
     }
-    RobotContainer.armSubsystem.manualDrive(power + Arm.armHoldingPower);
+    RobotContainer.armSubsystem.manualDrive(MathUtil.clamp(power + Arm.armHoldingPower, -Arm.armMaxSpeed, Arm.armMaxSpeed));
   }
 
   // Called once the command ends or is interrupted.
