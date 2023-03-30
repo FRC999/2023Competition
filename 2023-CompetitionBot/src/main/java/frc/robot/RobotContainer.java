@@ -365,7 +365,10 @@ public class RobotContainer {
             .onTrue(new GPMAutoHighCubeStraightBackUltimate())
             .onFalse(new GPMAutoPlacementStop());
       
-
+    new JoystickButton(bbl, 10)
+            .onTrue(new AutonomousOuterLaneTopRowFrontToTarget())
+            .onFalse(new GPMAutoPlacementStop());
+      
     // Navigation testing
 
     new JoystickButton(bbl, 4)
