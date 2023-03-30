@@ -32,10 +32,14 @@ import frc.robot.commands.GPMAutoMidCubeStraightBackV2Parallel;
 import frc.robot.commands.GPMAutoPlaceElementHigh;
 import frc.robot.commands.GPMAutoPlaceElementHighPrintOnly;
 import frc.robot.commands.GPMAutoPlaceElementLow;
+import frc.robot.commands.GPMAutoPlaceElementLowNoFlip;
 import frc.robot.commands.GPMAutoPlaceElementLowPrintOnly;
 import frc.robot.commands.GPMAutoPlaceElementMiddleHigh;
+import frc.robot.commands.GPMAutoPlaceElementMiddleHighNoFlip;
 import frc.robot.commands.GPMAutoPlaceElementMiddleLow;
+import frc.robot.commands.GPMAutoPlaceElementMiddleLowNoFlip;
 import frc.robot.commands.GPMAutoPlaceElementMiddlePrintOnly;
+import frc.robot.commands.GPMAutoPlaceelementHighNoFlip;
 import frc.robot.commands.GPMAutoPlacementStop;
 import frc.robot.commands.GPMFetalPosition;
 import frc.robot.commands.GPMManualRecalibration;
@@ -344,6 +348,24 @@ public class RobotContainer {
     new JoystickButton(bbr, 5)
             .onTrue(new GPMAutoPlaceElementLow())
             .onFalse(new GPMAutoPlacementStop());
+
+    new JoystickButton(bbr, 8)
+            .and(isElevatorBelowMidCone)
+                  .onTrue(new GPMAutoPlaceElementMiddleLowNoFlip() )
+                  .onFalse(new GPMAutoPlacementStop());
+
+    new JoystickButton(bbr, 8)
+            .and(isElevatorAboveMidCone)
+                  .onTrue(new GPMAutoPlaceElementMiddleHighNoFlip() )
+                  .onFalse(new GPMAutoPlacementStop());
+      
+    new JoystickButton(bbr, 9)
+                  .onTrue(new GPMAutoPlaceelementHighNoFlip())
+                  .onFalse(new GPMAutoPlacementStop());
+                  
+    new JoystickButton(bbr, 10)
+                  .onTrue(new GPMAutoPlaceElementLowNoFlip())
+                  .onFalse(new GPMAutoPlacementStop());
 
     // ============== TEST commands
 
