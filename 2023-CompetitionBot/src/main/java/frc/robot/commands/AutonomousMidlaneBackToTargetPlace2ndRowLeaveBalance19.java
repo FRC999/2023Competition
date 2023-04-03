@@ -26,7 +26,7 @@ public class AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19 extends Sequ
       new PrintCommand("Placing CUBE..."),
       new GPMAutoMidCubeStraightBackV2Parallel(), // that will take us off the pin as well
       new PrintCommand("Starting Trajectory.."),
-      new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger"),
+      new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger", 1.6, 1.3, false),
       new PrintCommand("Trajectory Done"),
       new WaitCommand(1.0), // wait until the charger quiets down
       new SelfBalanceWhenFacingTheCharger(0.3, 0, false, false)

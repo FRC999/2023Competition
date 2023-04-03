@@ -13,6 +13,7 @@ import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
 import frc.robot.commands.AutonomousMiddleRow;
 import frc.robot.commands.AutonomousMiddleRowRed;
+import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowBalanceFlontClimb16;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19;
 import frc.robot.commands.AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimb18;
 import frc.robot.commands.AutonomousOuterLaneTopRowFrontToTarget;
@@ -182,6 +183,8 @@ public class RobotContainer {
     autoChooser.addOption("Midlane - CUBE MidRow - BackToTarget 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
     autoChooser.addOption("Midlane no leaving - CUBE HighRow - FrontToTarget 18pt", new AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimb18());
     autoChooser.addOption("OuterLane - FrontToTarget - Place on TopRow, move out 9pt", new AutonomousOuterLaneTopRowFrontToTarget());
+    autoChooser.addOption("Midlane - BackToTarget - Cube Midrow - Balance - 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
+    
 
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
@@ -362,7 +365,7 @@ public class RobotContainer {
     new JoystickButton(bbr, 9)
                   .onTrue(new GPMAutoPlaceelementHighNoFlip())
                   .onFalse(new GPMAutoPlacementStop());
-                  
+
     new JoystickButton(bbr, 10)
                   .onTrue(new GPMAutoPlaceElementLowNoFlip())
                   .onFalse(new GPMAutoPlacementStop());
