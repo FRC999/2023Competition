@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.GamepieceManipulator.Arm;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
+import frc.robot.Constants.GamepieceManipulator.Elevator.gamepieceHeights;
 
 public class ElevatorSubsystem extends SubsystemBase {
   /** Creates a new ElevatorSubsystem. */
@@ -142,6 +143,25 @@ public class ElevatorSubsystem extends SubsystemBase {
   elevatorMotorController.setSelectedSensorPosition(relativePosition);
   System.out.println("*** Set relative encoder for elevator motor to " + relativePosition);
  }
+ 
+ public void calibrateRelativeEncoderFor21PointAutonomous(){
+  double currentAbsEncoder = getAbsEncoder();
+
+  if(Elevator.elevatorOnPinFor21Autonomous < currentAbsEncoder && currentAbsEncoder < Elevator.elevatorMaxLimit){
+
+    System.out.println("****==> Elevator is higher for calibration");
+
+    elevatorMotorController.setSelectedSensorPosition(
+      Elevator.elevatorMaxLimit - (currentAbsEncoder - Elevator.elevatorOnPinFor21Autonomous)
+    );
+  } else {
+    calibrateRelativeEncoder();
+  }
+}
+  
+  
+  
+  
 
  /**
   * Move the elevator to position indicated by the relative encoder

@@ -305,6 +305,7 @@ public final class Constants {
       public static final double elevatorMetersPerTick = 1.0 / elevatorTicksPerMeter ; // Encoder ticks per 1 meter of extension
 
       public static final double elevatorOffTheGroundAtZero = 0.24; //meters
+      public static final double elevatorOnPinFor21Autonomous = 0.0; //encoder ticks
 
       // PID
       public static int PID_Elevator_Idx = 0; // 0 - closed loop; 1 - open loop
