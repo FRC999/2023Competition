@@ -305,7 +305,9 @@ public final class Constants {
       public static final double elevatorMetersPerTick = 1.0 / elevatorTicksPerMeter ; // Encoder ticks per 1 meter of extension
 
       public static final double elevatorOffTheGroundAtZero = 0.24; //meters
-      public static final double elevatorOnPinFor21Autonomous = 0.0; //encoder ticks
+
+      public static final double elevatorOnPinFor21AutonomousAbsolutePosition = 2000; //encoder ticks
+      public static final double elevatorOnPinFor21AutonomousRelativePosition = 14000; //encoder ticks
 
       public static final double elevatorAbsoluteZeroRollover = 4096.0;
       public static final double elevatorAbsolutePositionLimit = 0.0;

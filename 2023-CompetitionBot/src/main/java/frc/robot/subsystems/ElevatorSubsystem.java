@@ -145,42 +145,13 @@ public class ElevatorSubsystem extends SubsystemBase {
  }
  
 
-  
+// Encoder calibration when starting HIGH with the hinge  
 public void calibrateRelativeEncoderFor21PointAutonomous() {
-  double currentAbsEncoder = getAbsEncoder();
-
-  if (Elevator.elevatorOnPinFor21Autonomous < currentAbsEncoder && currentAbsEncoder < Elevator.elevatorMaxLimit) {
-
-    System.out.println("****==> Elevator is higher for calibration");
-
-    double metersAboveZero = (currentAbsEncoder - Elevator.elevatorOnPinFor21Autonomous) * Elevator.elevatorMetersPerTick;
-    int ticksToTarget = (int)(metersAboveZero / Elevator.elevatorMetersPerTick * Elevator.elevatorTicksPerMeter);
-
-    elevatorMotorController.setSelectedSensorPosition(Elevator.elevatorMaxLimit - ticksToTarget);
-
-  } else {
-
-    System.out.println("****<== Elevator is lower for calibration");
-
-    double metersAboveZero;
-    if (Elevator.elevatorMaxLimit <= currentAbsEncoder && currentAbsEncoder <= Elevator.elevatorAbsoluteZeroRollover) {
-      metersAboveZero = (currentAbsEncoder - Elevator.elevatorAbsolutePositionLimit) * Elevator.elevatorMetersPerTick;
-    } else {
-      metersAboveZero = (currentAbsEncoder - Elevator.elevatorAbsoluteZeroRollover + Elevator.elevatorAbsolutePositionLimit) * Elevator.elevatorMetersPerTick;
-    }
-    double metersAboveTarget = metersAboveZero - Elevator.elevatorOnPinFor21Autonomous;
-    double ticksToTarget = metersAboveTarget / Elevator.elevatorMetersPerTick * -1.0 * Elevator.elevatorTicksPerMeter;
-    
-    elevatorMotorController.setSelectedSensorPosition(Elevator.elevatorOnPinFor21Autonomous + ticksToTarget);
-
-  }
+  double relativePosition = (getAbsEncoder() - Elevator.elevatorOnPinFor21AutonomousAbsolutePosition);
+  relativePosition = Elevator.elevatorOnPinFor21AutonomousRelativePosition + ((Elevator.elevatorMotorInverted)?-relativePosition:relativePosition); 
+  elevatorMotorController.setSelectedSensorPosition(relativePosition);
+  System.out.println("*** Set relative encoder for elevator motor ON HINGE to " + relativePosition);
 }
-
-
-
-  
-  
-  
 
  /**
   * Move the elevator to position indicated by the relative encoder
