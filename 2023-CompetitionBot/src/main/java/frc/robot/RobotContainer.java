@@ -16,6 +16,7 @@ import frc.robot.commands.AutonomousMiddleRowRed;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowBalanceFlontClimb16;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19MoreParallel;
+import frc.robot.commands.AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel;
 import frc.robot.commands.AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimb18;
 import frc.robot.commands.AutonomousOuterLaneTopRowFrontToTarget;
 import frc.robot.commands.AutonomousTopRow;
@@ -186,6 +187,7 @@ public class RobotContainer {
     autoChooser.addOption("OuterLane - FrontToTarget - Place on TopRow, move out 9pt", new AutonomousOuterLaneTopRowFrontToTarget());
     autoChooser.addOption("Midlane - BackToTarget - Cube Midrow - Balance - 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
     autoChooser.addOption("MidlaneParallel - BackToTarget - Cube Midrow - Balance - 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19MoreParallel());
+    autoChooser.addOption("Midlane ULTIMATE - BackToTarget - Cube HighRow - Balance - 21pt", new AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel());
     
 
     //port SendableChooser data to the SmartDashboard
