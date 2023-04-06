@@ -16,7 +16,7 @@ public class AutoParallelRetractionAndTrajectoryOverChargerFrontForward extends 
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new GPMSemiFetalPosition(),
-      new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger", 1.6, 1.3, false)
+      new RunTrajectorySequenceRobotAtStartPoint("MiddleRowOverCharger", 1.4, 1.3, false)
     );
   }
 }

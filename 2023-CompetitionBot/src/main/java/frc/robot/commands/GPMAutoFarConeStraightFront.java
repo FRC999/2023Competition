@@ -25,10 +25,10 @@ public class GPMAutoFarConeStraightFront extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new PrintCommand("Auto-cone Top row"),
-      new TurretTurnToFront(),
-      new PrintCommand("Turret Done"),
       new ElevatorToPredefinedHeight(Elevator.gamepieceHeights.AutoCone),
       new PrintCommand("Elevator Done"),
+      new TurretTurnToFront(),
+      new PrintCommand("Turret Done"),
       new ArmToLength( () -> Arm.maximumExtension),
       new PrintCommand("Arm done"),
       new WaitCommand(0.2),

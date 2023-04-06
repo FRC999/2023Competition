@@ -311,7 +311,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void updateTrajectoryOdometry() {
-
+/* 
     System.out.println("UTO L:"+TranslateDistanceIntoMeters(getLeftEncoder())+
             " R:"+TranslateDistanceIntoMeters(getRightEncoder())+
             " A:"+RobotContainer.pigeonIMUSubsystem.getRotation2d().getDegrees()+
@@ -321,7 +321,7 @@ public class DriveSubsystem extends SubsystemBase {
             " Y:"+odometry.getPoseMeters().getY()+
             " FA:"+odometry.getPoseMeters().getRotation().getDegrees()
             );
-
+*/
     Pose2d p1;
     p1 = odometry.update(
       RobotContainer.pigeonIMUSubsystem.getRotation2d(),

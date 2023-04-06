@@ -23,7 +23,8 @@ public class AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreP
       new PrintCommand("Starting Retraction and Trajectory.."),
       new AutoParallelRetractionAndTrajectoryOverChargerFrontForward(),
       new PrintCommand("Trajectory Done"),
-      new WaitCommand(1.0), // wait until the charger quiets down
+      //new DriveStopCommand(),
+      new WaitCommand(0.3), // wait until the charger quiets down
       new SelfBalanceWhenFacingTheCharger(0.3, 0, false, false)
  
     );
