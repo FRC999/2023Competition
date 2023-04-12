@@ -353,6 +353,7 @@ public final class Constants {
         Cruising(0.27), // Cruising height - when we transport the gamepiece
         AutoCone(1.147),
         AutoCubeMid(0.904269),
+        AutoCubeFlick(0.4),
         GrabFromShelf(0.9);
 
         private double armHeightForGamepiecePlacement;
