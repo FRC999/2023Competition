@@ -87,9 +87,9 @@ public class SmartDashboardSubsystem extends SubsystemBase {
       updateIMUTelemetry();
     }
     
-    if (RobotContainer.navigationSubsystem!= null && RobotContainer.networkTablesSubsystem != null) {
-      updateRobotPose();
-    }
+    //if (RobotContainer.navigationSubsystem!= null && RobotContainer.networkTablesSubsystem != null) {
+    //  updateRobotPose();
+    //}
     
     // GPM
     if (RobotContainer.turretSubsystem != null) {
