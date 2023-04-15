@@ -11,30 +11,30 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousLeoBlueTopRow extends SequentialCommandGroup {
-  /** Creates a new AutonomousLeoBlueTopRow. 
+public class AutonomousLeoRedTopRow extends SequentialCommandGroup {
+  /** Creates a new AutonomousLeoRedTopRow. 
    * Faces front target
    * Deposits cube on top row
-   * Runs LeoBlue trajectory
+   * Runs LeoRed trajectory
    * Claw closes on cube
-   * Flicks cube (Rotate turret -90, elevator up, flipper down, and open claw)
+   * Flicks cube (Rotate turret 90, elevator up, flipper down, and open claw)
   */
-  public AutonomousLeoBlueTopRow() {
+  public AutonomousLeoRedTopRow() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PrintCommand("AutonomousLeoBlueTopRow"),
+      new PrintCommand("AutonomousLeoRedTopRow"),
       new PrintCommand("Placing Game element on the top row ..."),
       new GPMAutoFarConeStraightFront(),
       new FlipperDown(),
       //new WaitCommand(0.2),
       new PrintCommand("Moving outside the home zone..."),
-      new RunTrajectorySequenceRobotAtStartPoint("LeoBlue",false),
+      new RunTrajectorySequenceRobotAtStartPoint("LeoRed",false),
       new ClawClose(), /// grab a cube (hopefully)
       new WaitCommand(0.1),
       new FlipperUp(),
       new WaitCommand(0.1),
-      new AutoFlickCubeRightV1()
+      new AutoFlickCubeLeftV1()
     );
   }
 }

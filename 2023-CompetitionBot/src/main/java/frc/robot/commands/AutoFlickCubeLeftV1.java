@@ -4,22 +4,27 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoFlickCubeClawV1 extends SequentialCommandGroup {
-  /** Creates a new AutoFlickCubeClawV1. 
-   * Opens claw after wait time
+public class AutoFlickCubeLeftV1 extends ParallelCommandGroup {
+  /** Creates a new AutoFlickCubeLeftV1. 
+   * rotates 90 degrees to the left for turret to face targets from red side
+   * runs the following in parallel
+   * brings up elevator
+   * brings flupper down
+   * opens claw
   */
-  public AutoFlickCubeClawV1() {
+  public AutoFlickCubeLeftV1() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new WaitCommand(0.3),
-      new ClawOpen()
+      new TurretToAngle(90),
+      new AutoFlickCubeElevatorV1(),
+      new AutoFlickCubeFlipperV1(),
+      new AutoFlickCubeClawV1()
     );
   }
 }

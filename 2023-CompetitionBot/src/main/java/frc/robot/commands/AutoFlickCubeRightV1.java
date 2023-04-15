@@ -10,7 +10,13 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoFlickCubeRightV1 extends ParallelCommandGroup {
-  /** Creates a new AutoFlickCubeV1. */
+  /** Creates a new AutoFlickCubeV1. 
+   * rotates 90 degrees to the right for turret to face targets from blue side
+   * runs the following in parallel
+   * brings up elevator
+   * brings flupper down
+   * opens claw
+  */
   public AutoFlickCubeRightV1() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

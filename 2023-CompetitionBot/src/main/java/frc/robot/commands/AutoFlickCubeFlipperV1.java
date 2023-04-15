@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoFlickCubeFlipperV1 extends SequentialCommandGroup {
-  /** Creates a new AutoFlickCubeFlipperV1. */
+  /** Creates a new AutoFlickCubeFlipperV1. 
+   * brings flipper down after wait time
+  */
   public AutoFlickCubeFlipperV1() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

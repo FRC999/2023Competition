@@ -53,6 +53,7 @@ import frc.robot.commands.RightSetVoltageDrive;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
 import frc.robot.commands.SelfBalanceWhenFacingTheCharger;
 import frc.robot.commands.SetLimitOverrides;
+import frc.robot.commands.TESTAutoCubeFlick;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BigFootSubsystem;
 import frc.robot.subsystems.CANdleSubsystem;
@@ -411,6 +412,8 @@ public class RobotContainer {
             .onTrue(new GPMAutoPlaceElementMiddlePrintOnly());
     new JoystickButton(bbl, 6)
             .onTrue(new GPMAutoPlaceElementHighPrintOnly());
+    new JoystickButton(bbl, 7)
+            .onTrue(new TESTAutoCubeFlick());
 
 
     // Test pose acquisition
@@ -509,6 +512,8 @@ public class RobotContainer {
     new JoystickButton(driveStick, 7)
       .whileTrue(new AutonomousBottomRow())
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));  
+
+
 
 
     // Turret rotation test

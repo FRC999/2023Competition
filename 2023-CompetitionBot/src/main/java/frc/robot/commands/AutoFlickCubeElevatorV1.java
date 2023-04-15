@@ -11,7 +11,9 @@ import frc.robot.Constants.GamepieceManipulator.Elevator;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoFlickCubeElevatorV1 extends SequentialCommandGroup {
-  /** Creates a new AutoFlickCubeElevatorV1. */
+  /** Creates a new AutoFlickCubeElevatorV1.
+   * Moves elevator to predefined height in command
+   */
   public AutoFlickCubeElevatorV1() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
