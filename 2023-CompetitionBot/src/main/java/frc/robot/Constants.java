@@ -429,6 +429,8 @@ public final class Constants {
     public static final int compressorCANID = 15;
 
     public static final PneumaticsModuleType pneumaticsModuleType = PneumaticsModuleType.REVPH;
+    //public static final PneumaticsModuleType pneumaticsModuleType = PneumaticsModuleType.CTREPCM;
+
 
   }
 
