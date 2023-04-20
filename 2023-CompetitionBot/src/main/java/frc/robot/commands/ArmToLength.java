@@ -46,7 +46,7 @@ public class ArmToLength extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("Arm extended to "+armLength);
+    //System.out.println("Arm extended to "+armLength);
 
     // For GPM Auto gamepiece placement
     if (interrupted) {

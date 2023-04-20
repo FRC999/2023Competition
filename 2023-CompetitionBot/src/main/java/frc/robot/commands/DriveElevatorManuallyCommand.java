@@ -38,7 +38,7 @@ public class DriveElevatorManuallyCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double power = -RobotContainer.gpmStick.getY()*0.5;
+    double power = -RobotContainer.gpmStick.getY()*0.75; //prev 0.5
     //System.out.println("E-Y:"+RobotContainer.gpmStick.getY());
     //System.out.print("power: " + power);
     double multiplier = 1.0;

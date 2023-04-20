@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,8 +22,8 @@ public class AutoFlickCubeRightV1 extends ParallelCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new TurretToAngle(-90),
-      new AutoFlickCubeElevatorV1(),
+      //new TurretToAngle(-90),
+      //new AutoFlickCubeElevatorV1(),
       new AutoFlickCubeFlipperV1(),
       new AutoFlickCubeClawV1()
     );

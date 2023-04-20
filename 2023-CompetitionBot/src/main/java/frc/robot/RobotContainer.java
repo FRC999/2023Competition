@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPositionUsingLL;
+import frc.robot.commands.AutoFlickCubeRightV1;
 import frc.robot.commands.AutonomousBottomRow;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
@@ -413,7 +414,7 @@ public class RobotContainer {
     new JoystickButton(bbl, 6)
             .onTrue(new GPMAutoPlaceElementHighPrintOnly());
     new JoystickButton(bbl, 7)
-            .onTrue(new TESTAutoCubeFlick());
+            .onTrue(new AutoFlickCubeRightV1()); //changed from test auto :)
 
 
     // Test pose acquisition
@@ -512,8 +513,6 @@ public class RobotContainer {
     new JoystickButton(driveStick, 7)
       .whileTrue(new AutonomousBottomRow())
       .whileFalse(new InstantCommand(RobotContainer.driveSubsystem::stopRobot, RobotContainer.driveSubsystem, RobotContainer.pigeonIMUSubsystem));  
-
-
 
 
     // Turret rotation test

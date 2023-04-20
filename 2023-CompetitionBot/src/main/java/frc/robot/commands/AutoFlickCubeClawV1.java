@@ -18,7 +18,7 @@ public class AutoFlickCubeClawV1 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new WaitCommand(0.3),
+      new WaitCommand(0.34),
       new ClawOpen()
     );
   }
