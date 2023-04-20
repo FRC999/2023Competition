@@ -18,10 +18,10 @@ public class ClawSubsystem extends SubsystemBase {
 
   /** Creates a new ClawSubsystem. */
   public ClawSubsystem() {
-    //clawSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
-    //flipperSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
-    clawSolenoid = RobotContainer.pneumaticsSubsystem.getPneumaticsHub().makeDoubleSolenoid(Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
-    flipperSolenoid = RobotContainer.pneumaticsSubsystem.getPneumaticsHub().makeDoubleSolenoid(Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
+    clawSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
+    flipperSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
+    //clawSolenoid = RobotContainer.pneumaticsSubsystem.getPneumaticsHub().makeDoubleSolenoid(Claw.clawSolenoidChannels[0], Claw.clawSolenoidChannels[1]);
+    //flipperSolenoid = RobotContainer.pneumaticsSubsystem.getPneumaticsHub().makeDoubleSolenoid(Claw.flipperSolenoidChannels[0], Claw.flipperSolenoidChannels[1]);
 
     flipperUp();
     closeClaw();

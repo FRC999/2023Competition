@@ -18,8 +18,8 @@ public class BigFootSubsystem extends SubsystemBase {
   private static DoubleSolenoid footSolenoid;
 
   public BigFootSubsystem() {
-    //footSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
-    footSolenoid = RobotContainer.pneumaticsSubsystem.getPneumaticsHub().makeDoubleSolenoid(BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
+    footSolenoid = new DoubleSolenoid( PneumaticsConstants.pneumaticsModuleType, BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
+    //footSolenoid = RobotContainer.pneumaticsSubsystem.getPneumaticsHub().makeDoubleSolenoid(BigFoot.footSolenoidChannels[0], BigFoot.footSolenoidChannels[1]);
 
     footUp();
   }
