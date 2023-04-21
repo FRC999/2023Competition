@@ -24,7 +24,7 @@ public class AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreP
       new AutoULTIMATEFrontToChargerBalanceSPIN(),
       new PrintCommand("Trajectory Done"),
       //new DriveStopCommand(),
-      new WaitCommand(0.3), // wait until the charger quiets down
+      //new WaitCommand(0.3), // wait until the charger quiets down
       new SelfBalanceWhenFacingTheCharger(0.4, 0, true, true)
     );
   }
