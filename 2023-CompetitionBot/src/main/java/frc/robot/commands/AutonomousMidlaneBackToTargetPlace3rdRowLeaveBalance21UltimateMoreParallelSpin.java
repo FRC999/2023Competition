@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel extends SequentialCommandGroup {
+public class AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallelSpin extends SequentialCommandGroup {
   /** Creates a new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance21UltimateMoreParallel. */
-  public AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel() {
+  public AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallelSpin() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
@@ -21,11 +21,11 @@ public class AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreP
       new PrintCommand("Placing CUBE..."),
       new GPMAutoHighCubeStraightBackUltimateV3WithoutRetraction(), // that will take us off the pin as well
       new PrintCommand("Starting Retraction and Trajectory.."),
-      new AutoParallelRetractionAndTrajectoryOverChargerFrontForward(),
+      new AutoULTIMATEFrontToChargerBalanceSPIN(),
       new PrintCommand("Trajectory Done"),
       //new DriveStopCommand(),
-      new WaitCommand(0.7), // wait until the charger quiets down
-      new SelfBalanceWhenFacingTheCharger(0.4, 0, false, false)
+      new WaitCommand(0.3), // wait until the charger quiets down
+      new SelfBalanceWhenFacingTheCharger(0.4, 0, true, true)
     );
   }
 }

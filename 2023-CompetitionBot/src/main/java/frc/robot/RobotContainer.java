@@ -9,6 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.GamepieceManipulator.Elevator;
 import frc.robot.commands.AcquireRobotPositionUsingLL;
 import frc.robot.commands.AutoFlickCubeRightV1;
+import frc.robot.commands.AutoParallelRetractionAndTrajectoryOnChargerFrontForwardAngle;
 import frc.robot.commands.AutonomousBottomRow;
 import frc.robot.commands.AutonomousCommandPlaceholder;
 import frc.robot.commands.AutonomousGamepieceSecondRowWhenFacingBack;
@@ -18,7 +19,9 @@ import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowBalanceFlontCl
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19MoreParallel;
 import frc.robot.commands.AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel;
+import frc.robot.commands.AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallelSpin;
 import frc.robot.commands.AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimb18;
+import frc.robot.commands.AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimbAngle18;
 import frc.robot.commands.AutonomousOuterLaneTopRowFrontToTarget;
 import frc.robot.commands.AutonomousTopRow;
 import frc.robot.commands.ClearLimitOverrides;
@@ -190,6 +193,7 @@ public class RobotContainer {
     autoChooser.addOption("Midlane - BackToTarget - Cube Midrow - Balance - 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19());
     autoChooser.addOption("MidlaneParallel - BackToTarget - Cube Midrow - Balance - 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19MoreParallel());
     autoChooser.addOption("Midlane ULTIMATE - BackToTarget - Cube HighRow - Balance - 21pt", new AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel());
+    //autoChooser.addOption("TESTING AUTO DO NOT CHOOSE FOR COMPETITION -- 18 POINT AUTO ANGLE", new AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimbAngle18());
     
 
     //port SendableChooser data to the SmartDashboard
