@@ -194,6 +194,7 @@ public class RobotContainer {
     autoChooser.addOption("MidlaneParallel - BackToTarget - Cube Midrow - Balance - 19pt", new AutonomousMidlaneBackToTargetPlace2ndRowLeaveBalance19MoreParallel());
     autoChooser.addOption("Midlane ULTIMATE - BackToTarget - Cube HighRow - Balance - 21pt", new AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallel());
     //autoChooser.addOption("TESTING AUTO DO NOT CHOOSE FOR COMPETITION -- 18 POINT AUTO ANGLE", new AutonomousMidlaneFrontToTargetPlace3rdRowBalanceBackClimbAngle18());
+    //autoChooser.addOption("TESTING AUTO DO NOT CHOOSE FOR COMPETITION -- 21 POINT AUTO SPIN", new AutonomousMidlaneBackToTargetPlace3rdRowLeaveBalance21UltimateMoreParallelSpin());
     
 
     //port SendableChooser data to the SmartDashboard
