@@ -412,6 +412,7 @@ public final class Constants {
 
     }
     public static final class Claw { 
+      public static final int clawMotorID = 23;
       public static final int[] clawSolenoidChannels = {2,8};   // First channel to CLOSE, second to OPEN
       public static final int[] flipperSolenoidChannels = {0,1}; // First channel UP, second - DOWN
     }

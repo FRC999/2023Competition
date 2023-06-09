@@ -309,13 +309,17 @@ public class RobotContainer {
     new JoystickButton(driveStick, OIConstants.driveFlipperUP)      
           .onTrue(new InstantCommand(RobotContainer.clawSubsystem::flipperUp, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmClawOpen)
-          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem))
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::stopClaw, RobotContainer.clawSubsystem));
     new JoystickButton(gpmStick, OIConstants.gpmClawClose)      
-          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::stopClaw, RobotContainer.clawSubsystem));
     new JoystickButton(turnStick, OIConstants.turnClawOpen)
-          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem));
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::openClaw, RobotContainer.clawSubsystem))
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::stopClaw, RobotContainer.clawSubsystem));
     new JoystickButton(turnStick, OIConstants.turnClawClose)      
-          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem));    
+          .onTrue(new InstantCommand(RobotContainer.clawSubsystem::closeClaw, RobotContainer.clawSubsystem))
+          .onFalse(new InstantCommand(RobotContainer.clawSubsystem::stopClaw, RobotContainer.clawSubsystem));  
 
     // BigFoot for the endgame (or so we cannot be pushed)
     new JoystickButton(driveStick, OIConstants.driverBFDown)      
